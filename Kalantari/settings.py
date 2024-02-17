@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'product',
     # "sitesettings.apps.SitesettingsConfig"
     'sitesetting',
-    'workshop'
+    'workshop',
+    'order'
 ]
 
 MIDDLEWARE = [
