@@ -1,0 +1,88 @@
+.main{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.main .categories{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* background-color: aquamarine; */
+}
+.main .categories .category{
+    padding: 50px 0;
+    /* background-color: gray; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+.main .categories .category:hover{
+    transform: translateY(-5px);
+}
+.main .categories .category .catinter{
+    background-color: #fffefb;
+    width: 90%;
+    border-radius: 30px;
+    border: 1px solid #1c14063f;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.main .categories .mens .catinter{
+    /* justify-content: flex-end; */
+}
+.main .categories .category img{
+    width: 60%;
+}
+.main .categories .womens img{
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.main .categories .mens img{
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.main .categories .category span{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.main .categories .category span button{
+    border-radius: 50px;
+    background-color: transparent;
+    border: 1px solid black;
+    width: 100px;
+    height: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main .categories .category span button:hover{
+    background-color: rgb(149, 149, 149);
+    color: rgb(62, 62, 62);
+    border: 1px solid white;
+}
+.main .categories .womens{
+
+}
+
+
+
+
+
+
+
+
+.main .second{
+    background-color: blue;
+    color: white;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

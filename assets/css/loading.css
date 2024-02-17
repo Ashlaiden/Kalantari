@@ -1,0 +1,56 @@
+/* - Preloader
+------------------------------------------------------------- */
+#preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f7f7eb;
+    display: flex;
+    align-items: center;
+    z-index: 99999999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  #preloader.hide-preloader {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #loader {
+    width: 180px;
+    height: 9px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+  #loader:before {
+    content: "";
+    position: absolute;
+    left: -50%;
+    height: 9px;
+    width: 30%;
+    background-color: #b7b4ab;
+    -webkit-animation: lineAnim 1.6s linear infinite;
+    -moz-animation: lineAnim 1.6s linear infinite;
+    animation: lineAnim 1.6s linear infinite;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+  }
+  @keyframes lineAnim {
+    0% {
+        left: -40%;
+    }
+    50% {
+        left: 20%;
+        width: 80%;
+    }
+    100% {
+        left: 100%;
+        width: 100%;
+    }
+  }

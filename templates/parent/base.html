@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% include 'parent/head.html' %}
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Loading animation container -->
+    <div id="preloader">
+        <div id="loader"></div>
+    </div>
+    {% include 'parent/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'parent/footer.html' %}
+    {% include 'parent/script.html' %}
+    {% block script %}{% endblock %}
+    <script>
+        const isAuthenticated = {% if request.user.is_authenticated %}true{% else %}false{% endif %};
+    </script>
+</body>
+</html>

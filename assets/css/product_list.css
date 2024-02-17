@@ -1,0 +1,84 @@
+.header-black {
+    height: 80px;
+    width: 100%;
+    background-color: black;
+}
+
+
+.items {
+    margin: 50px 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+}
+.item-link {
+    color: inherit;
+    text-decoration: none;
+}
+.item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.item:hover {
+    transform: scale(1.05);
+}
+.item img {
+    width: 100%;
+    height: auto;
+}
+.item span {
+    padding: 15px;
+    font-size: 1.3rem;
+}
+.product-name {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.product-price {
+    font-size: 16px;
+    color: #e44d26; /* Adjust the color as needed */
+}
+/* -----------------pagination--------------------- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .pagination a:hover {
+    background-color: #ddd;
+  }
+
+  .pagination .btn.disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+    color: #666;
+  }
+
+  .pagination .active a {
+    background-color: #007bff;
+    color: #fff;
+  }

@@ -1,0 +1,346 @@
+@font-face {
+    font-family: Cinzel;
+    src: url("../fonts/cinzel/Cinzel-VariableFont_wght.ttf");
+}
+@font-face {
+    font-family: Cinzel-Regular;
+    src: url("../fonts/cinzel/Cinzel-Regular.ttf");
+}
+@font-face {
+    font-family: Cinzel-Medium;
+    src: url("../fonts/cinzel/Cinzel-Medium.ttf");
+}
+@font-face {
+    font-family: Cinzel-SemiBold;
+    src: url("../fonts/cinzel/Cinzel-SemiBold.ttf");
+}
+@font-face {
+    font-family: Cinzel-Bold;
+    src: url("../fonts/cinzel/Cinzel-Bold.ttf");
+}
+@font-face {
+    font-family: Cinzel-ExtraBold;
+    src: url("../fonts/cinzel/Cinzel-ExtraBold.ttf");
+}
+@font-face {
+    font-family: Cinzel-Black;
+    src: url("../fonts/cinzel/Cinzel-Black.ttf");
+}
+
+body{
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
+    direction: rtl;
+}
+.hidden {
+    display: none;
+}
+.disabled {
+    opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
+    pointer-events: none; /* Disable pointer events to prevent interaction */
+    cursor: not-allowed; /* Change cursor to 'not-allowed' to indicate*/
+    background-color: #dddddd; /* Change background color for visual indication */
+    color: #999999; /* Change text color for visual indication */
+}
+
+/* --------------------------------------------------------------- */
+/* -----------header------------ */
+header {
+    width: 100%;
+    height: 10vh;
+    background-color: black;
+    color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    cursor: default;
+}
+/* --------quick-connect-------- */
+
+/* ------login-information------ */
+.login-information {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    /* background-color: green; */
+    margin-top: 100px;
+    margin-bottom: 30px;
+}
+.personal-information {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    margin-bottom: 30px;
+}
+.privacy {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    margin-bottom: 0px;
+}
+.register-submit {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr;
+    margin-bottom: 30px;
+}
+/* .blank-space {
+    background-color: purple;
+} */
+.section {
+    /* background-color: red; */
+    margin-right: 50px;
+}
+.form {
+    padding-top: 50px;
+    /* background-color: yellow; */
+}
+hr {
+    color: gray;
+    opacity: 0.5;
+}
+/* ----inputs----- */
+.label {
+    margin: 20px 0;
+    height: 30px;
+    position:relative;
+    display:inline-block;
+    width: 100%;
+    /* background-color: blue; */
+}
+.span {
+    /* padding:10px; */
+    pointer-events: none;
+    position:absolute;
+    right:0;
+    top:0;
+    transition: 0.2s;
+    transition-timing-function: ease;
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity: 1;
+}
+.input {
+    padding:10p 0px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 2px;
+}
+input:focus {
+    outline: none;
+}
+.input:focus + .span, .input:not(:placeholder-shown) + .span {
+    opacity: 0.5;
+    transform: translateY(-100%);
+}
+/* For IE Browsers*/
+.input:focus + .span, .input:not(:-ms-input-placeholder) + .span {
+    opacity: 0.5;
+    transform: translateY(-100%);
+}
+.label.number {
+    margin-top: 50px;
+}
+/* Hide the spinner for number inputs */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+#last-name {
+    direction: rtl;
+}
+.optional-requierd {
+    display: block;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.7);
+}
+#required {
+    margin-top: 0px;
+}
+/* ----------------------------------------------------------- */
+/* #birthday::-webkit-calendar-picker-indicator {
+    display: none;
+    position: relative;
+}
+#birthday {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    cursor: pointer;
+}
+#birthday::before {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    color: #333;
+    pointer-events: none;
+} */
+/* -------------------------------------------------------- */
+/* #calendar {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    color: #333;
+    pointer-events: none;
+} */
+/* -------------email-input--------------- */
+.email-input {
+    margin-bottom: 50px;
+}
+#requierd {
+    display: block;
+    margin-bottom: 15px;
+}
+/* -------------custom-select-box------------------- */
+.custom-select {
+    direction: rtl;
+    position: relative;
+    width: 200px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.custom-select select {
+    direction: rtl;
+    /* appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none; */
+    background-color: #fff;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 10px;
+    width: 100%;
+}
+.custom-select select:focus {
+    outline: none;
+}
+/* .custom-select::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    pointer-events: none;
+} */
+.custom-select::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.custom-select:hover::after {
+    opacity: 1;
+}
+/* ----------costom-chek-box--------------- */
+/* The container */
+.checkbox {
+    direction: rtl;
+    display: block;
+    position: relative;
+    padding-right: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* Hide the browser's default checkbox */
+.checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+/* On mouse-over, add a grey background color */
+.checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked ~ .checkmark {
+    background-color: black;
+}
+  /* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Show the checkmark when checked */
+.checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* ------------register-btn--------------- */
+.register-submit .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+.register-btn {
+    width: 80%;
+    /* height: 50px; */
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: 2px soid gray;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+.register-btn:hover {
+    border: 2px solid black;
+    background-color: whitesmoke;
+    color: black;
+    scale: 1.01;
+}
+.register-submit .form span {
+    padding-top: 30px;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+

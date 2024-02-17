@@ -1,0 +1,40 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}Kalantari{% endblock %}
+{% block content %}
+	<main class="main">
+        <div class="background-video">
+            <video id="background-video" autoplay loop muted>
+                <source src="{% static 'videos/main/bg-video.mp4' %}" type="video/mp4">
+            </video>
+            <div class="controls">
+                <button id="toggle-play"><i class="fa-solid fa-pause"></i></button>
+                <button id="toggle-mute"><i class="fa-solid fa-volume-xmark"></i></button>
+            </div>
+        </div>
+        <div class="categories">
+            <div class="category womens">
+                <div class="catinter">
+                    <img src="{% static 'images/main/Womens.webp' %}" alt="womens-category">
+                    <span>
+                        <p>کیف چرم برای بانوان</p>
+                        <button>دسته بندی بانوان</button>
+                    </span>
+                </div>
+            </div>
+            <div class="category mens">
+                <div class="catinter">
+                    <span>
+                        <p>کیف چرم برای آقایان</p>
+                        <button>دسته بندی آقایان</button>
+                    </span>
+                    <img src="{% static 'images/main/Mens.webp' %}" alt="mens-category">
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="second">
+            <p>hello</p>
+        </div> -->
+    </main>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% load static %}
+<header>
+{#    <img class="background-image" src="{% static 'images/main/back.jpg' %}" alt="">#}
+    <div class="header" id="main-header">
+        <div class="left">
+            <div id="nav-account-btn" class="nav account user-menu-btn">
+                <i class="fa-regular fa-user account"></i>
+                <p>حساب کاربری</p>
+            </div>
+            <div id="nav-cart-btn" class="nav cart user-menu-btn">
+                <i class="fa-solid fa-cart-shopping cart"></i>
+                <p>سبد خرید</p> 
+            </div>
+            <!-- <div class="nav search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="جستجو">
+            </div> -->
+        </div>
+        <div class="center">
+            <span id="brand-name" class="brand-name">Kalantari</span>
+        </div>
+        <div class="right">
+            <div id="menu-btn" class="nav men-btn">
+                <p>منو</p>
+                <i class="fa-solid fa-bars menu-btn"></i>
+            </div>
+        </div>
+    </div>
+    <div id="menu" class="menu">
+        <div id="close-menu-btn" class="close-menu-btn">
+            <p>بستن</p>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="user-menu" class="user-menu">
+        <div class="sections-container">
+            <div id="close-user-menu-btn" class="close-user-menu-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="sections">
+                <section id="account-btn" onclick="changeSectionContent('account')" class="section-btn">پروفایل</section>
+                <section id="favorite-btn" onclick="changeSectionContent('favorite')" class="section-btn {% if not request.user.is_authenticated %}disabled{% endif %}">علاقه مندی</section>
+                <section id="cart-btn" onclick="changeSectionContent('cart')" class="section-btn {% if not request.user.is_authenticated %}disabled{% endif %}">سبد خرید</section>
+            </div>
+        </div>
+        <div class="sections-content">
+            <div id="cart" class="container hidden">
+                <div class="cart-section"></div>
+            </div>
+            <div id="account" class="container hidden">
+                <div class="account-section">
+                    {% if request.user.is_authenticated %}
+                    	<div id="profile" class="profile">
+                            <ul>
+                                <li>نام: {{ request.user.username }}</li>
+                            </ul>
+                        </div>
+                        <div class="logout-btn">
+                                <button type="button" onclick="Logout()">خروج از حساب کاربری</button>
+                        </div>
+                    {% else %}
+                    <div class="authentication-methods">
+                        <div class="login">
+                            <h3>ورود</h3>
+                            <p>برای دسترسی به پروفایل خود ابتدا وارد حساب کاربری خود شوید</p>
+                            <form id="login-form" class="login-form" action="">
+                                {% csrf_token %}
+                                <input type="email" name="email" placeholder="ایمیل">
+                                <input type="password" name="passwd" placeholder="رمز عبور">
+                                <button type="button" name="submit" onclick="Login()">ورود</button>
+                            </form>
+                        </div>
+                        <div class="qiuck-connect"></div>
+                        <div class="register-btn">
+                            <button id="register-btn" type="button">ثبت نام</button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            </div>
+            <div id="favorite" class="container hidden">
+                <div class="favorite-section"></div>
+            </div>
+        </div>
+    </div>
+    <div id="overlay" class="overlay">
+        <!-- blur -->
+    </div>
+</header>

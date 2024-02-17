@@ -1,0 +1,33 @@
+@font-face {
+    font-family: Cinzel;
+    src: url(static/static_root/fonts/cinzel/Cinzel-VariableFont_wght.ttf);
+}
+@font-face {
+    font-family: Cinzel-Regular;
+    src: url(static/static_root/fonts/cinzel/Cinzel-Regular.ttf);
+}
+@font-face {
+    font-family: Cinzel-Medium;
+    src: url(static/static_root/fonts/cinzel/Cinzel-Medium.ttf);
+}
+@font-face {
+    font-family: Cinzel-SemiBold;
+    src: url(static/static_root/fonts/cinzel/Cinzel-SemiBold.ttf);
+}
+@font-face {
+    font-family: Cinzel-Bold;
+    src: url(static/static_root/fonts/cinzel/Cinzel-Bold.ttf);
+}
+@font-face {
+    font-family: Cinzel-ExtraBold;
+    src: url(static/static_root/fonts/cinzel/Cinzel-ExtraBold.ttf);
+}
+@font-face {
+    font-family: Cinzel-Black;
+    src: url(static/static_root/fonts/cinzel/Cinzel-Black.ttf);
+}
+
+body{
+    font-family: 'Cinzel', serif;
+    margin: 0px;
+}
