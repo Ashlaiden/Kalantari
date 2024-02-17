@@ -28,7 +28,7 @@ class AuthRouter:
 
 
 class ProductRouter:
-    route_app_labels = {'product', }
+    route_app_labels = {'product', 'cart'}
 
     db_name = 'product_db'
 

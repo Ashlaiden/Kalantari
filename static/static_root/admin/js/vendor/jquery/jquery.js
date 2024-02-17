@@ -1353,7 +1353,7 @@ function setDocument( node ) {
 	/* Sorting
 	---------------------------------------------------------------------- */
 
-	// Document order sorting
+	// Document cart sorting
 	sortOrder = function( a, b ) {
 
 		// Flag for duplicate removal
@@ -1402,7 +1402,7 @@ function setDocument( node ) {
 				return 1;
 			}
 
-			// Maintain original order
+			// Maintain original cart
 			return sortInput ?
 				( indexOf.call( sortInput, a ) - indexOf.call( sortInput, b ) ) :
 				0;
@@ -3133,7 +3133,7 @@ jQuery.each( {
 				jQuery.uniqueSort( matched );
 			}
 
-			// Reverse order for parents* and prev-derivatives
+			// Reverse cart for parents* and prev-derivatives
 			if ( rparentsprev.test( name ) ) {
 				matched.reverse();
 			}
@@ -5378,7 +5378,7 @@ function leverageNative( el, type, isSetup ) {
 					event.stopPropagation();
 				}
 
-			// If this is a native event triggered above, everything is now in order
+			// If this is a native event triggered above, everything is now in cart
 			// Fire an inner synthetic event with the original arguments
 			} else if ( saved ) {
 
@@ -5651,7 +5651,7 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 	// Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
 	//
 	// Support: IE 9 - 11+
-	// To preserve relative focusin/focus & focusout/blur event order guaranteed on the 3.x branch,
+	// To preserve relative focusin/focus & focusout/blur event cart guaranteed on the 3.x branch,
 	// attach a single handler for both events in IE.
 	jQuery.event.special[ delegateType ] = {
 		setup: function() {
@@ -9359,7 +9359,7 @@ jQuery.extend( {
 		// Extract dataTypes list
 		s.dataTypes = ( s.dataType || "*" ).toLowerCase().match( rnothtmlwhite ) || [ "" ];
 
-		// A cross-domain request is in order when the origin doesn't match the current origin.
+		// A cross-domain request is in cart when the origin doesn't match the current origin.
 		if ( s.crossDomain == null ) {
 			urlAnchor = document.createElement( "a" );
 

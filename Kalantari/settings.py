@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # "sitesettings.apps.SitesettingsConfig"
     'sitesetting',
     'workshop',
-    'order'
+    'cart'
 ]
 
 MIDDLEWARE = [
@@ -91,38 +91,20 @@ AUTH_USER_MODEL = 'account.Account'
 
 DATABASES = {
     'default': {
-    },
-    'auth_db': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kalantari_auth_db',
+        'NAME': 'kalantari_db',
         'USER': 'root',
         'PASSWORD': 'Ramtin6834672',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-    },
-    'product_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kalantari_product_db',
-        'USER': 'root',
-        'PASSWORD': 'Ramtin6834672',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    },
-    'setting_db': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kalantari_setting_db',
-        'USER': 'root',
-        'PASSWORD': 'Ramtin6834672',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    },
+    }
 }
 
-DATABASE_ROUTERS = [
-    'routers.db_routers.AuthRouter',
-    'routers.db_routers.ProductRouter',
-    'routers.db_routers.SettingRouter',
-]
+# DATABASE_ROUTERS = [
+#     'routers.db_routers.AuthRouter',
+#     'routers.db_routers.ProductRouter',
+#     'routers.db_routers.SettingRouter',
+# ]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

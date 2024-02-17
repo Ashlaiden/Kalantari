@@ -58,6 +58,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'phone']
 
+    class Meta:
+        ordering = ['-id']
+        indexes = [
+            models.Index(fields=['-id'])
+        ]
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
