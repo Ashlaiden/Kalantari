@@ -1,31 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var video = document.getElementById("background-video");
-    var playPauseButton = document.getElementById("toggle-play");
-    var muteButton = document.getElementById("toggle-mute");
-
-    playPauseButton.addEventListener("click", function () {
-        if (video.paused) {
-            video.play();
-            playPauseButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        } else {
-            video.pause();
-            playPauseButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-        }
-    });
-
-    muteButton.addEventListener("click", function () {
-        if (video.muted) {
-            video.muted = false;
-            muteButton.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-        } else {
-            video.muted = true;
-            muteButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-        }
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
     var header = document.getElementById("main-header");
     var brand = document.getElementById('brand-name');
 
@@ -53,7 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
             brand.classList.remove('brand-name');
         } else {
             header.classList.remove("header-hover");
-            brand.classList.add('brand-name');
+            if (headerIsHovered) {
+                brand.classList.remove('brand-name');
+            } else {
+                brand.classList.add('brand-name');
+            }
         }
     }
 
@@ -65,15 +42,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Get the element
-var myElement = document.getElementById('main-header');
+var header = document.getElementById('main-header');
 var brand = document.getElementById('brand-name');
+var headerIsHovered = false;
 // Add event listener for mouseenter (hover)
-myElement.addEventListener('mouseenter', function() {
+header.addEventListener('mouseenter', function() {
+    headerIsHovered = true;
     brand.classList.remove('brand-name');
 });
 // Add event listener for mouseleave (unhover)
-myElement.addEventListener('mouseleave', function() {
-    brand.classList.add('brand-name');
+header.addEventListener('mouseleave', function() {
+    headerIsHovered = false;
+    if (window.scrollY > 50) {
+        brand.classList.remove('brand-name');
+    } else {
+        brand.classList.add('brand-name');
+    }
 });
 // -------------Menu---------------
 document.getElementById('menu-btn').addEventListener('click', function () {

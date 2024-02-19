@@ -74,42 +74,48 @@ class Authenticate {
   }
 }
 var authenticate = new Authenticate('create');
-var form = document.getElementById('login-form').children;
-var login_button = form.namedItem('submit');
-form.namedItem('email').addEventListener('input', function () {
-  var vlue = this.value;
-  if (authenticate.cleaned_email(vlue)) {
-    if (authenticate.isValid()) {
-      login_button.classList.remove('disabled');
+if (document.getElementById('login-form')) {
+  var form = document.getElementById('login-form').children;
+  var login_button = form.namedItem('submit');
+  form.namedItem('email').addEventListener('input', function () {
+    var vlue = this.value;
+    if (authenticate.cleaned_email(vlue)) {
+      if (authenticate.isValid()) {
+        login_button.classList.remove('disabled');
+      } else {
+        login_button.classList.add('disabled');
+      }
     } else {
       login_button.classList.add('disabled');
     }
-  } else {
-    login_button.classList.add('disabled');
-  }
-});
-form.namedItem('passwd').addEventListener('input', function () {
-  var vlue = this.value;
-  if (authenticate.cleaned_passwd(vlue)) {
-    if (authenticate.isValid()) {
-      login_button.classList.remove('disabled');
+  });
+  form.namedItem('passwd').addEventListener('input', function () {
+    var vlue = this.value;
+    if (authenticate.cleaned_passwd(vlue)) {
+      if (authenticate.isValid()) {
+        login_button.classList.remove('disabled');
+      } else {
+        login_button.classList.add('disabled');
+      }
     } else {
       login_button.classList.add('disabled');
     }
-  } else {
-    login_button.classList.add('disabled');
+  });
+  // ------------------------------------------
+  function Login() {
+    console.log('started....')
+    if (authenticate.isValid()) {
+      authenticate.Login();
+      console.log('success')
+    } else {
+      console.log('failed')
+    }
+    console.log('end')
   }
-});
-// ------------------------------------------
-function Login() {
-  console.log('started....')
-  if (authenticate.isValid()) {
-    authenticate.Login();
-    console.log('success')
-  } else {
-    console.log('failed')
-  }
-  console.log('end')
+  // ------------------------register-btn---------------------------
+  document.getElementById('register-btn').addEventListener('click', function() {
+    window.open(authenticate.RegisterURL.URL, authenticate.RegisterURL.type);
+  });
 }
 // -------------logout--------------------
 function Logout() {
@@ -118,10 +124,6 @@ function Logout() {
   console.log('success')
   console.log('end')
 }
-// ------------------------register-btn---------------------------
-document.getElementById('register-btn').addEventListener('click', function() {
-  window.open(authenticate.RegisterURL.URL, authenticate.RegisterURL.type);
-});
 
 
 

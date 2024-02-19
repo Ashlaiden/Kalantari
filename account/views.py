@@ -15,25 +15,34 @@ from .models import Account
 
 
 def login_user(request):
-    if request.user.is_authenticated:
-        return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'You are already logged in'})
-    login_form = LoginForm(request.POST or None)
-    if login_form.is_valid():
-        email = login_form.cleaned_data.get('email')
-        password = login_form.cleaned_data.get('passwd')
-        usr = authenticate(request, email=email, password=password)
-        if usr is not None:
-            ip_address = get_user_IP(request)
-            if ip_address is not None:
-                usr.last_IP = ip_address
-                usr.save()
-            login(request, usr)
-            return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'login success'})
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'You are already logged in'})
+        login_form = LoginForm(request.POST or None)
+        if login_form.is_valid():
+            email = login_form.cleaned_data.get('email')
+            password = login_form.cleaned_data.get('passwd')
+            usr = authenticate(request, email=email, password=password)
+            if usr is not None:
+                ip_address = get_user_IP(request)
+                if ip_address is not None:
+                    usr.last_IP = ip_address
+                    usr.save()
+                login(request, usr)
+                return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'login success'})
+            else:
+                return JsonResponse({'code': '404', 'success': False, 'status': 'error', 'message': 'کاربری با این مشخصات یافت نشد!'})
+        if request.method != 'POST':
+            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'Invalid request'})
+        return JsonResponse({'code': '500', 'success': False, 'status': 'error', 'message': 'internal server error'})
+    else:
+        if request.user.is_authenticated:
+            return redirect('/')
         else:
-            return JsonResponse({'code': '404', 'success': False, 'status': 'error', 'message': 'کاربری با این مشخصات یافت نشد!'})
-    if request.method != 'POST':
-        return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'Invalid request'})
-    return JsonResponse({'code': '500', 'success': False, 'status': 'error', 'message': 'internal server error'})
+            context = {
+
+            }
+            return render(request, 'account/login.html', context)
 
 
 def logout_user(request):

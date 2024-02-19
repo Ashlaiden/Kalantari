@@ -25,7 +25,15 @@ SECRET_KEY = 'django-insecure-xp8)l5o9(7ow7frlzc5ogpgeqygo46^c*=*y0scf#bf84k!kp#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['9098-86-57-21-126.ngrok-free.app', 'localhost', '127.0.0.1']
+
+CORS_ALLOWED_ORIGINS = [
+    'https://9098-86-57-21-126.ngrok-free.app',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://9098-86-57-21-126.ngrok-free.app",
+]
 
 
 # Application definition
@@ -37,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'corsheaders',
     # project apps
     'Kalantari',
     'core',
@@ -58,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Kalantari.urls'
@@ -152,7 +161,7 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media_root")
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/account/login/'
 
 
 # Default primary key field type

@@ -1,0 +1,23 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}سبد خرید{% endblock %}
+{% block head %}
+	<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <style>
+        .header {
+            background-color: black;
+        }
+        .header.header-hover {
+            background-color: white;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="header-fill"></div>
+	<div class="main">
+
+    </div>
+{% endblock %}
+{% block script %}
+	<script src="{% static 'js/cart.js' %}"></script>
+{% endblock %}

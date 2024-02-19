@@ -1,6 +1,6 @@
 {% extends 'parent/base.html' %}
 {% load static %}
-{% block title %}Kalantari{% endblock %}
+{% block title %}خانه{% endblock %}
 {% block content %}
 	<main class="main">
         <div class="background-video">
@@ -37,4 +37,7 @@
             <p>hello</p>
         </div> -->
     </main>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/home.js' %}"></script>
 {% endblock %}

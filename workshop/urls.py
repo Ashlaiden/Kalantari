@@ -5,7 +5,7 @@ app_name = 'workshop'
 
 urlpatterns = [
     path('', home_page, name='home_page'),
-    path('<category>/', ProductListView.as_view(), name='product_list')
+    path('list/<category>/', ProductListView.as_view(), name='product_list')
 ]
 
 
