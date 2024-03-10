@@ -30,18 +30,20 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
 }
-.main .categories .mens .catinter{
+.main .categories .man .catinter{
     /* justify-content: flex-end; */
 }
 .main .categories .category img{
     width: 60%;
 }
-.main .categories .womens img{
+.main .categories .woman img{
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
 }
-.main .categories .mens img{
+.main .categories .man img{
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
 }
@@ -66,7 +68,7 @@
     color: rgb(62, 62, 62);
     border: 1px solid white;
 }
-.main .categories .womens{
+.main .categories .woman{
 
 }
 

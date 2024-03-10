@@ -15,7 +15,20 @@ def home_page(request):
     return render(request, 'workshop/home.html', context)
 
 
-class ProductListView(ListView):
+class ProductManListView(ListView):
+    template_name = 'workshop/product_list.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        print(self.kwargs)
+        products = Product.published.all()
+        if Product is not None:
+            return products
+        else:
+            raise Http404("Product not found")
+
+
+class ProductWomanListView(ListView):
     template_name = 'workshop/product_list.html'
     paginate_by = 6
 

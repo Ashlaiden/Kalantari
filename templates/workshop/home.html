@@ -13,23 +13,23 @@
             </div>
         </div>
         <div class="categories">
-            <div class="category womens">
-                <div class="catinter">
+            <div class="category woman">
+                <a class="catinter"  href="{% url 'workshop:product_man_list' %}">
                     <img src="{% static 'images/main/Womens.webp' %}" alt="womens-category">
                     <span>
                         <p>کیف چرم برای بانوان</p>
                         <button>دسته بندی بانوان</button>
                     </span>
-                </div>
+                </a>
             </div>
-            <div class="category mens">
-                <div class="catinter">
+            <div class="category man">
+                <a class="catinter" href="{% url 'workshop:product_woman_list' %}">
                     <span>
                         <p>کیف چرم برای آقایان</p>
                         <button>دسته بندی آقایان</button>
                     </span>
                     <img src="{% static 'images/main/Mens.webp' %}" alt="mens-category">
-                </div>
+                </a>
             </div>
         </div>
 
