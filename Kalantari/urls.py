@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from . import settings
 from django.conf.urls.static import static
 
@@ -29,7 +30,10 @@ urlpatterns = [
     path('', include('workshop.urls', namespace='workshop')),
 
     # include cart urls
-    path('cart/', include('cart.urls', namespace='cart'))
+    path('cart/', include('cart.urls', namespace='cart')),
+
+    # include Partials urls
+    path('partial/', include('partials.urls', namespace='partials'), name='partials')
 ]
 
 

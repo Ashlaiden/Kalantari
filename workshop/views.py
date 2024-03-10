@@ -1,13 +1,16 @@
 from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import ListView
+
+from cart.models import Order
 from product.models import Product
 
 
 # Create your views here.
 def home_page(request):
+    items = Order.order_manager.get_order_items(request.user)
     context = {
-
+        'items': items
     }
     return render(request, 'workshop/home.html', context)
 

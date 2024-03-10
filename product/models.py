@@ -59,6 +59,7 @@ class PublishedManager(models.Manager):
 # Create your models here.
 # Product---------------------------------------------------
 class Product(models.Model):
+    uid = models.IntegerField(unique=True, editable=False, null=False)
     title = models.CharField(max_length=200, null=False)
     description = models.TextField()
     price = models.IntegerField()
@@ -111,10 +112,13 @@ class Product(models.Model):
         if not self.id:
             from core.core.generator import generate_id
             self.id = generate_id('product')
+        from core.core.model_methods import pre_save_uid
+        self.uid = pre_save_uid(self.uid, 'product')
         super(Product, self).save(*args, **kwargs)
 
 
 class ProductGallery(models.Model):
+    uid = models.IntegerField(unique=True, editable=False, null=False)
     title = models.CharField(max_length=150)
     image = models.ImageField(upload_to=upload_image_path, null=False, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='Gallery', related_query_name='gallery')
@@ -135,5 +139,7 @@ class ProductGallery(models.Model):
         if not self.id:
             from core.core.generator import generate_id
             self.id = generate_id('productgallery')
+        from core.core.model_methods import pre_save_uid
+        self.uid = pre_save_uid(self.uid, 'productgallery')
         super(ProductGallery, self).save(*args, **kwargs)
 

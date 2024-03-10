@@ -66,6 +66,7 @@ class Authenticate {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
+// --------------------------------------------------
 var authenticate = new Authenticate('create');
 var login_button = document.getElementById('login');
 document.getElementById('email').addEventListener('input', function () {

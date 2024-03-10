@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
+    'django_render_partial',
     # project apps
     'Kalantari',
     'core',
@@ -55,7 +56,8 @@ INSTALLED_APPS = [
     # "sitesettings.apps.SitesettingsConfig"
     'sitesetting',
     'workshop',
-    'cart'
+    'cart',
+    'partials',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
             ],
         },
     },

@@ -15,7 +15,46 @@
 {% block content %}
     <div class="header-fill"></div>
 	<div class="main">
-
+        <div class="container order">
+            <ul class="items">
+                <div class="th">
+                    <span>سبد خرید</span>
+                </div>
+                {% for item in items %}
+                    <li id="{{ item.uid }}" class="item">
+                        <div class="des">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.slug }}">
+                            <div class="des-tico">
+                                <h4>{{ item.product.title | truncatewords:20 }}</h4>
+                                <span>کد سفارش: {{ item.uid }}</span>
+                            </div>
+                        </div>
+                        <div class="con">
+                            <div class="change-count">
+                                <form id="decrease-{{ item.uid }}" action="" class="decrease">
+                                    {% csrf_token %}
+                                    {% if item.count == 1 %}
+                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
+                                    {% else %}
+                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
+                                    {% endif %}
+                                </form>
+                                <p id="count-{{ item.uid }}">{{ item.count }}</p>
+                                <form id="increase-{{ item.uid }}" action="" class="increase">
+                                    {% csrf_token %}
+                                    <button name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>
+                                </form>
+                            </div>
+                            <span>{{ item.price }}</span>
+                            <form id="delete-{{ item.uid }}" action="" class="delete">
+                                {% csrf_token %}
+                                <button name="submit" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}
 {% block script %}

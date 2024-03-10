@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_partial %}
 <header>
 {#    <img class="background-image" src="{% static 'images/main/back.jpg' %}" alt="">#}
     <div class="header" id="main-header">
@@ -48,15 +49,14 @@
             </div>
         </div>
         <div class="sections-content">
-            <div id="cart" class="container hidden">
-                <div class="cart-section"></div>
-            </div>
+            {% render_partial 'partials.views.cart_user_menu' %}
             <div id="account" class="container hidden">
                 <div class="account-section">
                     {% if request.user.is_authenticated %}
                     	<div id="profile" class="profile">
                             <ul>
-                                <li>نام: {{ request.user.username }}</li>
+                                <li>نام: {{ request.user.first_name }} {{ request.user.last_name }}</li>
+                                <li>ایمیل: {{ request.user.email }}</li>
                             </ul>
                         </div>
                         <div class="logout-btn">

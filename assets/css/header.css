@@ -278,7 +278,8 @@ header{
 /* ---------sections-container--------- */
 .sections-container{
     width: 100%;
-    height: 10vh;
+    /* height: 10%; */
+    box-sizing: border-box;
 }
 /* ---------user-menu-sections-------- */
 .sections {
@@ -315,14 +316,17 @@ header{
     /* background-color: red; */
     /* width: 100%; */
     padding: 0px 15px;
-    height: 90vh;
+    height: 90%;
     /* display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr; */
 }
 .account-section {
     /* background-color: blue; */
-    height: calc(90vh - 60px);
+    /* height: calc(90vh - 60px); */
+    height: 100%;
+    box-sizing: border-box;
+    /* background-color: yellow; */
     margin: 0px 15px;
     padding: 30px 0px;
     display: flex;
@@ -370,13 +374,19 @@ header{
 }
 .account-section .login-form button {
     width: 90%;
-    background-color: #333;
+    background-color: black;
     border-radius: 20px;
-    border: 1px solid black;
+    border: 1px solid gray;
     color: white;
     padding: 10px 0px;
     margin-top: 20px;
     font-size: 1.5rem;
+    transition: all 0.5s;
+}
+.account-section .login-form button:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
 }
 .register-btn {
     grid-row-end: auto;
@@ -386,14 +396,20 @@ header{
     width: 100%;
 }
 .register-btn button{
-    width: 90%;
-    background-color: #333;
+    width: 100%;
+    background-color: black;
     border-radius: 20px;
-    border: 2px solid black;
+    border: 2px solid gray;
     color: white;
     padding: 10px 0px;
     margin-top: 20px;
     font-size: 1.5rem;
+    transition: all 0.5s;
+}
+.account-section .register-btn button:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
 }
 .logout-btn {
     grid-row-end: auto;
@@ -430,11 +446,96 @@ header{
 
 /* ------------------favorite-section-------------------- */
 .favorite-section {
+    box-sizing: border-box;
     background-color: blue;
-    height: 90vh;
+    height: 100%;
 }
 /* ------------------cart-section------------------------ */
 .cart-section {
-    background-color: red;
-    height: 90vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+.cart-section .cart-box {
+    /* background-color: purple; */
+    margin-top: 5px;
+    width: 100%;
+    /* height: 40%; */
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 0px;
+}
+.cart-section .cart-box .menu-cart-items {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    padding: 15px 10px 0px 10px;
+    margin: 0px;
+    max-height: 50vh;
+    overflow: auto;
+    box-sizing: border-box;
+}
+.cart-section .cart-box .menu-cart-items .menu-cart-item {
+    width: 100%;
+    margin-bottom: 15px;
+    direction: rtl;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 15px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.cart-section .cart-box .menu-cart-items .menu-cart-item:hover {
+    scale: 1.01;
+}
+.cart-section .cart-box .menu-cart-items .menu-cart-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+}
+.cart-section .cart-box .menu-cart-items .menu-cart-item button {
+    color: #ff004f;
+    border: 1px solid #ff004f;
+    border-radius: 7px;
+    width: 25px;
+    height: 25px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.cart-section .cart-box .menu-cart-items .menu-cart-item button:hover {
+    scale: 1.05;
+    background-color: #ff004f;
+    color: white;
+}
+.cart-section .continue-in-cart{
+    width: 100%;
+    background-color: black;
+    border-radius: 20px;
+    border: 2px solid gray;
+    color: white;
+    padding: 10px 0px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    transition: all 0.5s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.cart-section .continue-in-cart:hover {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
 }

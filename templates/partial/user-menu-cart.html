@@ -1,0 +1,21 @@
+<div id="cart" class="container hidden">
+    <div class="cart-section">
+        <div class="cart-box">
+            <ul class="menu-cart-items">
+                {% for item in items %}
+                <li id="{{ item.uid }}" class="menu-cart-item">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                    <span>{{ item.product.title }}</span>
+                    <span>{{ item.count }}</span>
+                    <span>{{ item.price }}</span>
+                    <form id="form-{{ item.uid }}" action="">
+                        {% csrf_token %}
+                        <button type="button" name="delete-item" id="delete-{{ item.uid }}" onclick="removeitemfromcart({{ item.uid }})"><i class="fa-solid fa-xmark"></i></button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'cart:cart' %}" class="continue-in-cart">ادامه در سبد خرید</a>
+    </div>
+</div>

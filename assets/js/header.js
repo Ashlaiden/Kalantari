@@ -247,3 +247,22 @@ function changeSectionContent(sectionId) {
         selectedSection.classList.remove('hidden');
     }
 }
+// ----------------------------------CART------------------------------------
+function removeitemfromcart(id) {
+    const delete_item_url = '/cart/delete/item/';
+    csrfmiddlewaretoken = document.getElementById(`form-${id}`).children.namedItem('csrfmiddlewaretoken').value;
+    const fd = new FormData();
+    fd.append('csrfmiddlewaretoken', csrfmiddlewaretoken)
+    fd.append('uid', id)
+    axios.post(delete_item_url, fd)
+    .then(response => {
+        console.log(response)
+        if (response.data.status === 'ok') {
+            document.getElementById(`${id}`).remove();
+        }
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error submitting form:', error);
+    });
+}

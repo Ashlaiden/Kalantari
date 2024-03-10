@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from core.core.generator import generate_user_name
 from .forms import *
 from .models import Account
+from cart.models import Order
 
 
 def login_user(request):
@@ -97,6 +98,7 @@ def register_account(request):
                         )
                     usr = authenticate(request, email=email, password=passwd)
                     if usr is not None:
+                        Order.object.create(user=usr)
                         login(request, usr)
                         return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'account creation success'})
                     else:

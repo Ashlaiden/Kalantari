@@ -42,4 +42,5 @@ body{
     cursor: not-allowed; /* Change cursor to 'not-allowed' to indicate*/
     background-color: #dddddd; /* Change background color for visual indication */
     color: #999999; /* Change text color for visual indication */
+    cursor: not-allowed; /* Change Cursor to Not-Allowed */
 }

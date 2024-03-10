@@ -27,7 +27,7 @@ class AccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser, PermissionsMixin):
-    uid = models.IntegerField(null=False, editable=False)
+    uid = models.IntegerField(null=False, editable=False, unique=True)
     # Add your custom fields here
     email = models.EmailField(unique=True, null=False)
     first_name = models.CharField(max_length=250)
@@ -69,9 +69,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
     def save(self, *args, **kwargs):
         # Generate UID
-        if not self.uid:
-            from core.core.generator import generate_id
-            self.uid = generate_id('account')
+        from core.core.generator import generate_uid
+        self.uid = generate_uid('account')
         if self.phone:
             from core.core.normalization import normalize_phone
             cleaned_phone = normalize_phone(self.phone)

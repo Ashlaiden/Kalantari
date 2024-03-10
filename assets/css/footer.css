@@ -22,13 +22,26 @@
     color: wheat;
     width: 100%;
     height: auto;
-    padding: 50px 5%;
+    padding: 5px 0px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: start;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     cursor: default;
+}
+.footer .brand .name {
+    padding: 0px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: wheat;
+    width: 100%;
+    font-size: 15vw;
+}
+.footer .brand .name div {
+    padding: 0px;
 }
 .footer .toolbar {
     width: 100%;
