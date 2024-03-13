@@ -117,6 +117,14 @@ buttons.forEach(function(button) {
                 changeSectionContent('cart');
                 document.getElementById('cart-btn').classList.add('section-btn-active');
                 break;
+            case 'nav-favorite-btn':
+                if (document.getElementById('account-btn').classList.contains('section-btn-active'))
+                    document.getElementById('account-btn').classList.remove('section-btn-active');
+                if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
+                    document.getElementById('cart-btn').classList.remove('section-btn-active');
+                changeSectionContent('favorite');
+                document.getElementById('favorite-btn').classList.add('section-btn-active');
+                break;
         }
     } else {
         switch (button.getAttribute('id')) {

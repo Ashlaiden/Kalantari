@@ -32,13 +32,14 @@
 }
 .footer .brand .name {
     padding: 0px 0px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     color: wheat;
     width: 100%;
-    font-size: 15vw;
+    font-size: 12vw;
 }
 .footer .brand .name div {
     padding: 0px;
@@ -122,9 +123,9 @@
     /* background-color: white; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 10px 10px;
+    margin: 10px 0px;
     transition: transform 0.3s ease;
     cursor: pointer;
     /* position: relative; */

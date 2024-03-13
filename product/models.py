@@ -63,7 +63,16 @@ class Product(models.Model):
     title = models.CharField(max_length=200, null=False)
     description = models.TextField()
     price = models.IntegerField()
-    image = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
+    cover_image = models.ImageField(
+        upload_to=upload_image_path,
+        null=True,
+        blank=True
+    )
+    hover_image = models.ImageField(
+        upload_to=upload_image_path,
+        null=True,
+        blank=True
+    )
     slug = models.SlugField(max_length=250, blank=True, allow_unicode=True)
     stock = models.IntegerField(default=0)
     sold = models.IntegerField(default=0)

@@ -1,3 +1,4 @@
+/* -------------------------Cinzel-Fonts------------------------ */
 @font-face {
     font-family: Cinzel;
     src: url("../fonts/cinzel/Cinzel-VariableFont_wght.ttf");
@@ -26,13 +27,36 @@
     font-family: Cinzel-Black;
     src: url("../fonts/cinzel/Cinzel-Black.ttf");
 }
+/* --------------------------------- */
+@font-face {
+    font-family: B-Shiraz;
+    src: url("../fonts/B-Shiraz/B-Shiraz.ttf");
+}
+@font-face {
+    font-family: B-Shiraz_italic;
+    src: url("../fonts/B-Shiraz/B-Shiraz_Italic.ttf");
+}
+/* -------------------------- */
+@font-face {
+    font-family: Oswald-Medium;
+    src: url("../fonts/Oswald/Oswald-Medium.ttf");
+}
+/* -------------------------------------------------------------------- */
+
 
 body{
-    font-family: 'Cinzel', serif;
+    font-family: 'B-Shiraz', serif;
     font-size: 18px;
     margin: 0px;
     padding: 0px;
 }
+.Cinzel-font {
+    font-family: 'Cinzel', serif;
+}
+.Oswald-medium {
+    font-family: 'Oswald-Medium', serif;
+}
+
 .hidden {
     display: none;
 }

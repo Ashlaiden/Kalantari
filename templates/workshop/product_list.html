@@ -12,7 +12,8 @@
             {% for product in page_obj %}
             <a class="item-link" href="">
                 <div class="item">
-                    <img src="{{ product.image.url }}" alt="{{ product.title }}">
+                    <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                    <img class="hidden" src="{{ product.hover_image.url }}" alt="{{ product.title }}">
                     <span>{{ product.title }}</span>
                 </div>
             </a>

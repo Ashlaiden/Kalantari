@@ -8,9 +8,8 @@ from product.models import Product
 
 # Create your views here.
 def home_page(request):
-    items = Order.order_manager.get_order_items(request.user)
     context = {
-        'items': items
+
     }
     return render(request, 'workshop/home.html', context)
 
