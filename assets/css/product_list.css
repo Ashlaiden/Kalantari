@@ -23,11 +23,66 @@
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    /* position: relative; */
+    /* height: 300px; */
 }
+/* --------------------------------------------- */
+.image-container {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  height: auto;
+  /* or max-width: 100%; if you want to maintain the original image size */
+  /* grid-row: 1 / span 2; */
+  /* This will make the image take up the space of the auto row and the additional 50px row */
+}
+
+.item-des {
+  direction: rtl;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
+  margin: 0px;
+  /* grid-row: 2; */
+  /* This places the additional content in the 50px row */
+}
+/* -----------Hover-&-Cover--IMage----------- */
+.image-container {
+  width: 100%; /* Adjust the width as necessary */
+  position: relative;
+
+}
+/* The pseudo-element that creates the aspect ratio */
+/* .image-container::before {
+  content: '';
+  display: block;
+  padding-top: calc(auto / 100% * 100); */
+  /* Replace height and width with your image's aspect ratio */
+/* } */
+.cover-image, .hover-image {
+  transition: opacity 0.5s, transform 0.5s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.hover-image {
+  opacity: 0;
+  /* z-index: 10; */
+  backface-visibility: hidden;
+}
+/* .covered {
+  opacity: 1;
+}
+.hovered {
+  opacity: 0;
+} */
+/* ---------------------- */
 .item:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .item img {
     width: 100%;
@@ -36,6 +91,11 @@
 .item span {
     padding: 15px;
     font-size: 1.3rem;
+}
+.item .price {
+  padding: 0px 20px;
+  color: rgb(68, 68, 68);
+  font-size: 0.9rem;
 }
 .product-name {
     font-size: 18px;

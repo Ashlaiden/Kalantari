@@ -1,13 +1,13 @@
 <div class="clearfix"></div>
-<div style="display: flex;justify-content: center;">
+<div style="display: flex;justify-content: center;direction: rtl;">
 {% if page_obj.has_previous or page_obj.has_next %}
     <ul class="pagination">
         {% if page_obj.has_previous %}
             <li><a href="?page=1">&laquo;</a></li>
-            <li><a href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}">قبلی</a></li>
         {% else %}
             <li><a class="btn disabled">&laquo;</a></li>
-            <li><a class="btn disabled">previous</a></li>
+            <li><a class="btn disabled">قبلی</a></li>
         {% endif %}
 
         {% for pn in paginator.page_range %}
@@ -25,10 +25,10 @@
         {% endcomment %}
 
         {% if page_obj.has_next %}
-            <li><a href=?page={{ page_obj.next_page_number }}>next</a></li>
+            <li><a href=?page={{ page_obj.next_page_number }}>بعدی</a></li>
             <li><a href='?page={{ page_obj.paginator.num_pages }}'>&raquo;</a></li>
         {% else %}
-            <li><a class="btn disabled">next</a></li>
+            <li><a class="btn disabled">بعدی</a></li>
             <li><a class="btn disabled">&raquo;</a></li>
         {% endif %}
     </ul>

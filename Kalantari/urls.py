@@ -29,6 +29,9 @@ urlpatterns = [
     # include workshop urls
     path('', include('workshop.urls', namespace='workshop')),
 
+    # include Product urls
+    path('product/', include('product.urls', namespace='product')),
+
     # include cart urls
     path('cart/', include('cart.urls', namespace='cart')),
 

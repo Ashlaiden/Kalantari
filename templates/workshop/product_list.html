@@ -10,12 +10,32 @@
         <div class="content"></div>
         <div class="items">
             {% for product in page_obj %}
-            <a class="item-link" href="">
-                <div class="item">
-                    <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-                    <img class="hidden" src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-                    <span>{{ product.title }}</span>
+            <a class="product item-link" href="">
+            {% if product.hover_image %}
+            	<div id="{{ product.uid }}" dual-image="true" class="item">
+                    <div class="image-container">
+                        <img class="cover-image" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                        <img style="opacity: 0;" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                        <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+                    </div>
+                    <div class="item-des">
+                        <span>{{ product.title }}</span>
+                        <span class="price">{{ product.price }} تومان</span>
+                    </div>
                 </div>
+            {% else %}
+                <div id="{{ product.uid }}" dual-image="false" class="item">
+                    <div class="image-container">
+                        <img class="cover-image" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                        <img style="opacity: 0" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+    {#                    <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">#}
+                    </div>
+                    <div class="item-des">
+                        <span>{{ product.title }}</span>
+                        <div class="price">{{ product.price }} تومان</div>
+                    </div>
+                </div>
+            {% endif %}
             </a>
             
 {#        	{% include 'component/product_item.html' with product=product %}#}
@@ -23,4 +43,7 @@
         </div>
         {% include 'component/paginating.html' with page_obj=page_obj %}
     </main>
+    {% endblock %}
+{% block script %}
+    <script src="{% static 'js/product_list.js' %}"></script>
 {% endblock %}

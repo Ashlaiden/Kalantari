@@ -19,7 +19,6 @@ class ProductManListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        print(self.kwargs)
         products = Product.published.all()
         if Product is not None:
             return products
@@ -32,7 +31,6 @@ class ProductWomanListView(ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        print(self.kwargs)
         products = Product.published.all()
         if Product is not None:
             return products
