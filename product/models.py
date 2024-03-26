@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models import Q
@@ -15,6 +15,21 @@ from core.core.slug_auto_generate import slug_generator
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Product.Status.PUBLISHED)
+
+    def get_by_uid(self, uid: int):
+        try:
+            return self.get_queryset().get(uid=uid)
+        except Product.DoesNotExist:
+            return None
+
+    def get_product(self, uid: int, slug=None):
+        try:
+            if slug is not None:
+                return self.get_queryset().get(uid=uid, slug=slug)
+            else:
+                return self.get_queryset().get(uid=uid)
+        except Product.DoesNotExist:
+            return None
 
     # def search(self, query):
     #     lookup = (
@@ -103,7 +118,7 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('shop-product-urls:product_pk', args=[{self.id}])
+        return reverse_lazy('product:product_detail', args=[self.uid, self.slug])
 
     # make slug from title with slug_generator in .core.slug_auto_generate
     def save(self, *args, **kwargs):

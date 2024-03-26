@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // });
 
     window.addEventListener("scroll", function () {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 5) {
             header.classList.add("header-hover");
             brand.classList.remove('brand-name');
         } else {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateHeaderStyles() {
-        if (window.scrollY > 50) {
+        if (window.scrollY > 5) {
             header.classList.add("header-hover");
             brand.classList.remove('brand-name');
         } else {
@@ -53,7 +53,7 @@ header.addEventListener('mouseenter', function() {
 // Add event listener for mouseleave (unhover)
 header.addEventListener('mouseleave', function() {
     headerIsHovered = false;
-    if (window.scrollY > 50) {
+    if (window.scrollY > 1) {
         brand.classList.remove('brand-name');
     } else {
         brand.classList.add('brand-name');

@@ -10,7 +10,7 @@
         <div class="content"></div>
         <div class="items">
             {% for product in page_obj %}
-            <a class="product item-link" href="">
+            <a class="product item-link" href="{{ product.get_absolute_url }}">
             {% if product.hover_image %}
             	<div id="{{ product.uid }}" dual-image="true" class="item">
                     <div class="image-container">

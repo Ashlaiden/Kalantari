@@ -1,0 +1,156 @@
+.header-black {
+    height: 80px;
+    width: 100%;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+}
+.header-blank {
+    height: 80px;
+    width: 100%;
+    background-color: black;
+}
+
+/* ------------------------------------ */
+.detail-static {
+    position: 'absolute';
+    bottom: '0px';
+    left: '0px';
+    width: '100%';
+}
+.sticky {
+    margin:0;
+    padding:0;
+    bottom: 0;
+    background-color: whitesmoke;
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 15vh;
+    box-sizing: border-box;
+    /* background:rgba(0,0,0,0.7);
+    color:#fff;
+    padding:20px;
+    text-align:center; */
+}
+.inner {
+    display:flex;
+    flex-direction:column;
+    min-height:calc(100vh - 80px);
+    justify-content:flex-end;
+    position: -webkit-sticky;
+    position:sticky;
+    bottom:0;
+}
+/* ------------------------------------ */
+.page-container {
+    /* direction: rtl; */
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+}
+.page-container .images {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+.page-container .images img {
+    width: 100%;
+}
+.page-container .detail-container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; */
+    display:flex;
+    flex-direction:column;
+    min-height:calc(100vh - 80px);
+    justify-content:flex-end;
+    position:sticky;
+    bottom:0;
+    min-height:calc(100vh - 80px);
+    width: 50%;
+    /* position: relative; */
+}
+.page-container .detail-container .detail {
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 50%;
+    height: auto;
+}
+.page-container .detail-container .detail .code {
+    /* background-color: blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.page-container .detail-container .detail i {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.page-container .detail-container .detail i:hover {
+    scale: 1.1;
+    color: rgb(55, 55, 55);
+}
+.page-container .detail-container .detail h6 {
+    /* direction: rtl; */
+    padding: 0px;
+    margin: 0px;
+    color: gray;
+    font-size: 0.8rem;
+}
+.page-container .detail-container .detail h1 {
+    padding: 0px;
+    margin: 0px;
+}
+.page-container .detail-container .detail .button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.page-container .detail-container .detail button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid white;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.page-container .detail-container .detail button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.page-container .detail-container .detail p {
+    color: rgb(54, 54, 54);
+}
+.page-container .detail-container .detail .prop {
+    /* background-color: blue; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    color: rgb(56, 56, 56);
+    font-size: 1.2rem;
+    margin-top: 25px;
+}

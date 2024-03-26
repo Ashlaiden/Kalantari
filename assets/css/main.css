@@ -41,11 +41,16 @@
     font-family: Oswald-Medium;
     src: url("../fonts/Oswald/Oswald-Medium.ttf");
 }
+/* -------------------------- */
+@font-face {
+    font-family: Cairo;
+    src: url("../fonts/Cairo/Cairo.ttf");
+}
 /* -------------------------------------------------------------------- */
 
 
 body{
-    font-family: 'B-Shiraz', serif;
+    font-family: 'Cairo', serif;
     font-size: 18px;
     margin: 0px;
     padding: 0px;
@@ -67,4 +72,7 @@ body{
     background-color: #dddddd; /* Change background color for visual indication */
     color: #999999; /* Change text color for visual indication */
     cursor: not-allowed; /* Change Cursor to Not-Allowed */
+}
+.static {
+    position: static;
 }
