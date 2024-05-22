@@ -99,52 +99,31 @@ buttons.forEach(function(button) {
   button.addEventListener('click', function() {
     var user_menu = document.getElementById('user-menu');
     var overlay = document.getElementById('overlay');
-    if (isAuthenticated) {
-        switch (button.getAttribute('id')) {
-            case 'nav-account-btn':
-                if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
-                    document.getElementById('cart-btn').classList.remove('section-btn-active');
-                if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
-                    document.getElementById('favorite-btn').classList.remove('section-btn-active');
-                changeSectionContent('account');
-                document.getElementById('account-btn').classList.add('section-btn-active');
-                break;
-            case 'nav-cart-btn':
-                if (document.getElementById('account-btn').classList.contains('section-btn-active'))
-                    document.getElementById('account-btn').classList.remove('section-btn-active');
-                if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
-                    document.getElementById('favorite-btn').classList.remove('section-btn-active');
-                changeSectionContent('cart');
-                document.getElementById('cart-btn').classList.add('section-btn-active');
-                break;
-            case 'nav-favorite-btn':
-                if (document.getElementById('account-btn').classList.contains('section-btn-active'))
-                    document.getElementById('account-btn').classList.remove('section-btn-active');
-                if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
-                    document.getElementById('cart-btn').classList.remove('section-btn-active');
-                changeSectionContent('favorite');
-                document.getElementById('favorite-btn').classList.add('section-btn-active');
-                break;
-        }
-    } else {
-        switch (button.getAttribute('id')) {
-            case 'nav-account-btn':
-                if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
-                    document.getElementById('cart-btn').classList.remove('section-btn-active');
-                if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
-                    document.getElementById('favorite-btn').classList.remove('section-btn-active');
-                changeSectionContent('account');
-                document.getElementById('account-btn').classList.add('section-btn-active');
-                break;
-            case 'nav-cart-btn':
-                if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
-                    document.getElementById('cart-btn').classList.remove('section-btn-active');
-                if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
-                    document.getElementById('favorite-btn').classList.remove('section-btn-active');
-                changeSectionContent('account');
-                document.getElementById('account-btn').classList.add('section-btn-active');
-                break;
-        }
+    switch (button.getAttribute('id')) {
+        case 'nav-account-btn':
+            if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
+                document.getElementById('cart-btn').classList.remove('section-btn-active');
+            if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
+                document.getElementById('favorite-btn').classList.remove('section-btn-active');
+            changeSectionContent('account');
+            document.getElementById('account-btn').classList.add('section-btn-active');
+            break;
+        case 'nav-cart-btn':
+            if (document.getElementById('account-btn').classList.contains('section-btn-active'))
+                document.getElementById('account-btn').classList.remove('section-btn-active');
+            if (document.getElementById('favorite-btn').classList.contains('section-btn-active'))
+                document.getElementById('favorite-btn').classList.remove('section-btn-active');
+            changeSectionContent('cart');
+            document.getElementById('cart-btn').classList.add('section-btn-active');
+            break;
+        case 'nav-favorite-btn':
+            if (document.getElementById('account-btn').classList.contains('section-btn-active'))
+                document.getElementById('account-btn').classList.remove('section-btn-active');
+            if (document.getElementById('cart-btn').classList.contains('section-btn-active'))
+                document.getElementById('cart-btn').classList.remove('section-btn-active');
+            changeSectionContent('favorite');
+            document.getElementById('favorite-btn').classList.add('section-btn-active');
+            break;
     }
     
 
@@ -255,22 +234,81 @@ function changeSectionContent(sectionId) {
         selectedSection.classList.remove('hidden');
     }
 }
+// ---------------------update-order-info----------------------------
+function update_order_info() {
+    url = '/cart/order/info/'
+    axios.get(url, {
+    }).then(response => {
+        document.getElementById('details-price').innerText = `${response.data.price} تومان`;
+        document.getElementById('details-discount').innerText = `${response.data.discount} تومان`;
+        document.getElementById('details-final-price').innerText = `${response.data.final_price} تومان`;
+    }).catch(error => {
+      console.error('Error sending GET request:', error);
+    });
+}
 // ----------------------------------CART------------------------------------
 function removeitemfromcart(id) {
-    const delete_item_url = '/cart/delete/item/';
-    csrfmiddlewaretoken = document.getElementById(`form-${id}`).children.namedItem('csrfmiddlewaretoken').value;
+    const delete_item_url = '/cart/item/delete/';
+    csrfmiddlewaretoken = document.getElementById(`form-menu-${id}`).children.namedItem('csrfmiddlewaretoken').value;
     const fd = new FormData();
     fd.append('csrfmiddlewaretoken', csrfmiddlewaretoken)
     fd.append('uid', id)
     axios.post(delete_item_url, fd)
     .then(response => {
         console.log(response)
+        update_order_info()
         if (response.data.status === 'ok') {
-            document.getElementById(`${id}`).remove();
+            document.getElementById(`menu-${id}`).remove();
+            var cartList = document.getElementById('cart-user-menu-section-list')
+            if (cartList.children.length === 0) {
+                cartList.innerHTML = '<li id="cart-menu-empty" class="nothing">هیچ کالایی در سبد خرید شما وجود ندارد.</li>';
+                document.getElementById('continue-in-cart').classList.add('disabled');
+            }
+            if (detail_page) {
+                document.getElementById('in-cart-container').remove();
+                document.getElementById('prop').insertAdjacentHTML('afterend', 
+                `<div id="product-cart-stat" class="button">
+                    <form id="add-to-cart">
+                    <button class="add-to-order-btn" onclick="cart.add()" type="button" onclick="cart.add()">افزودن به سبد خرید</button>
+                    </form>
+                </div>`
+                );
+            }
         }
     })
     .catch(error => {
         // Handle errors
         console.error('Error submitting form:', error);
+    });
+}
+// ------------------------------Remobe-From-BookMark------------------------------------
+function remove_book_mark(uid) {
+    const url = '/favorite/bookmark/';
+    const fd = new FormData();
+    fd.append('csrfmiddlewaretoken', header_csrftoken);
+    console.log(header_csrftoken)
+    fd.append('uid', uid);
+    console.log(uid)
+    axios.post(url, fd)
+    .then(response => {
+      console.log(response)
+      if (response.data.status === 'ok') {
+        if (response.data.message === 'removed') {
+          var bookmark = document.getElementById('bookmark');
+          if (bookmark) {
+            bookmark.classList.remove('fa-solid');
+            bookmark.classList.add('fa-regular');
+          }
+          document.getElementById(`menu-favorite-${uid}`).remove();
+          if (document.getElementById('favorite-user-menu-section-list').children.length === 0) {
+            document.getElementById('favorite-user-menu-section-list').innerHTML = '<li id="favorite-menu-empty" class="nothing">هیچ کالایی در علاقه مندی ها وجود ندار.</li>';
+            document.getElementById('all-favorites').classList.add('disabled');
+          }
+        }
+      }
+    })
+    .catch(error => {
+      // Handle errors
+      console.error('Error submitting form:', error);
     });
 }

@@ -8,3 +8,7 @@ class ChangeCount(forms.Form):
 
 class DeleteItem(forms.Form):
     uid = forms.IntegerField(required=True)
+
+
+class AddItem(forms.Form):
+    uid = forms.IntegerField(required=True)

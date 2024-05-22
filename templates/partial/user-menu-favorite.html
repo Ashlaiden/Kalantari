@@ -1,0 +1,30 @@
+<div id="favorite" class="container hidden">
+    <div class="favorite-section">
+        <div class="favorite-box">
+            <ul id="favorite-user-menu-section-list" class="menu-favorite-items">
+            {% if items %}
+            	{% for item in items %}
+                <li id="menu-favorite-{{ item.product.uid }}" class="menu-favorite-item">
+                    <a href="{{ item.product.get_absolute_url }}" style="text-decoration: none; color: inherit;display: flex;flex-direction: row;">
+                        <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
+                        <section class="item-menu-des">
+                            <span>{{ item.product.title }}</span>
+                            <div class="item-uid">کد کالا: {{ item.product.uid }}</div>
+                        </section>
+                    </a>
+                    <button type="button" name="delete-item" onclick="remove_book_mark({{ item.product.uid }})"><i class="fa-solid fa-xmark"></i></button>
+                </li>
+                {% endfor %}
+            {% else %} 
+                <li id="favorite-menu-empty" class="nothing">هیچ کالایی در علاقه مندی ها وجود ندار.</li>
+            {% endif %}
+            </ul>
+        </div>
+    {% if empty %}
+        <a id="all-favorites" href="{% url 'cart:cart' %}" class="continue-in-cart disabled">رفتن به علاقه مندی ها</a>
+    {% else %}
+        <a id="all-favorites" href="{% url 'cart:cart' %}" class="continue-in-cart">رفتن به علاقه مندی ها</a>
+    {% endif %} 
+    </div>
+</div>
+

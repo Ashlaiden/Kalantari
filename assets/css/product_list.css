@@ -64,7 +64,7 @@
   /* Replace height and width with your image's aspect ratio */
 /* } */
 .cover-image, .hover-image {
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.3s;
   position: absolute;
   top: 0;
   left: 0;
@@ -82,15 +82,15 @@
 } */
 /* ---------------------- */
 .item:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 .item img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 .item span {
-    padding: 15px;
-    font-size: 1.3rem;
+  padding: 15px;
+  font-size: 1.3rem;
 }
 .item .price {
   padding: 0px 20px;

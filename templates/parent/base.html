@@ -1,4 +1,5 @@
 {% load static %}
+{% load render_partial %}
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -7,6 +8,9 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+<div style="display: none">
+    {% render_partial 'partials.views.global_cookies' %}
+</div>
     <!-- Loading animation container -->
     <div id="preloader">
         <div id="loader"></div>

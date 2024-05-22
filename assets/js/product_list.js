@@ -110,16 +110,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
             item.addEventListener('mouseenter', () => {
               // When the mouse is over the item, hide the cover image and show the hover image
               item.querySelector('.cover-image').style.opacity = '0';
-              item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
-              item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
+              // item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
+              // item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
               item.querySelector('.hover-image').style.opacity = '1';
             });
         
             item.addEventListener('mouseleave', () => {
               // When the mouse is no longer over the item, show the cover image and hide the hover image
               item.querySelector('.cover-image').style.opacity = '1';
-              item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
-              item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
+              // item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
+              // item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
               item.querySelector('.hover-image').style.opacity = '0';
             });
         }

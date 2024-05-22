@@ -76,6 +76,11 @@ button {
     flex-direction: row;
     align-items: start;
     justify-content: start;
+    text-decoration: none;
+}
+.container .items .item .des a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
 }
 .container .items .item .des img {
     border-radius: 5px;
@@ -101,16 +106,24 @@ button {
     align-items: center;
     justify-content: center;
 }
-.container .items .item .change-count p {
+.container .items .item .change-count .count-section {
     margin: 0px 5px;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 30px;
+    /* width: 30px; */
+    min-width: 30px;
+    padding: 5px 10px;
     height: 30px;
     border: 1px solid gray;
     border-radius: 5px;
     cursor: default;
+}
+.container .items .item .change-count .count-section p {
+    font-size: 0.7rem;
+    color: gray;
+    margin-right: 10px;
 }
 .container .items .item .change-count button {
     width: 30px;
@@ -134,6 +147,24 @@ button {
     justify-content: space-between;
     /* background-color: purple; */
     width: 40%;
+}
+.container .items .item .con .detail-price {
+    margin-left: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.container .items .item .con .price-and-delete {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.container .items .item .con .detail-price p {
+    font-size: 0.7rem;
+    color: rgb(53, 53, 53);
+    margin-top: 20px;
 }
 .container .items .item .con .delete button {
     width: 30px;

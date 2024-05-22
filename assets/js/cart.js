@@ -3,11 +3,11 @@ class CartClass {
       this.order = order;
       this.created = new Date().getTime();
       this.ChangeCountURL = '/cart/change/count/';
-      this.DeleteItemURL = '/cart/delete/item/';
+      this.DeleteItemURL = '/cart/item/delete/';
     }
     increase(id) {
       const increase_url = this.ChangeCountURL;
-      this.csrfmiddlewaretoken = document.getElementById(`increase-${id}`).children.namedItem('csrfmiddlewaretoken').value;
+      // this.csrfmiddlewaretoken = document.getElementById(`increase-${id}`).children.namedItem('csrfmiddlewaretoken').value;
       const fd = new FormData();
       fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)
       fd.append('uid', id)
@@ -21,6 +21,10 @@ class CartClass {
             } else {
               document.getElementById(`decrease-${id}`).children.namedItem('submit').classList.remove('disabled');
             }
+            if (response.data.max === 'true') {
+              document.getElementById(`increase-${id}`).children.namedItem('submit').classList.add('disabled');
+              document.getElementById(`count-section-${id}`).insertAdjacentHTML('beforeend', `<p id="max-${id}">حداکثر</p>`);
+            }
             document.getElementById(`count-${id}`).innerText = response.data.count;
           }
         })
@@ -31,7 +35,7 @@ class CartClass {
     }
     decrease(id) {
       const decrease_url = this.ChangeCountURL;
-      this.csrfmiddlewaretoken = document.getElementById(`decrease-${id}`).children.namedItem('csrfmiddlewaretoken').value;
+      // this.csrfmiddlewaretoken = document.getElementById(`decrease-${id}`).children.namedItem('csrfmiddlewaretoken').value;
       const fd = new FormData();
       fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)
       fd.append('uid', id)
@@ -45,6 +49,10 @@ class CartClass {
             } else {
               document.getElementById(`decrease-${id}`).children.namedItem('submit').classList.remove('disabled');
             }
+            if (response.data.max === 'false' && document.getElementById(`increase-${id}`).children.namedItem('submit').classList.contains('disabled')) {
+              document.getElementById(`increase-${id}`).children.namedItem('submit').classList.remove('disabled');
+              document.getElementById(`max-${id}`).remove();
+            }
             document.getElementById(`count-${id}`).innerText = response.data.count;
           }
         })
@@ -55,7 +63,7 @@ class CartClass {
     }
     delete(id) {
       const delete_item_url = this.DeleteItemURL;
-      this.csrfmiddlewaretoken = document.getElementById(`delete-${id}`).children.namedItem('csrfmiddlewaretoken').value;
+      // this.csrfmiddlewaretoken = document.getElementById(`delete-${id}`).children.namedItem('csrfmiddlewaretoken').value;
       const fd = new FormData();
       fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)
       fd.append('uid', id)
@@ -64,6 +72,7 @@ class CartClass {
           console.log(response)
           if (response.data.status === 'ok') {
             document.getElementById(`${id}`).remove();
+            document.getElementById(`menu-${id}`).remove();
           }
         })
         .catch(error => {

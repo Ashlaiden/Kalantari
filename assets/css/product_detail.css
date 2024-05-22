@@ -98,11 +98,11 @@
     justify-content: space-between;
     align-items: center;
 }
-.page-container .detail-container .detail i {
+.page-container .detail-container .detail i.favorite {
     cursor: pointer;
     transition: all 0.3s;
 }
-.page-container .detail-container .detail i:hover {
+.page-container .detail-container .detail i.favorite:hover {
     scale: 1.1;
     color: rgb(55, 55, 55);
 }
@@ -116,6 +116,9 @@
 .page-container .detail-container .detail h1 {
     padding: 0px;
     margin: 0px;
+}
+.page-container .detail-container .detail .button #add-to-cart {
+    width: 100%;
 }
 .page-container .detail-container .detail .button {
     width: 100%;
@@ -153,4 +156,86 @@
     color: rgb(56, 56, 56);
     font-size: 1.2rem;
     margin-top: 25px;
+}
+/* ------------------------- */
+.page-container .detail-container .detail .in-cart-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+.page-container .detail-container .detail .in-cart {
+    /* background-color: blue; */
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid rgb(220, 220, 220);
+    padding: 10px 10px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 20%);
+    transition: all 0.5s;
+}
+.page-container .detail-container .detail .in-cart:hover {
+    box-shadow: 0px 0px 10px 5px rgb(0 0 0 / 20%);
+
+}
+.page-container .detail-container .detail .in-cart .count {
+    width: 50%;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    cursor: default;
+}
+.page-container .detail-container .detail .in-cart .count section {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 5px;
+}
+.page-container .detail-container .detail .in-cart .count span {
+    font-size: 0.8rem;
+    color: gray;
+    padding: 0px;
+    margin: 0px;
+    margin-right: 5px;
+}
+.page-container .detail-container .detail .in-cart .in-cart-delete {
+    border: 1px solid red;
+    color: red;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.page-container .detail-container .detail .in-cart .in-cart-delete i:hover {
+    color: white;
+    scale: 1;
+}
+.page-container .detail-container .detail .in-cart .in-cart-delete:hover {
+    background-color: red;
+    color: white;
+    /* border: 1px solid white; */
+    scale: 1.10;
+}
+.page-container .detail-container .detail .in-cart button {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+}
+.page-container .detail-container .detail .in-cart button:hover {
+    scale: 1.05;
+    background-color: white;
+    color: black;
 }

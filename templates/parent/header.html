@@ -48,12 +48,13 @@
             </div>
             <div class="sections">
                 <section id="account-btn" onclick="changeSectionContent('account')" class="section-btn">پروفایل</section>
-                <section id="favorite-btn" onclick="changeSectionContent('favorite')" class="section-btn {% if not request.user.is_authenticated %}disabled{% endif %}">علاقه مندی</section>
-                <section id="cart-btn" onclick="changeSectionContent('cart')" class="section-btn {% if not request.user.is_authenticated %}disabled{% endif %}">سبد خرید</section>
+                <section id="favorite-btn" onclick="changeSectionContent('favorite')" class="section-btn">علاقه مندی</section>
+                <section id="cart-btn" onclick="changeSectionContent('cart')" class="section-btn">سبد خرید</section>
             </div>
         </div>
         <div class="sections-content">
             {% render_partial 'partials.views.cart_user_menu' %}
+            {% render_partial 'partials.views.favorite_user_menu' %}
             <div id="account" class="container hidden">
                 <div class="account-section">
                     {% if request.user.is_authenticated %}
@@ -86,12 +87,16 @@
                 {% endif %}
             </div>
             </div>
-            <div id="favorite" class="container hidden">
-                <div class="favorite-section"></div>
-            </div>
+            
         </div>
     </div>
     <div id="overlay" class="overlay">
         <!-- blur -->
     </div>
 </header>
+<form id="csrf-token" style="display: none;">
+    {% csrf_token %}
+</form>
+<script>
+    var header_csrftoken = document.getElementById('csrf-token').children.namedItem('csrfmiddlewaretoken').value;
+</script>

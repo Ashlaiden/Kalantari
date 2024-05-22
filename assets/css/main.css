@@ -73,6 +73,3 @@ body{
     color: #999999; /* Change text color for visual indication */
     cursor: not-allowed; /* Change Cursor to Not-Allowed */
 }
-.static {
-    position: static;
-}

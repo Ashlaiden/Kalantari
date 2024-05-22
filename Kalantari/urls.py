@@ -36,7 +36,10 @@ urlpatterns = [
     path('cart/', include('cart.urls', namespace='cart')),
 
     # include Partials urls
-    path('partial/', include('partials.urls', namespace='partials'), name='partials')
+    path('partial/', include('partials.urls', namespace='partials'), name='partials'),
+
+    # include Favorite urls
+    path('favorite/', include('favorite.urls', namespace='favorite'), name='favorite')
 ]
 
 

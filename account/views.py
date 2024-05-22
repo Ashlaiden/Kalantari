@@ -10,15 +10,18 @@ from django.contrib.auth import (
 from core.core.request_info import get_user_IP
 from django.contrib.auth.models import User
 from core.core.generator import generate_user_name
+from favorite.models import Favorite
 from .forms import *
 from .models import Account
-from cart.models import Order
+from cart.models import Order, OrderItem
 
 
 def login_user(request):
     if request.method == 'POST':
+        session_id = request.session.get('u_id')
+        next_url = request.build_absolute_uri(request.POST.get('next')) if request.POST.get('next') is not None else None
         if request.user.is_authenticated:
-            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'You are already logged in'})
+            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'You are already logged in', 'next': next_url})
         login_form = LoginForm(request.POST or None)
         if login_form.is_valid():
             email = login_form.cleaned_data.get('email')
@@ -30,15 +33,39 @@ def login_user(request):
                     usr.last_IP = ip_address
                     usr.save()
                 login(request, usr)
-                return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'login success'})
+
+                order_user = Order.order_manager.get_active_order(user=request.user)
+                order_session = Order.order_manager.get_active_order(session_uid=session_id)
+                order_session_items = Order.order_manager.get_order_items(session_uid=session_id) if order_session is not None else None
+                for item in order_session_items if order_session_items is not None else []:
+                    in_cart = OrderItem.order_detail_manager.is_exist(user=request.user, product_uid=item.product.uid)
+                    if in_cart:
+                        item.delete()
+                        continue
+                    item.order = order_user
+                    item.save()
+                order_session.delete()
+
+                favorites = Favorite.manager.get_favorites(session_uid=session_id)
+                for item in favorites if favorites is not None else []:
+                    in_favorite = Favorite.manager.is_in_favorites(product_uid=item.product.uid, user=request.user) or None
+                    if in_favorite:
+                        item.delete()
+                        continue
+                    item.user = request.user
+                    item.session_uid = None
+                    item.save()
+
+                return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'login success', 'next': next_url})
             else:
-                return JsonResponse({'code': '404', 'success': False, 'status': 'error', 'message': 'کاربری با این مشخصات یافت نشد!'})
+                return JsonResponse({'code': '404', 'success': False, 'status': 'error', 'message': 'کاربری با این مشخصات یافت نشد!', 'next': None})
         if request.method != 'POST':
-            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'Invalid request'})
-        return JsonResponse({'code': '500', 'success': False, 'status': 'error', 'message': 'internal server error'})
+            return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'Invalid request', 'next': None})
+        return JsonResponse({'code': '500', 'success': False, 'status': 'error', 'message': 'internal server error', 'next': None})
     else:
+        next_url = request.build_absolute_uri(request.GET.get('next')) if request.GET.get('next') is not None else None
         if request.user.is_authenticated:
-            return redirect('/')
+            return redirect(next_url if next_url is not None else '/')
         else:
             context = {
 

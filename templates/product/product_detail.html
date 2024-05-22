@@ -9,20 +9,24 @@
 <div class="header-blank"></div>
 	<div class="page-container">
         <div class="images">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+            {% if product.hover_image %}
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+            	<img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+            {% else %}
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+            {% endif %} 
         </div>
         <div id="detail-container" class="detail-container">
             <div class="inner">
@@ -30,16 +34,15 @@
                     <div class="detail">
                         <div class="code">
                             <h6>کد کالا: {{ product.uid }}</h6>
-                            {% if request.user.is_authenticated %}
-                                <i class="fa-regular fa-heart"></i>
+                            {% if in_favorite %}
+                                <i id="bookmark" onclick="book_mark()" class="favorite fa-solid fa-heart"></i>
                             {% else %}
-                                <i class="fa-regular fa-heart disabled" style="background-color: transparent; color: #2e2e2e"></i>
+                                <i id="bookmark" onclick="book_mark()" class="favorite fa-regular fa-heart"></i>
                             {% endif %} 
-{#                            <i class="fa-regular fa-heart"></i>#}
                         </div>
                         <h1>{{ product.title }}</h1>
                         <p>{{ product.description }}</p>
-                        <div class="prop">
+                        <div id="prop" class="prop">
                             <div class="size">
                                 سایز: 25x30x56
                             </div>
@@ -50,13 +53,65 @@
                                 جنس چرم: چرم گاو
                             </div>
                         </div>
-                        <div class="button">
-                            {% if request.user.is_authenticated %}
-                                <button class="add-to-order-btn">افزودن به سبد خرید</button>
-                            {% else %}
-                                <button class="add-to-order-btn disabled">افزودن به سبد خرید</button>
-                            {% endif %} 
+                    {% if in_cart %}
+                        {% if first %}
+                            {% if max %}
+                            	<div id="in-cart-container" class="in-cart-container">
+                            <div id="in-cart" class="in-cart">
+                                <button type="button" id="decrease-or-delete" onclick="cart.delete()" class="in-cart-delete"><i class="fa-solid fa-trash-can"></i></button>
+                                <div class="count">
+                                    <section id="count">{{ count }}</section>
+                                    <span id="max">حداکثر</span>
+                                </div>
+                                <button type="button" class="disabled" id="increase" onclick="cart.increase()">+</button>
+                            </div>
                         </div>
+                            {% else %}
+                                <div id="in-cart-container" class="in-cart-container">
+                            <div id="in-cart" class="in-cart">
+                                <button type="button" id="decrease-or-delete" onclick="cart.delete()" class="in-cart-delete"><i class="fa-solid fa-trash-can"></i></button>
+                                <div class="count">
+                                    <section id="count">{{ count }}</section>
+                                </div>
+                                <button type="button" id="increase" onclick="cart.increase()">+</button>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% else %}
+                            {% if max %}
+                            	<div id="in-cart-container" class="in-cart-container">
+                            <div id="in-cart" class="in-cart">
+                                <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-</button>
+                                <div class="count">
+                                    <section id="count">{{ count }}</section>
+                                    <span id="max">حداکثر</span>
+                                </div>
+                                <button type="button" class="disabled" id="increase" onclick="cart.increase()">+</button>
+                            </div>
+                        </div>
+                            {% else %}
+                                <div id="in-cart-container" class="in-cart-container">
+                            <div id="in-cart" class="in-cart">
+                                <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-</button>
+                                <div class="count">
+                                    <section id="count">{{ count }}</section>
+                                </div>
+                                <button type="button" id="increase" onclick="cart.increase()">+</button>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endif %}
+                    {% else %}
+                        <div id="product-cart-stat" class="button">
+{#                            {% if request.user.is_authenticated %}#}
+                                <form id="add-to-cart">
+                                    <button class="add-to-order-btn" type="button"  onclick="cart.add()">افزودن به سبد خرید</button>
+                                </form>
+{#                            {% else %}#}
+{#                                <button type="button" class="add-to-order-btn disabled" onclick="cart.add()">افزودن به سبد خرید</button>#}
+{#                            {% endif %} #}
+                        </div>
+                    {% endif %}
                     </div>
                 </div>
             </div>
@@ -65,4 +120,11 @@
 {% endblock %}
 {% block script %}
 	<script src="{% static 'js/product_detail.js' %}"></script>
+    <form id="csrf-token">
+        {% csrf_token %}
+    </form>
+    <script>
+        cart.uid = {{ product.uid }};
+        cart.csrfmiddlewaretoken = document.getElementById('csrf-token').children.namedItem('csrfmiddlewaretoken').value;
+    </script>
 {% endblock %}
