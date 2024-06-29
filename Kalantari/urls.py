@@ -39,7 +39,10 @@ urlpatterns = [
     path('partial/', include('partials.urls', namespace='partials'), name='partials'),
 
     # include Favorite urls
-    path('favorite/', include('favorite.urls', namespace='favorite'), name='favorite')
+    path('favorite/', include('favorite.urls', namespace='favorite'), name='favorite'),
+
+    # include Dashboard urls
+    path('dashboard/', include('dashboard.urls', namespace='dashboard'), name='dashboard'),
 ]
 
 

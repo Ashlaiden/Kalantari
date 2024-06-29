@@ -26,6 +26,7 @@ class CartClass {
               document.getElementById(`count-section-${id}`).insertAdjacentHTML('beforeend', `<p id="max-${id}">حداکثر</p>`);
             }
             document.getElementById(`count-${id}`).innerText = response.data.count;
+            update_order_info();
           }
         })
         .catch(error => {
@@ -54,6 +55,7 @@ class CartClass {
               document.getElementById(`max-${id}`).remove();
             }
             document.getElementById(`count-${id}`).innerText = response.data.count;
+            update_order_info();
           }
         })
         .catch(error => {
@@ -71,8 +73,23 @@ class CartClass {
       .then(response => {
           console.log(response)
           if (response.data.status === 'ok') {
-            document.getElementById(`${id}`).remove();
-            document.getElementById(`menu-${id}`).remove();
+            if (document.getElementById(`cart-${id}`)) {
+              document.getElementById(`cart-${id}`).remove();
+              var cartSectionElement = document.getElementById('cart-items-ul');
+              if (cartSectionElement.childElementCount == 0) {
+                cartSectionElement.innerHTML = `<div id="empty-cart">
+                <p>هیچ کالایی در سبد خرید شما وجود ندارد.</p>
+                <a href="/list/man/">صفحه محصولات</a>
+            </div>`
+              }
+            }
+            if (document.getElementById(`${id}`)) {
+              document.getElementById(`${id}`).remove();
+            }
+            if (document.getElementById(`menu-${id}`)) {
+              document.getElementById(`menu-${id}`).remove();
+            }
+            update_order_info();
           }
         })
         .catch(error => {
@@ -83,3 +100,16 @@ class CartClass {
 }
 // ----------------------------------------------
 const cart = new CartClass('create')
+
+function update_order_info() {
+  url = '/cart/order/info/'
+  axios.get(url, {
+  }).then(response => {
+      document.getElementById('cart-price').innerText = `${response.data.price}`;
+      document.getElementById('cart-discount').innerText = `${response.data.discount}`;
+      document.getElementById('cart-tax').innerText = `${response.data.tax}`;
+      document.getElementById('cart-final-price').innerText = `${response.data.final_price}`;
+  }).catch(error => {
+    console.error('Error sending GET request:', error);
+  });
+}

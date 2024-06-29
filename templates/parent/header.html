@@ -94,9 +94,9 @@
         <!-- blur -->
     </div>
 </header>
-<form id="csrf-token" style="display: none;">
+<form id="csrf_token" style="display: none;">
     {% csrf_token %}
 </form>
 <script>
-    var header_csrftoken = document.getElementById('csrf-token').children.namedItem('csrfmiddlewaretoken').value;
+    var header_csrftoken = document.getElementById('csrf_token').children.namedItem('csrfmiddlewaretoken').value;
 </script>

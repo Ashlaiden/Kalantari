@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -24,10 +26,19 @@ def cart(request):
         #         full = True
         #     asset = {'item': item, 'max': full}
         #     data.append(asset)
-        context = {
-            'items': items
+        order_info = json.loads(get_order_info(request).content.decode())
+
+        info = {
+            'price': order_info['price'],
+            'discount': order_info['discount'],
+            'tax': order_info['tax'],
+            'final_price': order_info['final_price']
         }
-        return render(request, 'cart/cart.html', context)
+        context = {
+            'items': items,
+            'info': info
+        }
+        return render(request, 'cart/cart-component.html', context)
 
 
 # @login_required
@@ -166,8 +177,17 @@ def get_order_info(request):
         price += (item.price * item.count)
     discount = 0
     final_price = price - discount
-    return JsonResponse({'status': 'od', 'price': price, 'discount': discount, 'final_price': final_price})
+    tax = int((final_price / 100) * 9)
+    return JsonResponse({'status': 'od', 'price': f"{price:,}", 'discount': f"{discount:,}", 'tax': f"{tax:,}", 'final_price': f"{final_price:,}"})
 
+
+def continue_ordering(request):
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+
+        context = {}
+        return render(request, 'cart/continue_order_main.html', context)
 
 
 

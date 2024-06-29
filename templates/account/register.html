@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalantari | ثبت نام</title>
+    {% include 'parent/head.html' %}
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/jalali/persianDatepicker-default.css' %}" />
+{#    <link type="text/css" rel="stylesheet" href="{% static 'css/header.css' %}" />#}
     <script type="text/javascript" src="{% static 'js/jalali/jquery-1.10.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jalali/persianDatepicker.min.js' %}"></script>
 </head>
 <body>
-    <header>
-        <span>Kalantari</span>
-    </header>
+{% include 'parent/header.html' %}
+{#    <header>#}
+{#        <span>Kalantari</span>#}
+{#    </header>#}
     <main>
     <form id="register-form">
         {% csrf_token %}
@@ -26,7 +29,7 @@
             <div class="form">
                 <label class="label email-input">
                     <input id="email" class="input" type="email" placeholder=" ">
-                    <span class="span">* ایمل</span>
+                    <span class="span">* ایمیل</span>
                 </label>
                 <label class="label">
                     <input id="passwd" class="input" type="password" placeholder=" ">
@@ -98,9 +101,8 @@
         </div>
     </form>
     </main>
-    <footer>
-
-    </footer>
+    {% include 'parent/footer.html' %}
+{#    <script type="text/javascript" src="{% static 'js/header.js' %}"></script>#}
     <script>
         $(function() {
             $("#birthday, #birthday-span").persianDatepicker();       
@@ -109,5 +111,6 @@
     <script src="{% static 'js/register.js' %}"></script>
     <!-- axios -->
     <script src="{% static 'js/library/axios.js' %}"></script>
+    {% include 'parent/script.html' %}
 </body>
 </html>

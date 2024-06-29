@@ -58,7 +58,10 @@ INSTALLED_APPS = [
     'workshop',
     'cart',
     'partials',
-    'favorite'
+    'favorite',
+    'dashboard',
+    'django.contrib.humanize',
+    # "dashboard.apps.DashboardConfig"
 ]
 
 MIDDLEWARE = [

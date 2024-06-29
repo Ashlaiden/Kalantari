@@ -20,16 +20,22 @@
                 <a class="catinter"  href="{% url 'workshop:product_man_list' %}">
                     <img src="{% static 'images/main/Womens.webp' %}" alt="womens-category">
                     <span>
-                        <p>برای بانو</p>
-                        <!-- <button>دسته بندی بانوان</button> -->
+                        <div>
+                            <strong class="cat-inside-section">بانو</strong>
+                            <p class="cat-for-section">برای </p>
+                            <!-- <button>دسته بندی بانوان</button> -->
+                        </div>
                     </span>
                 </a>
             </div>
             <div class="category man">
                 <a class="catinter" href="{% url 'workshop:product_woman_list' %}">
                     <span>
-                        <p>برای آقا</p>
-                        <!-- <button>دسته بندی آقایان</button> -->
+                        <div>
+                            <strong class="cat-inside-section">آقا</strong>
+                            <p class="cat-for-section">برای </p>
+                            <!-- <button>دسته بندی آقایان</button> -->
+                        </div>
                     </span>
                     <img src="{% static 'images/main/Mens.webp' %}" alt="mens-category">
                 </a>

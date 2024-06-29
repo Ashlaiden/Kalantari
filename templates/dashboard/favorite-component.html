@@ -1,0 +1,39 @@
+{% load static %}
+
+<div class="favorite">
+    <ul id="favorite-items-ul" class="items">
+    {% if items.count == 0 %}
+    	<div id="empty-favorite">
+            <p>هیچ کالایی در لیست سما وجود ندارد.</p>
+            <a href="{% url 'workshop:product_man_list' %}">صفحه محصولات</a>
+        </div>
+    {% endif %}
+    <div id="favorite-items-container" class="items-container">
+        {% for obj in items %}
+            {% with obj.item as item %}
+            <li class="item" id="favorite-item-{{ item.product.uid }}">
+                <a class="item-info-link" href="{{ item.product.get_absolute_url }}">
+                    <img class="item-image" src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
+                    <span>کد کالا: {{ item.product.uid }}</span>
+                    <p>{{ item.product.title | truncatewords:10 }}</p>
+                </a>
+                <div id="favorite-item-control-{{ item.product.uid }}" class="favorite-item-control">
+                    {% if obj.in_cart == True %}
+                        <button id="remove-from-cart-{{ item.product.uid }}" onclick="remove_from_cart({{ item.product.uid }})" class="remove-from-cart" type="button" name="add-to-cart">حذف از سبد خرید</button>
+                    {% else %}
+                        <button id="add-to-cart-{{ item.product.uid }}" onclick="add_to_cart({{ item.product.uid }})" class="add-to-cart" type="button" name="add-to-cart">افزودن به سبد خرید</button>
+                    {% endif %}
+                    <section>
+                        <button class="share-item" type="button" name="share-item"><i class="fa-solid fa-share-nodes"></i></button>
+                        <button onclick="remove_favorite({{ item.product.uid }})" class="remove-from-favorite" type="button" name="remove-item"><i class="fa-solid fa-trash-can"></i></button>
+                    </section>
+                </div>
+            </li>
+            {% endwith %}
+        {% endfor %}
+        
+    </div>
+    </ul>
+</div>
+
+

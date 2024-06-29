@@ -1,7 +1,10 @@
+import uuid
+
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from cart.models import OrderItem
 from product.models import Product
 from .models import Favorite
 from .forms import *
@@ -47,3 +50,44 @@ def book_mark(request):
     else:
         return JsonResponse({'status': 'error', 'message': 'bad request'})
 
+
+def favorite_items(request):
+    is_authenticated = request.user.is_authenticated
+    if is_authenticated:
+        items = Favorite.manager.get_favorites(request.user)
+    else:
+        session_uid = None
+        try:
+            if not request.session['u_id']:
+                request.session['u_id'] = str(uuid.uuid4())
+            session_uid = request.session['u_id']
+        except KeyError:
+            request.session['u_id'] = str(uuid.uuid4())
+            session_uid = request.session['u_id']
+        items = Favorite.manager.get_favorites(session_uid=session_uid)
+    data = list()
+    for item in items:
+        d = dict()
+        d['item'] = item
+        in_cart = OrderItem.order_detail_manager.is_exist(
+            user=request.user if request.user.is_authenticated else None,
+            session_uid=request.session.get('u_id') if not request.user.is_authenticated else None,
+            product_uid=item.product.uid
+        )
+        if in_cart:
+            d['in_cart'] = True
+        else:
+            d['in_cart'] = False
+        data.append(d)
+    context = {}
+    if items:
+        context = {
+            'empty': False,
+            'items': data
+        }
+    else:
+        context = {
+            'empty': True,
+            'items': data
+        }
+    return render(request, 'dashboard/favorite-component.html', context)

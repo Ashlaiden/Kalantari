@@ -200,6 +200,27 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     payment_date = models.DateTimeField(blank=True, null=True)
     session_uid = models.CharField(max_length=100, default=None, null=True, blank=True)
+    offer_code = models.CharField(max_length=100, default=None, null=True, blank=True)
+
+    class STATUS(models.TextChoices):
+        OPEN = "OP", "OPEN"
+        PENDING = "PE", "PENDING"
+        IN_PROGRESS = "IP", "IN_PROGRESS"
+        COMPLETED = "CM", "COMPLETED"
+        CANCELLED = "CA", "CANCELLED"
+        ERROR = "ER", "ERROR"
+
+    status = models.CharField(max_length=2, choices=STATUS.choices, default=STATUS.OPEN)
+
+    class STEP(models.TextChoices):
+        OPEN = "OP", "OPEN"
+        DELIVERY_INFO = "DI", "DELIVERY_INFO"
+        WAITING_FOR_PAYMENT = "WP", "WAITING_FOR_PAYMENT"
+        PAID = "PD", "PAID"
+        CANCELLED = "CA", "CANCELLED"
+        ERROR = "ER", "ERROR"
+
+    step = models.CharField(max_length=2, choices=STEP.choices, default=STEP.OPEN)
 
     # class PaymentMethod(models.TextChoices):
     #     UNPAID = "NP", 'unpaid'

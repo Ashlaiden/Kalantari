@@ -1,0 +1,316 @@
+{% load static %}
+{% load humanize %}
+{#<div class="header-fill"></div>#}
+
+<div class="cart">
+    <ul id="cart-items-ul" class="items">
+    {% if items.count == 0 %}
+    	<div id="empty-cart">
+            <p>هیچ کالایی در سبد خرید شما وجود ندارد.</p>
+            <a href="{% url 'workshop:product_man_list' %}">صفحه محصولات</a>
+        </div>
+    {% endif %} 
+        {% for item in items %}
+            <li class="item" id="cart-{{ item.uid }}">
+                <div class="item-info">
+                    <a class="kala-link" href="{{ item.product.get_absolute_url }}">
+                        <img class="cart-item-image" src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
+                        <div class="cart-item-title-and-code">
+                            <h3 class="cart-item-title">{{ item.product.title }}</h3>
+                            <code class="cart-item-code">کد کالا: {{ item.product.uid }}</code>
+                        </div>
+                    </a>
+                </div>
+                <div class="item-control">
+                    <div class="change-count">
+                                <form id="decrease-{{ item.uid }}" action="" class="decrease">
+                                    {% if item.count == 1 %}
+                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
+                                    {% else %}
+                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
+                                    {% endif %}
+                                </form>
+                                <section class="count-section" id="count-section-{{ item.uid }}">
+                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>
+                                    {% if item.count == item.product.stock %}
+                                        <p id="max-{{ item.uid }}">حداکثر</p>
+                                    {% endif %}
+                                </section>
+                                <form id="increase-{{ item.uid }}" action="" class="increase">
+                                    <button class="{% if item.count == item.product.stock %}disabled{% endif %}" name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>
+                                </form>
+                            </div>
+                            <section class="detail-price">
+                                <span>
+                                    {{ item.price | intcomma }}
+                                </span>
+                                <p>تومان</p>
+                            </section>
+                            <form id="delete-{{ item.uid }}" action="" class="delete">
+                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->
+                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>
+                            </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <div class="cart-order-info">
+        <ul class="info-items">
+            <li class="info-item">
+                <p>مجموع:</p>
+                <section>
+                    <span id="cart-price">{{ info.price | intcomma }}</span>
+                    <p>تومان</p>
+                </section>
+            </li>
+            <div class="hr"></div>
+            <li class="info-item">
+                <p>تخفیف:</p>
+                <section>
+                    <span id="cart-discount">{{ info.discount | intcomma }}</span>
+                    <p>تومان</p>
+                </section>
+            </li>
+            <div class="hr"></div>
+            <li class="info-item">
+                <p>مالیات:</p>
+                <section>
+                    <span id="cart-tax">{{ info.tax | intcomma }}</span>
+                    <p>تومان</p>
+                </section>
+            </li>
+            <div class="hr"></div>
+            <li class="info-item">
+                <p>قیمت نهایی:</p>
+                <section>
+                    <span id="cart-final-price">{{ info.final_price | intcomma }}</span>
+                    <p>تومان</p>
+                </section>
+            </li>
+        </ul>
+        <form class="order-offer-code">
+            <div class="order-offer-code-title">کد تخفیف</div>
+            {% csrf_token %}
+            <div class="offer-code-input">
+                <label for="offer-code">کد تخفیف: </label>
+                <input id="offer-code" name="offer-code" type="text" placeholder="code">
+            </div>
+            <button id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
+            <div class="code-offered">
+                <p>مقدار تخفیف:</p>
+                <section>
+                    <span>{{ info.discount | intcomma }}</span>
+                    <p>تومان</p>
+                </section>
+            </div>
+        </form>
+    </div>
+
+    <div class="continue-order">
+        <button id="continue-order" onclick="ContinueCart()" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+    </div>
+
+</div>
+
+
+
+{#<div class="cart">#}
+{#    <div class="cart-list-container">#}
+{#        <ul class="items">#}
+{#        {% for item in items %}#}
+{#            {% if item.count == item.product.stock %}#}
+{#                    	<li id="{{ item.uid }}" class="item">#}
+{#                        <div class="des">#}
+{#                            <a class="kala-link" href="{{ item.product.get_absolute_url }}">#}
+{#                                <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.slug }}">#}
+{#                                <h4>{{ item.product.title | truncatewords:20 }}</h4>#}
+{#                                <span>کد کالا: {{ item.product.uid }}</span>#}
+{#                            </a>#}
+{#                            <div class="des-tico">#}
+{#                                <a href="{{ item.product.get_absolute_url }}">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="con">#}
+{#                            <div class="change-count">#}
+{#                                <form id="decrease-{{ item.uid }}" action="" class="decrease">#}
+{#                                    {% if item.count == 1 %}#}
+{#                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% else %}#}
+{#                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{#                                <section class="count-section" id="count-section-{{ item.uid }}">#}
+{#                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>#}
+{#                                    <p id="max-{{ item.uid }}">حداکثر</p>#}
+{#                                </section>#}
+{#                                <form id="increase-{{ item.uid }}" action="" class="increase">#}
+{#                                    <button class="disabled" name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        <div class="price-and-delete">#}
+{#                            <section class="detail-price">#}
+{#                                <span>#}
+{#                                    {{ item.price }}#}
+{#                                </span>#}
+{#                                <p>تومان</p>#}
+{#                            </section>#}
+{#                            <form id="delete-{{ item.uid }}" action="" class="delete">#}
+{#                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->#}
+{#                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    {% else %}#}
+{#                        <li id="{{ item.uid }}" class="item">#}
+{#                        <div class="des">#}
+{#                            <a href="{{ item.product.get_absolute_url }}">#}
+{#                            <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.slug }}">#}
+{#                            </a>#}
+{#                            <div class="des-tico">#}
+{#                                <a href="{{ item.product.get_absolute_url }}">#}
+{#                                <h4>{{ item.product.title | truncatewords:20 }}</h4>#}
+{#                                </a>#}
+{#                                <span>کد کالا: {{ item.product.uid }}</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="con">#}
+{#                            <div class="change-count">#}
+{#                                <form id="decrease-{{ item.uid }}" action="" class="decrease">#}
+{#                                    {% if item.count == 1 %}#}
+{#                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% else %}#}
+{#                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{#                                <section class="count-section" id="count-section-{{ item.uid }}">#}
+{#                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>#}
+{#                                </section>#}
+{#                                <form id="increase-{{ item.uid }}" action="" class="increase">#}
+{#                                    <button name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                            <div class="price-and-delete">#}
+{#                            <section class="detail-price">#}
+{#                                <span>#}
+{#                                    {{ item.price }}#}
+{#                                </span>#}
+{#                                <p>تومان</p>#}
+{#                            </section>#}
+{#                            <form id="delete-{{ item.uid }}" action="" class="delete">#}
+{#                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->#}
+{#                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    {% endif %}#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#    </div>#}
+{#    #}
+{#</div>#}
+
+
+
+
+
+
+
+{#<div class="container order">#}
+{#    <ul class="items">#}
+{#        {% for item in items %}#}
+{#            {% if item.count == item.product.stock %}#}
+{#                    	<li id="{{ item.uid }}" class="item">#}
+{#                        <div class="des">#}
+{#                            <a href="{{ item.product.get_absolute_url }}">#}
+{#                            <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.slug }}">#}
+{#                            </a>#}
+{#                            <div class="des-tico">#}
+{#                                <a href="{{ item.product.get_absolute_url }}">#}
+{#                                    <h4>{{ item.product.title | truncatewords:20 }}</h4>#}
+{#                                </a>#}
+{#                                <span>کد کالا: {{ item.product.uid }}</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="con">#}
+{#                            <div class="change-count">#}
+{#                                <form id="decrease-{{ item.uid }}" action="" class="decrease">#}
+{#                                    {% if item.count == 1 %}#}
+{#                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% else %}#}
+{#                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{#                                <section class="count-section" id="count-section-{{ item.uid }}">#}
+{#                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>#}
+{#                                    <p id="max-{{ item.uid }}">حداکثر</p>#}
+{#                                </section>#}
+{#                                <form id="increase-{{ item.uid }}" action="" class="increase">#}
+{#                                    <button class="disabled" name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                        <div class="price-and-delete">#}
+{#                            <section class="detail-price">#}
+{#                                <span>#}
+{#                                    {{ item.price }}#}
+{#                                </span>#}
+{#                                <p>تومان</p>#}
+{#                            </section>#}
+{#                            <form id="delete-{{ item.uid }}" action="" class="delete">#}
+{#                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->#}
+{#                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    {% else %}#}
+{#                        <li id="{{ item.uid }}" class="item">#}
+{#                        <div class="des">#}
+{#                            <a href="{{ item.product.get_absolute_url }}">#}
+{#                            <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.slug }}">#}
+{#                            </a>#}
+{#                            <div class="des-tico">#}
+{#                                <a href="{{ item.product.get_absolute_url }}">#}
+{#                                <h4>{{ item.product.title | truncatewords:20 }}</h4>#}
+{#                                </a>#}
+{#                                <span>کد کالا: {{ item.product.uid }}</span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="con">#}
+{#                            <div class="change-count">#}
+{#                                <form id="decrease-{{ item.uid }}" action="" class="decrease">#}
+{#                                    {% if item.count == 1 %}#}
+{#                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% else %}#}
+{#                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{#                                <section class="count-section" id="count-section-{{ item.uid }}">#}
+{#                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>#}
+{#                                </section>#}
+{#                                <form id="increase-{{ item.uid }}" action="" class="increase">#}
+{#                                    <button name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>#}
+{#                                </form>#}
+{#                            </div>#}
+{#                            <div class="price-and-delete">#}
+{#                            <section class="detail-price">#}
+{#                                <span>#}
+{#                                    {{ item.price }}#}
+{#                                </span>#}
+{#                                <p>تومان</p>#}
+{#                            </section>#}
+{#                            <form id="delete-{{ item.uid }}" action="" class="delete">#}
+{#                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->#}
+{#                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>#}
+{#                            </form>#}
+{#                        </div>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                    {% endif %}#}
+{#        {% endfor %}#}
+{#    </ul>#}
+{#</div>#}

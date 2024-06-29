@@ -100,11 +100,23 @@
 }
 .page-container .detail-container .detail i.favorite {
     cursor: pointer;
-    transition: all 0.3s;
+    /* background-color: gray; */
+    border-radius: 25px;
+    /* box-shadow: 0px 0px 15px 1px rgba(128, 128, 128, 0.4); */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
 }
 .page-container .detail-container .detail i.favorite:hover {
     scale: 1.1;
     color: rgb(55, 55, 55);
+    /* background: radial-gradient(circle, gray, white); */
+    background-color: rgba(128, 128, 128, 0.3);
+    box-shadow: 0px 0px 15px 5px rgba(128, 128, 128, 0.4);
 }
 .page-container .detail-container .detail h6 {
     /* direction: rtl; */

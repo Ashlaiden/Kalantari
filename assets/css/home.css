@@ -68,7 +68,24 @@
     color: rgb(62, 62, 62);
     border: 1px solid white;
 }
-.main .categories .woman{
+/* .main .categories .woman{
+
+} */
+.main .categories .category span div {
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    color: black;
+    /* width: 100%; */
+}
+.main .categories .category .cat-for-section {
+    font-size: 0.8rem;
+    padding-top: 15px;
+    margin-left: 10px;
+}
+.main .categories .category .cat-inside-section {
+    font-size: 1.5rem;
+    padding-bottom: 15px;
 
 }
 
