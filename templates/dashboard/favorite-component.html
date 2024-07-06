@@ -2,10 +2,10 @@
 
 <div class="favorite">
     <ul id="favorite-items-ul" class="items">
-    {% if items.count == 0 %}
+    {% if not items%}
     	<div id="empty-favorite">
-            <p>هیچ کالایی در لیست سما وجود ندارد.</p>
-            <a href="{% url 'workshop:product_man_list' %}">صفحه محصولات</a>
+            <p>هیچ کالایی در لیست شما وجود ندارد.</p>
+            <a href="/list/man/">صفحه محصولات</a>
         </div>
     {% endif %}
     <div id="favorite-items-container" class="items-container">

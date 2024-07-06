@@ -290,7 +290,7 @@ class Registeration {
     }
 
 }
-const register = new Registeration('create object!');
+const register = new Registeration('create address_manager!');
 register.cleaned_gender('man');
 console.log(register);
 console.log(register.order);

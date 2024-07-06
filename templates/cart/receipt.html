@@ -1,0 +1,143 @@
+{% load static %}
+{% load humanize %}
+{% load custom_filters%}
+<link rel="stylesheet" href="{% static 'css/library/bootstrap.min.css' %}">
+
+<div class="receipt-container">
+    <div id="receipt-factor" class="factor" style="direction: rtl">
+        <div class="container-xl" style="margin-top: 10px;">
+<div class="row">
+{#<div class="col-3 text-center"></div>#}
+<div class="col-4 text-right">
+<p style="font-size: 0.8rem">وصعین پرداخت: <strong style="color: red; font-size: 1.3rem">پرداخت نشده</strong></p>
+</div>
+<div class="col-4 text-center"><h3 class="font-weight-bold">فاکتور سبد خرید</h3></div>
+<div class="col-4 text-center">
+<p>شماره سفارش: {{ order.uid }}</p>
+<p>تاریخ سفارش: {{ date }}</p>
+</div>
+</div>
+
+<div class="row">
+<table class="table table-bordered">
+<thead>
+<tr>
+<th class="text-center" colspan="11">مشخصات فروشنده</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="11" class="text-right">
+<div class="row">
+<div class="col-4">
+<p>نام شرکت: پوشاک چرم کلانتری</p>
+</div>
+<div class="col-4">
+<p>شماره ثبت / شناسه ملی: -</p>
+
+</div>
+<div class="col-4">
+{#<p>شماره اقتصادی:</p>#}
+<p>تلفن / نمابر: -</p>
+</div>
+<div class="col-8">
+<p>آدرس کامل: استان مازندران، شهر ساری، میدان شهرداری، خیابان فرهنگ، مجتمع اداری سینا، طبقه سوم</p>
+</div>
+<div class="col-4">
+<p>کد پستی: -</p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+<th class="text-center" colspan="11">مشخصات خریدار</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="11" class="text-right">
+<div class="row">
+<div class="col-4">
+<p>نام شخص حقیق / حقوقی: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+</div>
+<div class="col-8">
+<p>آدرس کامل: {{ order.address_finalized }}</p>
+</div>
+{#<div class="col-4">#}
+{#<p>شماره اقتصادی:</p>#}
+{#<p>کد پستی:</p>#}
+{#</div>#}
+{#<div class="col-4">#}
+{#<p>شماره ثبت / شناسه ملی:</p>#}
+{#<p>تلفن / نمابر:</p>#}
+{#</div>#}
+</div>
+</td>
+</tr>
+</tbody>
+<thead>
+<tr>
+<th class="text-center" colspan="11">مشخصات کالاها</th>
+</tr>
+</thead>
+<thead>
+<tr class="text-center" style="font-size: 0.7rem">
+<th>ردیف</th>
+<th>کد کالا</th>
+<th>شرح کالا یا خدمات</th>
+<th>تعداد / مقدار</th>
+<th>واحد انداز گیری</th>
+<th>مبلغ واحد (تومان)</th>
+<th>مبلغ کل (تومان)</th>
+<th>مبلغ تخفیف (تومان)</th>
+<th>مبلغ کل پس از تخفیف (تومان)</th>
+<th>جمع مالیات و عوارض (تومان)</th>
+<th>جمع مبلغ کل به علاوه مالیات و عوارض (تومان)</th>
+</tr>
+</thead>
+<tbody>
+{% for item in items %}
+	<tr class="text-center">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ item.product.uid }}</td>
+        <td>{{ item.product.title }}</td>
+        <td>{{ item.count }}</td>
+        <td>عدد</td>
+        <td>{{ item.product.price | intcomma }}</td>
+        <td>{{ item.price | multiply:item.count | intcomma }}</td>
+        <td>0</td>
+        <td>{{ item.price | multiply:item.count | intcomma }}</td>
+        <td>{{ item.price | tax:item.count | intcomma }}</td>
+        <td>{{ item.price | final_after_tax:item.count | intcomma }}</td>
+    </tr>
+{% endfor %}
+
+<tr>
+<th colspan="5" class="text-right">جمع کل</th>
+<th class="text-center">{{ info.single_price | intcomma }}</th>
+<th class="text-center">{{ info.price | intcomma }}</th>
+<th class="text-center">{{ info.discount | intcomma }}</th>
+<th class="text-center">{{ info.price_discount | intcomma }}</th>
+<th class="text-center">{{ info.tax | intcomma }}</th>
+<th class="text-center">{{ info.final_price | intcomma }}</th>
+</tr>
+<tr>
+{#<th colspan="5" class="text-right">شرایط و نحوه فروش: &nbsp&nbsp&nbsp&nbsp نقدی &nbsp&nbsp&nbsp&nbsp غیرنقدی</th>#}
+<th colspan="5" class="text-right">شرایط و نحوه فروش: &nbsp&nbsp&nbsp&nbsp خرید اینترنتی</th>
+<th colspan="6" class="text-right">توضیحات:</th>
+</tr>
+<tr style="padding: 5px 50px;height: 100px;">
+<td colspan="5" class="text-right">مهر و امضا خریدار</td>
+<td colspan="6" class="text-right">مهر و امضا فروشنده</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+    </div>
+<div onclick="save_factor({{ order.uid }})" id="download-factor">ذخیره فاکتور <i class="fa-solid fa-file-arrow-down"></i></div>
+<button id="submit-factor" type="button">تایید و پرداخت</button>
+</div>
+

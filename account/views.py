@@ -17,9 +17,12 @@ from cart.models import Order, OrderItem
 
 
 def login_user(request):
+    next_url = request.build_absolute_uri(request.GET.get('next', '/')) if request.GET.get('next', '/') is not None else None
+    print(f'next3: {next_url}')
     if request.method == 'POST':
         session_id = request.session.get('u_id')
-        next_url = request.build_absolute_uri(request.POST.get('next')) if request.POST.get('next') is not None else None
+        next_url = request.build_absolute_uri(request.POST.get('next')) if request.POST.get('next') is not None and next_url is None else next_url
+        print(f'next4: {next_url}')
         if request.user.is_authenticated:
             return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'You are already logged in', 'next': next_url})
         login_form = LoginForm(request.POST or None)
@@ -55,7 +58,7 @@ def login_user(request):
                     item.user = request.user
                     item.session_uid = None
                     item.save()
-
+                print(f'next2: {next_url}')
                 return JsonResponse({'code': '200', 'success': True, 'status': 'ok', 'message': 'login success', 'next': next_url})
             else:
                 return JsonResponse({'code': '404', 'success': False, 'status': 'error', 'message': 'کاربری با این مشخصات یافت نشد!', 'next': None})
@@ -63,7 +66,8 @@ def login_user(request):
             return JsonResponse({'code': '405', 'success': False, 'status': 'error', 'message': 'Invalid request', 'next': None})
         return JsonResponse({'code': '500', 'success': False, 'status': 'error', 'message': 'internal server error', 'next': None})
     else:
-        next_url = request.build_absolute_uri(request.GET.get('next')) if request.GET.get('next') is not None else None
+        next_url = request.build_absolute_uri(request.GET.get('next', '/')) if request.GET.get('next', '/') is not None and next_url is None else next_url
+        print(f'next1: {next_url}')
         if request.user.is_authenticated:
             return redirect(next_url if next_url is not None else '/')
         else:
@@ -147,7 +151,11 @@ def register_account(request):
             return render(request, 'account/register.html', context)
 
 
-
+def is_authenticated(request):
+    if request.user.is_authenticated:
+        return JsonResponse({'code': '200', 'success': 1, 'authenticated': 1})
+    else:
+        return JsonResponse({'code': '200', 'success': 1, 'authenticated': 0})
 
 
 

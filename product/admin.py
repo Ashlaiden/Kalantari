@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 # Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'publish', 'status', 'gallery', 'uid']
+    list_display = ['id', 'title', 'publish', 'status', 'gallery', 'views_count', 'bought_count', 'score', 'uid']
     readonly_fields = []
     ordering = ['-id', '-publish', 'title']
     list_filter = ['status', 'publish']
@@ -60,5 +60,24 @@ class ProductGalleryAdmin(admin.ModelAdmin):
     # list_editable = ['product_status']
     list_display_links = ['title']
     # filter_horizontal = ['product']
+
+
+@admin.register(ProductView)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['id', 'ip_address', 'product', 'user_field', 'created']
+    ordering = ['-id']
+    list_filter = ['product']
+    search_fields = ['product', 'user']
+    # raw_id_fields = ['product']
+    list_display_links = ['ip_address']
+
+    def user_field(self, obj):
+        if obj.user_id is not None:
+            user = Account.object.get(pk=obj.user_id)
+            return f'{user.uid}-{user.email}'
+        else:
+            return '-'
+
+    user_field.short_description = 'user'
 
 

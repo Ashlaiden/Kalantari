@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='sitesetting_id_693e34_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='sitesetting_id_e19635_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='sitesetting_id_840b34_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='sitesetting_id_1481dc_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
     ]

@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-created'], name='favorite_fa_created_40caab_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
     ]

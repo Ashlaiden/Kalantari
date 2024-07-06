@@ -25,7 +25,7 @@
     }
     return (options === true) ? instance : this;
   };
-  // persianDatepicker object
+  // persianDatepicker address_manager
   var persianDatepicker = (function () {
     function persianDatepicker(element, userOptions) {
       var defaults = {
@@ -539,7 +539,7 @@
   })();
 })(jQuery); // end of persianDatepicker plugin
 
-// persianDate object
+// persianDate address_manager
 var persianDate = (function () {
   function persianDate() {
     var self = this;

@@ -34,7 +34,7 @@ class Authenticate {
     }
     Login() {
       if (this.isValid()) {
-        const login_url = this.LoginURL;
+        const login_url = this.LoginURL + `?next=${this.get_next()}`;
         this.csrfmiddlewaretoken = document.getElementById('login-form').children.namedItem('csrfmiddlewaretoken').value;
         const fd = new FormData();
         fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)
@@ -46,7 +46,7 @@ class Authenticate {
                 login_button.classList.remove('submiting')
                 login_button.classList.add('disabled')
                 login_button.innerHTML = 'در حال پردازش...'
-                window.location.href = location.protocol + '//' + location.hostname;
+                this.to_next()
             } else {
                 login_button.classList.remove('submiting')
                 login_button.classList.remove('disabled')
@@ -65,6 +65,35 @@ class Authenticate {
     sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
+
+  get_next() {
+    try {
+      const queryString = window.location.search;
+              
+      // Create a URLSearchParams address_manager
+      const urlParams = new URLSearchParams(queryString);
+      
+      // Get the value of the 'next' parameter
+      const nextUrl = urlParams.get('next');
+      
+      console.log(`Next URL : ${nextUrl}`);
+  
+      return nextUrl
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      return ''
+    }
+  }
+
+  to_next() {
+    // Example: Redirect to the next URL if it exists
+    var nextUrl = this.get_next()
+    if (nextUrl != '') {
+      window.location.href = nextUrl;
+    } else {
+      window.location.gref = '/';
+    }
+  }
 }
 // --------------------------------------------------
 var authenticate = new Authenticate('create');
@@ -95,7 +124,6 @@ document.getElementById('passwd').addEventListener('input', function () {
 });
   // ------------------------------------------
 function Login() {
-    console.log('started....')
     login_button.classList.add('submiting')
     login_button.innerHTML = '<i class="fa-solid fa-spinner"></i>'
     if (authenticate.isValid()) {

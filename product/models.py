@@ -1,13 +1,18 @@
+from datetime import timedelta
+
 from django.db import models
 from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django_jalali.db import models as jmodels
 from django.db.models import Q
 
+from account.models import Account
 # import custom modules
 from core.core.file_presave import upload_image_path
 from core.core.slug_auto_generate import slug_generator
 # from core.core.id_generator import generate_id
+from core.core.model_methods import calculate_score
 
 
 # Managers
@@ -30,6 +35,53 @@ class PublishedManager(models.Manager):
                 return self.get_queryset().get(uid=uid)
         except Product.DoesNotExist:
             return None
+
+    def add_view_count(self, product_uid):
+        try:
+            product = self.get_by_uid(uid=product_uid)
+            if product:
+                product.views_count += 1
+                product.save()
+                self.update_product_score(product_uid)
+                return True
+            else:
+                return False
+        except Product.DoesNotExist:
+            return False
+
+    def add_bought_count(self, product_uid):
+        try:
+            product = self.get_by_uid(uid=product_uid)
+            if product:
+                product.bought_count += 1
+                product.save()
+                self.update_product_score(product_uid)
+                return True
+            else:
+                return False
+        except Product.DoesNotExist:
+            return False
+
+    def update_product_score(self, product_uid):
+        try:
+            product = self.get_by_uid(uid=product_uid)
+            if product:
+                score = calculate_score(
+                    bought_count=product.bought_count,
+                    views_count=product.views_count,
+                    stock=product.stock,
+                    created=product.created
+                )
+                product.score = score
+                product.save()
+                return True
+            else:
+                return False
+        except Product.DoesNotExist:
+            return False
+
+    def get_highest_score_products(self, count: int):
+        return self.get_queryset().order_by('-score')[:count]
 
     # def search(self, query):
     #     lookup = (
@@ -71,6 +123,47 @@ class PublishedManager(models.Manager):
     #         return self.get_queryset().order_by('-created').all()
 
 
+class ViewManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().all()
+
+    def add_product_view(self, ip_address, product_uid, user_id=None):
+        try:
+            try:
+                vws = self.get_queryset().filter(ip_address=ip_address, product__uid=product_uid).order_by('-created')
+                dif_time = timezone.now() - vws.first().created
+                if dif_time < timedelta(hours=2):
+                    return False
+            except Exception:
+                pass
+            prd = Product.published.get_by_uid(uid=product_uid)
+            self.create(ip_address=ip_address, user_id=user_id if user_id is not None else None, product=prd)
+            Product.published.add_view_count(product_uid=prd.uid)
+            return True
+        except Exception:
+            return False
+
+    def get_product_views(self, uid=None, product=None):
+        try:
+            if uid is not None:
+                return self.get_queryset().filter(product__uid=uid).all()
+            if product is not None:
+                return self.get_queryset().filter(product=product).all()
+            return None
+        except Exception:
+            return None
+
+    def get_product_view_count(self, uid=None, product=None):
+        try:
+            if uid is not None:
+                return self.get_queryset().filter(product__uid=uid).count()
+            if product is not None:
+                return self.get_queryset().filter(product=product).count()
+            return None
+        except ProductView.DoesNotExist:
+            return None
+
+
 # Create your models here.
 # Product---------------------------------------------------
 class Product(models.Model):
@@ -102,6 +195,11 @@ class Product(models.Model):
     publish = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    views_count = models.IntegerField(default=0)
+    bought_count = models.IntegerField(default=0)
+
+    score = models.DecimalField(max_digits=15, decimal_places=4, default=0)
 
     object = models.Manager()
     published = PublishedManager()
@@ -138,6 +236,7 @@ class Product(models.Model):
             self.id = generate_id('product')
         from core.core.model_methods import pre_save_uid
         self.uid = pre_save_uid(self.uid, 'product')
+        self.published.update_product_score(self.uid)
         super(Product, self).save(*args, **kwargs)
 
 
@@ -166,4 +265,37 @@ class ProductGallery(models.Model):
         from core.core.model_methods import pre_save_uid
         self.uid = pre_save_uid(self.uid, 'productgallery')
         super(ProductGallery, self).save(*args, **kwargs)
+
+
+class ProductView(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user_id = models.IntegerField(null=True, blank=True)
+    ip_address = models.GenericIPAddressField()
+    created = models.DateTimeField(auto_now_add=True)
+    # j_created = jmodels.jDateTimeField(auto_now_add=True)
+
+    object = models.Manager()
+    view_manager = ViewManager()
+
+    class Meta:
+        ordering = ['-id']
+        indexes = [
+            models.Index(fields=['-id'])
+        ]
+
+    def __str__(self):
+        return f"{self.product.title}--{self.ip_address}-{self.created}"
+
+
+
+
+
+
+
+
+
+
+
+
+
 

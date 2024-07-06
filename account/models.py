@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth.models import User
@@ -24,6 +25,63 @@ class AccountManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
 
         return self.create_user(email, password, **extra_fields)
+
+
+class AddressManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().all()
+
+    def get_user_addresses(self, user_id=None, user=None):
+        try:
+            queryset = self.get_queryset()
+            if user_id is not None:
+                queryset = queryset.filter(user_id=user_id)
+            if user is not None:
+                queryset = queryset.filter(user=user)
+            return queryset.all()
+        except BaseException:
+            return None
+
+    def get_user_address_count(self, user_id=None, user=None):
+        try:
+            queryset = self.get_queryset()
+            if user_id is not None:
+                queryset = queryset.filter(user_id=user_id)
+            elif user is not None:
+                queryset = queryset.filter(user=user)
+            else:
+                queryset = []
+            return queryset.all().count()
+        except BaseException:
+            return None
+
+    def unique_address_title(self, name, user_id=None, user=None):
+        try:
+            queryset = self.get_queryset()
+            if user_id is not None:
+                queryset = queryset.filter(user_id=user_id)
+            elif user is not None:
+                queryset = queryset.filter(user=user)
+            else:
+                queryset = []
+            for address in queryset:
+                if address.title == name:
+                    return False
+            return True
+        except BaseException:
+            return None
+
+    def get_address(self, item_id, user_id=None, user=None):
+        try:
+            if user_id is not None:
+                data = self.get_queryset().filter(pk=item_id, user_id=user_id)
+            elif user is not None:
+                data = self.get_queryset().filter(pk=item_id, user=user)
+            else:
+                data = self.get_queryset().filter(pk=item_id)
+            return data
+        except BaseException:
+            return None
 
 
 class Account(AbstractBaseUser, PermissionsMixin):
@@ -81,6 +139,21 @@ class Account(AbstractBaseUser, PermissionsMixin):
         super(Account, self).save(*args, **kwargs)
 
 
+class Address(models.Model):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='addresses')
+    title = models.CharField(max_length=50, blank=False, null=False)
+    address = models.TextField(blank=False, null=False)
+    j_created = jmodels.jDateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
 
+    address_manager = AddressManager()
 
+    class Meta:
+        ordering = ['-id']
+        indexes = [
+            models.Index(fields=['-id'])
+        ]
+
+    def __str__(self):
+        return f'{self.user.uid}--{self.user.first_name} {self.user.last_name}--[{self.title}]'
 

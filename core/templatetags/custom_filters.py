@@ -11,6 +11,16 @@ def multiply(value, arg):
 
 
 @register.filter
+def tax(value, arg):
+    return ((value * arg) / 100) * 9
+
+
+@register.filter
+def final_after_tax(value, arg):
+    return (value * arg) + (((value * arg) / 100) * 9)
+
+
+@register.filter
 def format_number(value):
     try:
         value = int(value)

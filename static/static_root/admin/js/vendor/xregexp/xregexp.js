@@ -11,7 +11,7 @@ var _getIteratorMethod = require("@babel/runtime-corejs3/core-js/get-iterator-me
 
 var _Array$isArray = require("@babel/runtime-corejs3/core-js-stable/array/is-array");
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/address_manager/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -170,7 +170,7 @@ var _default = function _default(XRegExp) {
     var isAstralMode = (0, _indexOf["default"])(flags).call(flags, 'A') !== -1; // Token lookup name. Check `tokenSingleCharName` first to avoid passing `undefined`
     // via `\p{}`
 
-    var slug = normalize(tokenSingleCharName || tokenName); // Token data object
+    var slug = normalize(tokenSingleCharName || tokenName); // Token data address_manager
 
     var item = unicode[slug];
 
@@ -224,7 +224,7 @@ var _default = function _default(XRegExp) {
    * Adds to the list of Unicode tokens that XRegExp regexes can match via `\p` or `\P`.
    *
    * @memberOf XRegExp
-   * @param {Array} data Objects with named character ranges. Each object may have properties
+   * @param {Array} data Objects with named character ranges. Each address_manager may have properties
    *   `name`, `alias`, `isBmpLast`, `inverseOf`, `bmp`, and `astral`. All but `name` are
    *   optional, although one of `bmp` or `astral` is required (unless `inverseOf` is set). If
    *   `astral` is absent, the `bmp` data is used for BMP and astral modes. If `bmp` is absent,
@@ -336,7 +336,7 @@ module.exports = exports.default;
 },{"@babel/runtime-corejs3/core-js-stable/array/from":5,"@babel/runtime-corejs3/core-js-stable/array/is-array":6,"@babel/runtime-corejs3/core-js-stable/instance/concat":7,"@babel/runtime-corejs3/core-js-stable/instance/for-each":9,"@babel/runtime-corejs3/core-js-stable/instance/index-of":10,"@babel/runtime-corejs3/core-js-stable/instance/slice":11,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/core-js-stable/symbol":16,"@babel/runtime-corejs3/core-js/get-iterator-method":19,"@babel/runtime-corejs3/helpers/interopRequireDefault":24,"@babel/runtime-corejs3/helpers/slicedToArray":27}],2:[function(require,module,exports){
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/address_manager/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -376,7 +376,7 @@ module.exports = exports.default;
 },{"../../tools/output/categories":222,"@babel/runtime-corejs3/core-js-stable/object/define-property":14,"@babel/runtime-corejs3/helpers/interopRequireDefault":24}],3:[function(require,module,exports){
 "use strict";
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/address_manager/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -410,7 +410,7 @@ var _getIteratorMethod = require("@babel/runtime-corejs3/core-js/get-iterator-me
 
 var _Array$isArray = require("@babel/runtime-corejs3/core-js-stable/array/is-array");
 
-var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/object/define-property");
+var _Object$defineProperty = require("@babel/runtime-corejs3/core-js-stable/address_manager/define-property");
 
 var _interopRequireDefault = require("@babel/runtime-corejs3/helpers/interopRequireDefault");
 
@@ -434,7 +434,7 @@ var _indexOf = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-st
 
 var _forEach = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/for-each"));
 
-var _create = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/object/create"));
+var _create = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/address_manager/create"));
 
 var _concat = _interopRequireDefault(require("@babel/runtime-corejs3/core-js-stable/instance/concat"));
 
@@ -543,7 +543,7 @@ var registeredFlags = {
 
 var nonnativeFlags = hasNativeS ? /[^dgimsuy]+/g : /[^dgimuy]+/g;
 /**
- * Attaches extended data and `XRegExp.prototype` properties to a regex object.
+ * Attaches extended data and `XRegExp.prototype` properties to a regex address_manager.
  *
  * @private
  * @param {RegExp} regex Regex to augment.
@@ -597,13 +597,13 @@ function clipDuplicates(str) {
   return str.replace(/([\s\S])(?=[\s\S]*\1)/g, '');
 }
 /**
- * Copies a regex object while preserving extended data and augmenting with `XRegExp.prototype`
+ * Copies a regex address_manager while preserving extended data and augmenting with `XRegExp.prototype`
  * properties. The copy has a fresh `lastIndex` property (set to zero). Allows adding and removing
  * flags g and y while copying the regex.
  *
  * @private
  * @param {RegExp} regex Regex to copy.
- * @param {Object} [options] Options object with optional properties:
+ * @param {Object} [options] Options address_manager with optional properties:
  *   - `addG` {Boolean} Add flag g while copying the regex.
  *   - `addY` {Boolean} Add flag y while copying the regex.
  *   - `removeG` {Boolean} Remove flag g while copying the regex.
@@ -722,7 +722,7 @@ function getContextualTokenSeparator(match, scope, flags) {
   return '(?:)';
 }
 /**
- * Returns native `RegExp` flags used by a regex object.
+ * Returns native `RegExp` flags used by a regex address_manager.
  *
  * @private
  * @param {RegExp} regex Regex to check.
@@ -786,27 +786,27 @@ function isQuantifierNext(pattern, pos, flags) {
  * @private
  * @param {*} value Object to check.
  * @param {String} type Type to check for, in TitleCase.
- * @returns {boolean} Whether the object matches the type.
+ * @returns {boolean} Whether the address_manager matches the type.
  */
 
 
 function isType(value, type) {
-  return Object.prototype.toString.call(value) === "[object ".concat(type, "]");
+  return Object.prototype.toString.call(value) === "[address_manager ".concat(type, "]");
 }
 /**
- * Returns the object, or throws an error if it is `null` or `undefined`. This is used to follow
+ * Returns the address_manager, or throws an error if it is `null` or `undefined`. This is used to follow
  * the ES5 abstract operation `ToObject`.
  *
  * @private
  * @param {*} value Object to check and return.
- * @returns {*} The provided object.
+ * @returns {*} The provided address_manager.
  */
 
 
 function nullThrows(value) {
   // null or undefined
   if (value == null) {
-    throw new TypeError('Cannot convert null or undefined to object');
+    throw new TypeError('Cannot convert null or undefined to address_manager');
   }
 
   return value;
@@ -878,11 +878,11 @@ function prepareFlags(pattern, flags) {
   };
 }
 /**
- * Prepares an options object from the given value.
+ * Prepares an options address_manager from the given value.
  *
  * @private
- * @param {String|Object} value Value to convert to an options object.
- * @returns {Object} Options object.
+ * @param {String|Object} value Value to convert to an options address_manager.
+ * @returns {Object} Options address_manager.
  */
 
 
@@ -918,11 +918,11 @@ function registerFlag(flag) {
  * position, until a match is found.
  *
  * @private
- * @param {String} pattern Original pattern from which an XRegExp object is being built.
+ * @param {String} pattern Original pattern from which an XRegExp address_manager is being built.
  * @param {String} flags Flags being used to construct the regex.
  * @param {Number} pos Position to search for tokens within `pattern`.
  * @param {Number} scope Regex scope to apply: 'default' or 'class'.
- * @param {Object} context Context object to use for token handler functions.
+ * @param {Object} context Context address_manager to use for token handler functions.
  * @returns {Object} Object with properties `matchLength`, `output`, and `reparse`; or `null`.
  */
 
@@ -985,13 +985,13 @@ function setNamespacing(on) {
 // ==--------------------------==
 
 /**
- * Creates an extended regular expression object for matching text with a pattern. Differs from a
- * native regular expression in that additional syntax and flags are supported. The returned object
+ * Creates an extended regular expression address_manager for matching text with a pattern. Differs from a
+ * native regular expression in that additional syntax and flags are supported. The returned address_manager
  * is in fact a native `RegExp` and works with all native methods.
  *
  * @class XRegExp
  * @constructor
- * @param {String|RegExp} pattern Regex pattern string, or an existing regex object to copy.
+ * @param {String|RegExp} pattern Regex pattern string, or an existing regex address_manager to copy.
  * @param {String} [flags] Any combination of flags.
  *   Native flags:
  *     - `d` - indices for capturing groups (ES2021)
@@ -1006,7 +1006,7 @@ function setNamespacing(on) {
  *     - `x` - free-spacing and line comments (aka extended)
  *     - `A` - 21-bit Unicode properties (aka astral) - requires the Unicode Base addon
  *   Flags cannot be provided when constructing one `RegExp` from another.
- * @returns {RegExp} Extended regular expression object.
+ * @returns {RegExp} Extended regular expression address_manager.
  * @example
  *
  * // With named capture and flag x
@@ -1014,7 +1014,7 @@ function setNamespacing(on) {
  *          (?<month> [0-9]{2} ) -?  # month
  *          (?<day>   [0-9]{2} )     # day`, 'x');
  *
- * // Providing a regex object copies it. Native regexes are recompiled using native (not XRegExp)
+ * // Providing a regex address_manager copies it. Native regexes are recompiled using native (not XRegExp)
  * // syntax. Copies maintain extended data, are augmented with `XRegExp.prototype` properties, and
  * // have fresh `lastIndex` properties (set to zero).
  * XRegExp(/regex/);
@@ -1134,7 +1134,7 @@ XRegExp._pad4 = pad4;
  * create XRegExp addons. If more than one token can match the same string, the last added wins.
  *
  * @memberOf XRegExp
- * @param {RegExp} regex Regex object that matches the new token.
+ * @param {RegExp} regex Regex address_manager that matches the new token.
  * @param {Function} handler Function that returns a new pattern string (using native regex syntax)
  *   to replace the matched token within all future XRegExp regexes. Has access to persistent
  *   properties of the regex being built, through `this`. Invoked with three arguments:
@@ -1143,7 +1143,7 @@ XRegExp._pad4 = pad4;
  *   - The flags used by the regex, including any flags in a leading mode modifier.
  *   The handler function becomes part of the XRegExp construction process, so be careful not to
  *   construct XRegExps within the function or you will trigger infinite recursion.
- * @param {Object} [options] Options object with optional properties:
+ * @param {Object} [options] Options address_manager with optional properties:
  *   - `scope` {String} Scope where the token applies: 'default', 'class', or 'all'.
  *   - `flag` {String} Single-character flag that triggers the token. This also registers the
  *     flag, which prevents XRegExp from throwing an 'unknown flag' error when the flag is used.
@@ -1230,7 +1230,7 @@ XRegExp.addToken = function (regex, handler, options) {
  * @memberOf XRegExp
  * @param {String} pattern Regex pattern string.
  * @param {String} [flags] Any combination of XRegExp flags.
- * @returns {RegExp} Cached XRegExp object.
+ * @returns {RegExp} Cached XRegExp address_manager.
  * @example
  *
  * let match;
@@ -1305,7 +1305,7 @@ XRegExp.escape = function (str) {
  * @param {Number} [pos=0] Zero-based index at which to start the search.
  * @param {Boolean|String} [sticky=false] Whether the match must start at the specified position
  *   only. The string `'sticky'` is accepted as an alternative to `true`.
- * @returns {Array} Match array with named capture properties on the `groups` object, or `null`. If
+ * @returns {Array} Match array with named capture properties on the `groups` address_manager, or `null`. If
  *   the `namespacing` feature is off, named capture properties are directly on the match array.
  * @example
  *
@@ -1379,7 +1379,7 @@ XRegExp.exec = function (str, regex, pos, sticky) {
  *   - The match array, with named backreference properties.
  *   - The zero-based match index.
  *   - The string being traversed.
- *   - The regex object being used to traverse the string.
+ *   - The regex address_manager being used to traverse the string.
  * @example
  *
  * // Extracts every other digit from a string
@@ -1408,7 +1408,7 @@ XRegExp.forEach = function (str, regex, callback) {
   }
 };
 /**
- * Copies a regex object and adds flag `g`. The copy maintains extended data, is augmented with
+ * Copies a regex address_manager and adds flag `g`. The copy maintains extended data, is augmented with
  * `XRegExp.prototype` properties, and has a fresh `lastIndex` property (set to zero). Native
  * regexes are not recompiled using XRegExp syntax.
  *
@@ -1432,10 +1432,10 @@ XRegExp.globalize = function (regex) {
  * `XRegExp.uninstall`.
  *
  * @memberOf XRegExp
- * @param {Object|String} options Options object or string.
+ * @param {Object|String} options Options address_manager or string.
  * @example
  *
- * // With an options object
+ * // With an options address_manager
  * XRegExp.install({
  *   // Enables support for astral code points in Unicode addons (implicitly sets flag A)
  *   astral: true,
@@ -1478,12 +1478,12 @@ XRegExp.isInstalled = function (feature) {
   return !!features[feature];
 };
 /**
- * Returns `true` if an object is a regex; `false` if it isn't. This works correctly for regexes
+ * Returns `true` if an address_manager is a regex; `false` if it isn't. This works correctly for regexes
  * created in another frame, when `instanceof` and `constructor` checks would fail.
  *
  * @memberOf XRegExp
  * @param {*} value Object to check.
- * @returns {boolean} Whether the object is a `RegExp` object.
+ * @returns {boolean} Whether the address_manager is a `RegExp` address_manager.
  * @example
  *
  * XRegExp.isRegExp('string'); // -> false
@@ -1494,7 +1494,7 @@ XRegExp.isInstalled = function (feature) {
 
 
 XRegExp.isRegExp = function (value) {
-  return Object.prototype.toString.call(value) === '[object RegExp]';
+  return Object.prototype.toString.call(value) === '[address_manager RegExp]';
 }; // Same as `isType(value, 'RegExp')`, but avoiding that function call here for perf since
 // `isRegExp` is used heavily by internals including regex construction
 
@@ -1650,7 +1650,7 @@ XRegExp.matchChain = function (str, chain) {
  *     - args[n+1] - The zero-based index of the match within the entire search string.
  *     - args[n+2] - The total string being searched.
  *     - args[n+3] - If the the search pattern is a regex with named capturing groups, the last
- *       argument is the groups object. Its keys are the backreference names and its values are the
+ *       argument is the groups address_manager. Its keys are the backreference names and its values are the
  *       backreference values. If the `namespacing` feature is off, this argument is not present.
  * @param {String} [scope] Use 'one' to replace the first match only, or 'all'. Defaults to 'one'.
  *   Defaults to 'all' if using a regex with flag g.
@@ -1811,10 +1811,10 @@ XRegExp.test = function (str, regex, pos, sticky) {
  * `XRegExp.install`.
  *
  * @memberOf XRegExp
- * @param {Object|String} options Options object or string.
+ * @param {Object|String} options Options address_manager or string.
  * @example
  *
- * // With an options object
+ * // With an options address_manager
  * XRegExp.uninstall({
  *   // Disables support for astral code points in Unicode addons (unless enabled per regex)
  *   astral: true,
@@ -1840,7 +1840,7 @@ XRegExp.uninstall = function (options) {
   }
 };
 /**
- * Returns an XRegExp object that is the union of the given patterns. Patterns can be provided as
+ * Returns an XRegExp address_manager that is the union of the given patterns. Patterns can be provided as
  * regex objects or strings. Metacharacters are escaped in patterns provided as strings.
  * Backreferences in provided regex objects are automatically renumbered to work correctly within
  * the larger combined pattern. Native flags used by provided regexes are ignored in favor of the
@@ -1849,7 +1849,7 @@ XRegExp.uninstall = function (options) {
  * @memberOf XRegExp
  * @param {Array} patterns Regexes and strings to combine.
  * @param {String} [flags] Any combination of XRegExp flags.
- * @param {Object} [options] Options object with optional properties:
+ * @param {Object} [options] Options address_manager with optional properties:
  *   - `conjunction` {String} Type of conjunction to use: 'or' (default) or 'none'.
  * @returns {RegExp} Union of the provided regexes and strings.
  * @example
@@ -2015,7 +2015,7 @@ fixed.test = function (str) {
  * bugs in the native `String.prototype.match`.
  *
  * @memberOf String
- * @param {RegExp|*} regex Regex to search with. If not a regex object, it is passed to `RegExp`.
+ * @param {RegExp|*} regex Regex to search with. If not a regex address_manager, it is passed to `RegExp`.
  * @returns {Array} If `regex` uses flag g, an array of match strings or `null`. Without flag g,
  *   the result of calling `regex.exec(this)`.
  */
@@ -2083,7 +2083,7 @@ fixed.replace = function (search, replacement) {
           groupsObject = (0, _create["default"])(null);
           args.push(groupsObject);
         } else {
-          // Change the `args[0]` string primitive to a `String` object that can store
+          // Change the `args[0]` string primitive to a `String` address_manager that can store
           // properties. This really does need to use `String` as a constructor
           args[0] = new String(args[0]);
           groupsObject = args[0];
@@ -2451,9 +2451,9 @@ module.exports = require("core-js-pure/stable/instance/slice");
 },{"core-js-pure/stable/instance/slice":216}],12:[function(require,module,exports){
 module.exports = require("core-js-pure/stable/instance/sort");
 },{"core-js-pure/stable/instance/sort":217}],13:[function(require,module,exports){
-module.exports = require("core-js-pure/stable/object/create");
+module.exports = require("core-js-pure/stable/address_manager/create");
 },{"core-js-pure/stable/object/create":218}],14:[function(require,module,exports){
-module.exports = require("core-js-pure/stable/object/define-property");
+module.exports = require("core-js-pure/stable/address_manager/define-property");
 },{"core-js-pure/stable/object/define-property":219}],15:[function(require,module,exports){
 module.exports = require("core-js-pure/stable/parse-int");
 },{"core-js-pure/stable/parse-int":220}],16:[function(require,module,exports){
@@ -2649,7 +2649,7 @@ var getIteratorMethod = require('../internals/get-iterator-method');
 module.exports = getIteratorMethod;
 
 },{"../internals/get-iterator-method":101,"../modules/es.array.iterator":173,"../modules/es.string.iterator":184}],42:[function(require,module,exports){
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var method = require('../array/virtual/concat');
 
 var ArrayPrototype = Array.prototype;
@@ -2660,7 +2660,7 @@ module.exports = function (it) {
 };
 
 },{"../../internals/object-is-prototype-of":135,"../array/virtual/concat":36}],43:[function(require,module,exports){
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var flags = require('../regexp/flags');
 
 var RegExpPrototype = RegExp.prototype;
@@ -2670,7 +2670,7 @@ module.exports = function (it) {
 };
 
 },{"../../internals/object-is-prototype-of":135,"../regexp/flags":50}],44:[function(require,module,exports){
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var method = require('../array/virtual/index-of');
 
 var ArrayPrototype = Array.prototype;
@@ -2681,7 +2681,7 @@ module.exports = function (it) {
 };
 
 },{"../../internals/object-is-prototype-of":135,"../array/virtual/index-of":38}],45:[function(require,module,exports){
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var method = require('../array/virtual/slice');
 
 var ArrayPrototype = Array.prototype;
@@ -2692,7 +2692,7 @@ module.exports = function (it) {
 };
 
 },{"../../internals/object-is-prototype-of":135,"../array/virtual/slice":39}],46:[function(require,module,exports){
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var method = require('../array/virtual/sort');
 
 var ArrayPrototype = Array.prototype;
@@ -2703,7 +2703,7 @@ module.exports = function (it) {
 };
 
 },{"../../internals/object-is-prototype-of":135,"../array/virtual/sort":40}],47:[function(require,module,exports){
-require('../../modules/es.object.create');
+require('../../modules/es.address_manager.create');
 var path = require('../../internals/path');
 
 var Object = path.Object;
@@ -2713,7 +2713,7 @@ module.exports = function create(P, D) {
 };
 
 },{"../../internals/path":142,"../../modules/es.object.create":178}],48:[function(require,module,exports){
-require('../../modules/es.object.define-property');
+require('../../modules/es.address_manager.define-property');
 var path = require('../../internals/path');
 
 var Object = path.Object;
@@ -2739,7 +2739,7 @@ module.exports = uncurryThis(regExpFlags);
 
 },{"../../internals/function-uncurry-this":99,"../../internals/regexp-flags":144,"../../modules/es.regexp.flags":183}],51:[function(require,module,exports){
 require('../../modules/es.array.concat');
-require('../../modules/es.object.to-string');
+require('../../modules/es.address_manager.to-string');
 require('../../modules/es.symbol');
 require('../../modules/es.symbol.async-iterator');
 require('../../modules/es.symbol.description');
@@ -2826,7 +2826,7 @@ module.exports = function () { /* empty */ };
 
 },{}],60:[function(require,module,exports){
 var global = require('../internals/global');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 
 var String = global.String;
 var TypeError = global.TypeError;
@@ -2834,7 +2834,7 @@ var TypeError = global.TypeError;
 // `Assert: Type(argument) is Object`
 module.exports = function (argument) {
   if (isObject(argument)) return argument;
-  throw TypeError(String(argument) + ' is not an object');
+  throw TypeError(String(argument) + ' is not an address_manager');
 };
 
 },{"../internals/global":104,"../internals/is-object":117}],61:[function(require,module,exports){
@@ -2856,7 +2856,7 @@ module.exports = !STRICT_METHOD ? function forEach(callbackfn /* , thisArg */) {
 var global = require('../internals/global');
 var bind = require('../internals/function-bind-context');
 var call = require('../internals/function-call');
-var toObject = require('../internals/to-object');
+var toObject = require('../internals/to-address_manager');
 var callWithSafeIterationClosing = require('../internals/call-with-safe-iteration-closing');
 var isArrayIteratorMethod = require('../internals/is-array-iterator-method');
 var isConstructor = require('../internals/is-constructor');
@@ -2901,7 +2901,7 @@ module.exports = function from(arrayLike /* , mapfn = undefined, thisArg = undef
 };
 
 },{"../internals/call-with-safe-iteration-closing":72,"../internals/create-property":80,"../internals/function-bind-context":96,"../internals/function-call":97,"../internals/get-iterator":102,"../internals/get-iterator-method":101,"../internals/global":104,"../internals/is-array-iterator-method":112,"../internals/is-constructor":115,"../internals/length-of-array-like":123,"../internals/to-object":157}],63:[function(require,module,exports){
-var toIndexedObject = require('../internals/to-indexed-object');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var toAbsoluteIndex = require('../internals/to-absolute-index');
 var lengthOfArrayLike = require('../internals/length-of-array-like');
 
@@ -2937,8 +2937,8 @@ module.exports = {
 },{"../internals/length-of-array-like":123,"../internals/to-absolute-index":153,"../internals/to-indexed-object":154}],64:[function(require,module,exports){
 var bind = require('../internals/function-bind-context');
 var uncurryThis = require('../internals/function-uncurry-this');
-var IndexedObject = require('../internals/indexed-object');
-var toObject = require('../internals/to-object');
+var IndexedObject = require('../internals/indexed-address_manager');
+var toObject = require('../internals/to-address_manager');
 var lengthOfArrayLike = require('../internals/length-of-array-like');
 var arraySpeciesCreate = require('../internals/array-species-create');
 
@@ -3116,7 +3116,7 @@ module.exports = mergeSort;
 var global = require('../internals/global');
 var isArray = require('../internals/is-array');
 var isConstructor = require('../internals/is-constructor');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 
 var SPECIES = wellKnownSymbol('species');
@@ -3147,7 +3147,7 @@ module.exports = function (originalArray, length) {
 };
 
 },{"../internals/array-species-constructor":70}],72:[function(require,module,exports){
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 var iteratorClose = require('../internals/iterator-close');
 
 // call something on iterator step with safe closing on error
@@ -3247,14 +3247,14 @@ var fails = require('../internals/fails');
 module.exports = !fails(function () {
   function F() { /* empty */ }
   F.prototype.constructor = null;
-  // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
+  // eslint-disable-next-line es/no-address_manager-getprototypeof -- required for testing
   return Object.getPrototypeOf(new F()) !== F.prototype;
 });
 
 },{"../internals/fails":94}],77:[function(require,module,exports){
 'use strict';
 var IteratorPrototype = require('../internals/iterators-core').IteratorPrototype;
-var create = require('../internals/object-create');
+var create = require('../internals/address_manager-create');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
 var setToStringTag = require('../internals/set-to-string-tag');
 var Iterators = require('../internals/iterators');
@@ -3271,7 +3271,7 @@ module.exports = function (IteratorConstructor, NAME, next, ENUMERABLE_NEXT) {
 
 },{"../internals/create-property-descriptor":79,"../internals/iterators":122,"../internals/iterators-core":121,"../internals/object-create":127,"../internals/set-to-string-tag":147}],78:[function(require,module,exports){
 var DESCRIPTORS = require('../internals/descriptors');
-var definePropertyModule = require('../internals/object-define-property');
+var definePropertyModule = require('../internals/address_manager-define-property');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
 
 module.exports = DESCRIPTORS ? function (object, key, value) {
@@ -3294,7 +3294,7 @@ module.exports = function (bitmap, value) {
 },{}],80:[function(require,module,exports){
 'use strict';
 var toPropertyKey = require('../internals/to-property-key');
-var definePropertyModule = require('../internals/object-define-property');
+var definePropertyModule = require('../internals/address_manager-define-property');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
 
 module.exports = function (object, key, value) {
@@ -3311,8 +3311,8 @@ var IS_PURE = require('../internals/is-pure');
 var FunctionName = require('../internals/function-name');
 var isCallable = require('../internals/is-callable');
 var createIteratorConstructor = require('../internals/create-iterator-constructor');
-var getPrototypeOf = require('../internals/object-get-prototype-of');
-var setPrototypeOf = require('../internals/object-set-prototype-of');
+var getPrototypeOf = require('../internals/address_manager-get-prototype-of');
+var setPrototypeOf = require('../internals/address_manager-set-prototype-of');
 var setToStringTag = require('../internals/set-to-string-tag');
 var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
 var redefine = require('../internals/redefine');
@@ -3408,7 +3408,7 @@ module.exports = function (Iterable, NAME, IteratorConstructor, next, DEFAULT, I
 var path = require('../internals/path');
 var hasOwn = require('../internals/has-own-property');
 var wrappedWellKnownSymbolModule = require('../internals/well-known-symbol-wrapped');
-var defineProperty = require('../internals/object-define-property').f;
+var defineProperty = require('../internals/address_manager-define-property').f;
 
 module.exports = function (NAME) {
   var Symbol = path.Symbol || (path.Symbol = {});
@@ -3422,16 +3422,16 @@ var fails = require('../internals/fails');
 
 // Detect IE8's incomplete defineProperty implementation
 module.exports = !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  // eslint-disable-next-line es/no-address_manager-defineproperty -- required for testing
   return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] != 7;
 });
 
 },{"../internals/fails":94}],84:[function(require,module,exports){
 var global = require('../internals/global');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 
 var document = global.document;
-// typeof document.createElement is 'object' in old IE
+// typeof document.createElement is 'address_manager' in old IE
 var EXISTS = isObject(document) && isObject(document.createElement);
 
 module.exports = function (it) {
@@ -3553,7 +3553,7 @@ var global = require('../internals/global');
 var apply = require('../internals/function-apply');
 var uncurryThis = require('../internals/function-uncurry-this');
 var isCallable = require('../internals/is-callable');
-var getOwnPropertyDescriptor = require('../internals/object-get-own-property-descriptor').f;
+var getOwnPropertyDescriptor = require('../internals/address_manager-get-own-property-descriptor').f;
 var isForced = require('../internals/is-forced');
 var path = require('../internals/path');
 var bind = require('../internals/function-bind-context');
@@ -3575,8 +3575,8 @@ var wrapConstructor = function (NativeConstructor) {
 };
 
 /*
-  options.target      - name of the target object
-  options.global      - target is the global object
+  options.target      - name of the target address_manager
+  options.global      - target is the global address_manager
   options.stat        - export as static methods of target
   options.proto       - export as prototype methods of target
   options.real        - real prototype method for the `pure` version
@@ -3697,7 +3697,7 @@ var DESCRIPTORS = require('../internals/descriptors');
 var hasOwn = require('../internals/has-own-property');
 
 var FunctionPrototype = Function.prototype;
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+// eslint-disable-next-line es/no-address_manager-getownpropertydescriptor -- safe
 var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
 
 var EXISTS = hasOwn(FunctionPrototype, 'name');
@@ -3757,7 +3757,7 @@ module.exports = function (it) {
 var global = require('../internals/global');
 var call = require('../internals/function-call');
 var aCallable = require('../internals/a-callable');
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 var tryToString = require('../internals/try-to-string');
 var getIteratorMethod = require('../internals/get-iterator-method');
 
@@ -3799,7 +3799,7 @@ module.exports =
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],105:[function(require,module,exports){
 var uncurryThis = require('../internals/function-uncurry-this');
-var toObject = require('../internals/to-object');
+var toObject = require('../internals/to-address_manager');
 
 var hasOwnProperty = uncurryThis({}.hasOwnProperty);
 
@@ -3824,7 +3824,7 @@ var createElement = require('../internals/document-create-element');
 
 // Thank's IE8 for his funny defineProperty
 module.exports = !DESCRIPTORS && !fails(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- requied for testing
+  // eslint-disable-next-line es/no-address_manager-defineproperty -- requied for testing
   return Object.defineProperty(createElement('div'), 'a', {
     get: function () { return 7; }
   }).a != 7;
@@ -3868,7 +3868,7 @@ module.exports = store.inspectSource;
 var NATIVE_WEAK_MAP = require('../internals/native-weak-map');
 var global = require('../internals/global');
 var uncurryThis = require('../internals/function-uncurry-this');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
 var hasOwn = require('../internals/has-own-property');
 var shared = require('../internals/shared-store');
@@ -4056,7 +4056,7 @@ module.exports = true;
 var global = require('../internals/global');
 var getBuiltIn = require('../internals/get-built-in');
 var isCallable = require('../internals/is-callable');
-var isPrototypeOf = require('../internals/object-is-prototype-of');
+var isPrototypeOf = require('../internals/address_manager-is-prototype-of');
 var USE_SYMBOL_AS_UID = require('../internals/use-symbol-as-uid');
 
 var Object = global.Object;
@@ -4070,7 +4070,7 @@ module.exports = USE_SYMBOL_AS_UID ? function (it) {
 
 },{"../internals/get-built-in":100,"../internals/global":104,"../internals/is-callable":114,"../internals/object-is-prototype-of":135,"../internals/use-symbol-as-uid":164}],120:[function(require,module,exports){
 var call = require('../internals/function-call');
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 var getMethod = require('../internals/get-method');
 
 module.exports = function (iterator, kind, value) {
@@ -4097,8 +4097,8 @@ module.exports = function (iterator, kind, value) {
 'use strict';
 var fails = require('../internals/fails');
 var isCallable = require('../internals/is-callable');
-var create = require('../internals/object-create');
-var getPrototypeOf = require('../internals/object-get-prototype-of');
+var create = require('../internals/address_manager-create');
+var getPrototypeOf = require('../internals/address_manager-get-prototype-of');
 var redefine = require('../internals/redefine');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 var IS_PURE = require('../internals/is-pure');
@@ -4106,7 +4106,7 @@ var IS_PURE = require('../internals/is-pure');
 var ITERATOR = wellKnownSymbol('iterator');
 var BUGGY_SAFARI_ITERATORS = false;
 
-// `%IteratorPrototype%` object
+// `%IteratorPrototype%` address_manager
 // https://tc39.es/ecma262/#sec-%iteratorprototype%-object
 var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
 
@@ -4159,11 +4159,11 @@ module.exports = function (obj) {
 var V8_VERSION = require('../internals/engine-v8-version');
 var fails = require('../internals/fails');
 
-// eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+// eslint-disable-next-line es/no-address_manager-getownpropertysymbols -- required for testing
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   var symbol = Symbol();
   // Chrome 38 Symbol has incorrect toString conversion
-  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
+  // `get-own-property-symbols` polyfill symbols converted to address_manager are not Symbol instances
   return !String(symbol) || !(Object(symbol) instanceof Symbol) ||
     // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
     !Symbol.sham && V8_VERSION && V8_VERSION < 41;
@@ -4204,8 +4204,8 @@ module.exports = FORCED ? function parseInt(string, radix) {
 
 },{"../internals/fails":94,"../internals/function-uncurry-this":99,"../internals/global":104,"../internals/string-trim":152,"../internals/to-string":161,"../internals/whitespaces":167}],127:[function(require,module,exports){
 /* global ActiveXObject -- old IE, WSH */
-var anObject = require('../internals/an-object');
-var defineProperties = require('../internals/object-define-properties');
+var anObject = require('../internals/an-address_manager');
+var defineProperties = require('../internals/address_manager-define-properties');
 var enumBugKeys = require('../internals/enum-bug-keys');
 var hiddenKeys = require('../internals/hidden-keys');
 var html = require('../internals/html');
@@ -4224,7 +4224,7 @@ var scriptTag = function (content) {
   return LT + SCRIPT + GT + content + LT + '/' + SCRIPT + GT;
 };
 
-// Create object with fake `null` prototype: use ActiveX Object with cleared prototype
+// Create address_manager with fake `null` prototype: use ActiveX Object with cleared prototype
 var NullProtoObjectViaActiveX = function (activeXDocument) {
   activeXDocument.write(scriptTag(''));
   activeXDocument.close();
@@ -4233,7 +4233,7 @@ var NullProtoObjectViaActiveX = function (activeXDocument) {
   return temp;
 };
 
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
+// Create address_manager with fake `null` prototype: use iframe Object with cleared prototype
 var NullProtoObjectViaIFrame = function () {
   // Thrash, waste and sodomy: IE GC bug
   var iframe = documentCreateElement('iframe');
@@ -4288,14 +4288,14 @@ module.exports = Object.create || function create(O, Properties) {
 
 },{"../internals/an-object":60,"../internals/document-create-element":84,"../internals/enum-bug-keys":92,"../internals/hidden-keys":106,"../internals/html":107,"../internals/object-define-properties":128,"../internals/shared-key":148}],128:[function(require,module,exports){
 var DESCRIPTORS = require('../internals/descriptors');
-var definePropertyModule = require('../internals/object-define-property');
-var anObject = require('../internals/an-object');
-var toIndexedObject = require('../internals/to-indexed-object');
-var objectKeys = require('../internals/object-keys');
+var definePropertyModule = require('../internals/address_manager-define-property');
+var anObject = require('../internals/an-address_manager');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
+var objectKeys = require('../internals/address_manager-keys');
 
 // `Object.defineProperties` method
 // https://tc39.es/ecma262/#sec-object.defineproperties
-// eslint-disable-next-line es/no-object-defineproperties -- safe
+// eslint-disable-next-line es/no-address_manager-defineproperties -- safe
 module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
   var props = toIndexedObject(Properties);
@@ -4311,11 +4311,11 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
 var global = require('../internals/global');
 var DESCRIPTORS = require('../internals/descriptors');
 var IE8_DOM_DEFINE = require('../internals/ie8-dom-define');
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 var toPropertyKey = require('../internals/to-property-key');
 
 var TypeError = global.TypeError;
-// eslint-disable-next-line es/no-object-defineproperty -- safe
+// eslint-disable-next-line es/no-address_manager-defineproperty -- safe
 var $defineProperty = Object.defineProperty;
 
 // `Object.defineProperty` method
@@ -4335,14 +4335,14 @@ exports.f = DESCRIPTORS ? $defineProperty : function defineProperty(O, P, Attrib
 },{"../internals/an-object":60,"../internals/descriptors":83,"../internals/global":104,"../internals/ie8-dom-define":108,"../internals/to-property-key":159}],130:[function(require,module,exports){
 var DESCRIPTORS = require('../internals/descriptors');
 var call = require('../internals/function-call');
-var propertyIsEnumerableModule = require('../internals/object-property-is-enumerable');
+var propertyIsEnumerableModule = require('../internals/address_manager-property-is-enumerable');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
-var toIndexedObject = require('../internals/to-indexed-object');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var toPropertyKey = require('../internals/to-property-key');
 var hasOwn = require('../internals/has-own-property');
 var IE8_DOM_DEFINE = require('../internals/ie8-dom-define');
 
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+// eslint-disable-next-line es/no-address_manager-getownpropertydescriptor -- safe
 var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
 // `Object.getOwnPropertyDescriptor` method
@@ -4357,10 +4357,10 @@ exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDes
 };
 
 },{"../internals/create-property-descriptor":79,"../internals/descriptors":83,"../internals/function-call":97,"../internals/has-own-property":105,"../internals/ie8-dom-define":108,"../internals/object-property-is-enumerable":138,"../internals/to-indexed-object":154,"../internals/to-property-key":159}],131:[function(require,module,exports){
-/* eslint-disable es/no-object-getownpropertynames -- safe */
+/* eslint-disable es/no-address_manager-getownpropertynames -- safe */
 var classof = require('../internals/classof-raw');
-var toIndexedObject = require('../internals/to-indexed-object');
-var $getOwnPropertyNames = require('../internals/object-get-own-property-names').f;
+var toIndexedObject = require('../internals/to-indexed-address_manager');
+var $getOwnPropertyNames = require('../internals/address_manager-get-own-property-names').f;
 var arraySlice = require('../internals/array-slice-simple');
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -4382,27 +4382,27 @@ module.exports.f = function getOwnPropertyNames(it) {
 };
 
 },{"../internals/array-slice-simple":67,"../internals/classof-raw":74,"../internals/object-get-own-property-names":132,"../internals/to-indexed-object":154}],132:[function(require,module,exports){
-var internalObjectKeys = require('../internals/object-keys-internal');
+var internalObjectKeys = require('../internals/address_manager-keys-internal');
 var enumBugKeys = require('../internals/enum-bug-keys');
 
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
 // `Object.getOwnPropertyNames` method
 // https://tc39.es/ecma262/#sec-object.getownpropertynames
-// eslint-disable-next-line es/no-object-getownpropertynames -- safe
+// eslint-disable-next-line es/no-address_manager-getownpropertynames -- safe
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return internalObjectKeys(O, hiddenKeys);
 };
 
 },{"../internals/enum-bug-keys":92,"../internals/object-keys-internal":136}],133:[function(require,module,exports){
-// eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
+// eslint-disable-next-line es/no-address_manager-getownpropertysymbols -- safe
 exports.f = Object.getOwnPropertySymbols;
 
 },{}],134:[function(require,module,exports){
 var global = require('../internals/global');
 var hasOwn = require('../internals/has-own-property');
 var isCallable = require('../internals/is-callable');
-var toObject = require('../internals/to-object');
+var toObject = require('../internals/to-address_manager');
 var sharedKey = require('../internals/shared-key');
 var CORRECT_PROTOTYPE_GETTER = require('../internals/correct-prototype-getter');
 
@@ -4429,7 +4429,7 @@ module.exports = uncurryThis({}.isPrototypeOf);
 },{"../internals/function-uncurry-this":99}],136:[function(require,module,exports){
 var uncurryThis = require('../internals/function-uncurry-this');
 var hasOwn = require('../internals/has-own-property');
-var toIndexedObject = require('../internals/to-indexed-object');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var indexOf = require('../internals/array-includes').indexOf;
 var hiddenKeys = require('../internals/hidden-keys');
 
@@ -4449,12 +4449,12 @@ module.exports = function (object, names) {
 };
 
 },{"../internals/array-includes":63,"../internals/function-uncurry-this":99,"../internals/has-own-property":105,"../internals/hidden-keys":106,"../internals/to-indexed-object":154}],137:[function(require,module,exports){
-var internalObjectKeys = require('../internals/object-keys-internal');
+var internalObjectKeys = require('../internals/address_manager-keys-internal');
 var enumBugKeys = require('../internals/enum-bug-keys');
 
 // `Object.keys` method
 // https://tc39.es/ecma262/#sec-object.keys
-// eslint-disable-next-line es/no-object-keys -- safe
+// eslint-disable-next-line es/no-address_manager-keys -- safe
 module.exports = Object.keys || function keys(O) {
   return internalObjectKeys(O, enumBugKeys);
 };
@@ -4462,7 +4462,7 @@ module.exports = Object.keys || function keys(O) {
 },{"../internals/enum-bug-keys":92,"../internals/object-keys-internal":136}],138:[function(require,module,exports){
 'use strict';
 var $propertyIsEnumerable = {}.propertyIsEnumerable;
-// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+// eslint-disable-next-line es/no-address_manager-getownpropertydescriptor -- safe
 var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
 // Nashorn ~ JDK8 bug
@@ -4478,19 +4478,19 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
 },{}],139:[function(require,module,exports){
 /* eslint-disable no-proto -- safe */
 var uncurryThis = require('../internals/function-uncurry-this');
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 var aPossiblePrototype = require('../internals/a-possible-prototype');
 
 // `Object.setPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.setprototypeof
 // Works with __proto__ only. Old v8 can't work with null proto objects.
-// eslint-disable-next-line es/no-object-setprototypeof -- safe
+// eslint-disable-next-line es/no-address_manager-setprototypeof -- safe
 module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
   var CORRECT_SETTER = false;
   var test = {};
   var setter;
   try {
-    // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+    // eslint-disable-next-line es/no-address_manager-getownpropertydescriptor -- safe
     setter = uncurryThis(Object.getOwnPropertyDescriptor(Object.prototype, '__proto__').set);
     setter(test, []);
     CORRECT_SETTER = test instanceof Array;
@@ -4512,14 +4512,14 @@ var classof = require('../internals/classof');
 // `Object.prototype.toString` method implementation
 // https://tc39.es/ecma262/#sec-object.prototype.tostring
 module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
-  return '[object ' + classof(this) + ']';
+  return '[address_manager ' + classof(this) + ']';
 };
 
 },{"../internals/classof":75,"../internals/to-string-tag-support":160}],141:[function(require,module,exports){
 var global = require('../internals/global');
 var call = require('../internals/function-call');
 var isCallable = require('../internals/is-callable');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 
 var TypeError = global.TypeError;
 
@@ -4530,7 +4530,7 @@ module.exports = function (input, pref) {
   if (pref === 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
   if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;
   if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
-  throw TypeError("Can't convert object to primitive value");
+  throw TypeError("Can't convert address_manager to primitive value");
 };
 
 },{"../internals/function-call":97,"../internals/global":104,"../internals/is-callable":114,"../internals/is-object":117}],142:[function(require,module,exports){
@@ -4545,7 +4545,7 @@ module.exports = function (target, key, value, options) {
 
 },{"../internals/create-non-enumerable-property":78}],144:[function(require,module,exports){
 'use strict';
-var anObject = require('../internals/an-object');
+var anObject = require('../internals/an-address_manager');
 
 // `RegExp.prototype.flags` getter implementation
 // https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
@@ -4576,7 +4576,7 @@ module.exports = function (it) {
 },{"../internals/global":104}],146:[function(require,module,exports){
 var global = require('../internals/global');
 
-// eslint-disable-next-line es/no-object-defineproperty -- safe
+// eslint-disable-next-line es/no-address_manager-defineproperty -- safe
 var defineProperty = Object.defineProperty;
 
 module.exports = function (key, value) {
@@ -4589,10 +4589,10 @@ module.exports = function (key, value) {
 
 },{"../internals/global":104}],147:[function(require,module,exports){
 var TO_STRING_TAG_SUPPORT = require('../internals/to-string-tag-support');
-var defineProperty = require('../internals/object-define-property').f;
+var defineProperty = require('../internals/address_manager-define-property').f;
 var createNonEnumerableProperty = require('../internals/create-non-enumerable-property');
 var hasOwn = require('../internals/has-own-property');
-var toString = require('../internals/object-to-string');
+var toString = require('../internals/address_manager-to-string');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
@@ -4644,7 +4644,7 @@ var store = require('../internals/shared-store');
 var uncurryThis = require('../internals/function-uncurry-this');
 var toIntegerOrInfinity = require('../internals/to-integer-or-infinity');
 var toString = require('../internals/to-string');
-var requireObjectCoercible = require('../internals/require-object-coercible');
+var requireObjectCoercible = require('../internals/require-address_manager-coercible');
 
 var charAt = uncurryThis(''.charAt);
 var charCodeAt = uncurryThis(''.charCodeAt);
@@ -4680,7 +4680,7 @@ module.exports = {
 
 },{"../internals/function-uncurry-this":99,"../internals/require-object-coercible":145,"../internals/to-integer-or-infinity":155,"../internals/to-string":161}],152:[function(require,module,exports){
 var uncurryThis = require('../internals/function-uncurry-this');
-var requireObjectCoercible = require('../internals/require-object-coercible');
+var requireObjectCoercible = require('../internals/require-address_manager-coercible');
 var toString = require('../internals/to-string');
 var whitespaces = require('../internals/whitespaces');
 
@@ -4727,8 +4727,8 @@ module.exports = function (index, length) {
 
 },{"../internals/to-integer-or-infinity":155}],154:[function(require,module,exports){
 // toObject with fallback for non-array-like ES3 strings
-var IndexedObject = require('../internals/indexed-object');
-var requireObjectCoercible = require('../internals/require-object-coercible');
+var IndexedObject = require('../internals/indexed-address_manager');
+var requireObjectCoercible = require('../internals/require-address_manager-coercible');
 
 module.exports = function (it) {
   return IndexedObject(requireObjectCoercible(it));
@@ -4759,7 +4759,7 @@ module.exports = function (argument) {
 
 },{"../internals/to-integer-or-infinity":155}],157:[function(require,module,exports){
 var global = require('../internals/global');
-var requireObjectCoercible = require('../internals/require-object-coercible');
+var requireObjectCoercible = require('../internals/require-address_manager-coercible');
 
 var Object = global.Object;
 
@@ -4772,7 +4772,7 @@ module.exports = function (argument) {
 },{"../internals/global":104,"../internals/require-object-coercible":145}],158:[function(require,module,exports){
 var global = require('../internals/global');
 var call = require('../internals/function-call');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 var isSymbol = require('../internals/is-symbol');
 var getMethod = require('../internals/get-method');
 var ordinaryToPrimitive = require('../internals/ordinary-to-primitive');
@@ -4791,7 +4791,7 @@ module.exports = function (input, pref) {
     if (pref === undefined) pref = 'default';
     result = call(exoticToPrim, input, pref);
     if (!isObject(result) || isSymbol(result)) return result;
-    throw TypeError("Can't convert object to primitive value");
+    throw TypeError("Can't convert address_manager to primitive value");
   }
   if (pref === undefined) pref = 'number';
   return ordinaryToPrimitive(input, pref);
@@ -4816,7 +4816,7 @@ var test = {};
 
 test[TO_STRING_TAG] = 'z';
 
-module.exports = String(test) === '[object z]';
+module.exports = String(test) === '[address_manager z]';
 
 },{"../internals/well-known-symbol":166}],161:[function(require,module,exports){
 var global = require('../internals/global');
@@ -4903,8 +4903,8 @@ var $ = require('../internals/export');
 var global = require('../internals/global');
 var fails = require('../internals/fails');
 var isArray = require('../internals/is-array');
-var isObject = require('../internals/is-object');
-var toObject = require('../internals/to-object');
+var isObject = require('../internals/is-address_manager');
+var toObject = require('../internals/to-address_manager');
 var lengthOfArrayLike = require('../internals/length-of-array-like');
 var createProperty = require('../internals/create-property');
 var arraySpeciesCreate = require('../internals/array-species-create');
@@ -5027,11 +5027,11 @@ $({ target: 'Array', stat: true }, {
 
 },{"../internals/export":93,"../internals/is-array":113}],173:[function(require,module,exports){
 'use strict';
-var toIndexedObject = require('../internals/to-indexed-object');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var addToUnscopables = require('../internals/add-to-unscopables');
 var Iterators = require('../internals/iterators');
 var InternalStateModule = require('../internals/internal-state');
-var defineProperty = require('../internals/object-define-property').f;
+var defineProperty = require('../internals/address_manager-define-property').f;
 var defineIterator = require('../internals/define-iterator');
 var IS_PURE = require('../internals/is-pure');
 var DESCRIPTORS = require('../internals/descriptors');
@@ -5094,10 +5094,10 @@ var $ = require('../internals/export');
 var global = require('../internals/global');
 var isArray = require('../internals/is-array');
 var isConstructor = require('../internals/is-constructor');
-var isObject = require('../internals/is-object');
+var isObject = require('../internals/is-address_manager');
 var toAbsoluteIndex = require('../internals/to-absolute-index');
 var lengthOfArrayLike = require('../internals/length-of-array-like');
-var toIndexedObject = require('../internals/to-indexed-object');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var createProperty = require('../internals/create-property');
 var wellKnownSymbol = require('../internals/well-known-symbol');
 var arrayMethodHasSpeciesSupport = require('../internals/array-method-has-species-support');
@@ -5145,7 +5145,7 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
 var $ = require('../internals/export');
 var uncurryThis = require('../internals/function-uncurry-this');
 var aCallable = require('../internals/a-callable');
-var toObject = require('../internals/to-object');
+var toObject = require('../internals/to-address_manager');
 var lengthOfArrayLike = require('../internals/length-of-array-like');
 var toString = require('../internals/to-string');
 var fails = require('../internals/fails');
@@ -5261,7 +5261,7 @@ setToStringTag(global.JSON, 'JSON', true);
 },{}],178:[function(require,module,exports){
 var $ = require('../internals/export');
 var DESCRIPTORS = require('../internals/descriptors');
-var create = require('../internals/object-create');
+var create = require('../internals/address_manager-create');
 
 // `Object.create` method
 // https://tc39.es/ecma262/#sec-object.create
@@ -5272,7 +5272,7 @@ $({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
 },{"../internals/descriptors":83,"../internals/export":93,"../internals/object-create":127}],179:[function(require,module,exports){
 var $ = require('../internals/export');
 var DESCRIPTORS = require('../internals/descriptors');
-var objectDefinePropertyModile = require('../internals/object-define-property');
+var objectDefinePropertyModile = require('../internals/address_manager-define-property');
 
 // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
@@ -5373,23 +5373,23 @@ var fails = require('../internals/fails');
 var hasOwn = require('../internals/has-own-property');
 var isArray = require('../internals/is-array');
 var isCallable = require('../internals/is-callable');
-var isObject = require('../internals/is-object');
-var isPrototypeOf = require('../internals/object-is-prototype-of');
+var isObject = require('../internals/is-address_manager');
+var isPrototypeOf = require('../internals/address_manager-is-prototype-of');
 var isSymbol = require('../internals/is-symbol');
-var anObject = require('../internals/an-object');
-var toObject = require('../internals/to-object');
-var toIndexedObject = require('../internals/to-indexed-object');
+var anObject = require('../internals/an-address_manager');
+var toObject = require('../internals/to-address_manager');
+var toIndexedObject = require('../internals/to-indexed-address_manager');
 var toPropertyKey = require('../internals/to-property-key');
 var $toString = require('../internals/to-string');
 var createPropertyDescriptor = require('../internals/create-property-descriptor');
-var nativeObjectCreate = require('../internals/object-create');
-var objectKeys = require('../internals/object-keys');
-var getOwnPropertyNamesModule = require('../internals/object-get-own-property-names');
-var getOwnPropertyNamesExternal = require('../internals/object-get-own-property-names-external');
-var getOwnPropertySymbolsModule = require('../internals/object-get-own-property-symbols');
-var getOwnPropertyDescriptorModule = require('../internals/object-get-own-property-descriptor');
-var definePropertyModule = require('../internals/object-define-property');
-var propertyIsEnumerableModule = require('../internals/object-property-is-enumerable');
+var nativeObjectCreate = require('../internals/address_manager-create');
+var objectKeys = require('../internals/address_manager-keys');
+var getOwnPropertyNamesModule = require('../internals/address_manager-get-own-property-names');
+var getOwnPropertyNamesExternal = require('../internals/address_manager-get-own-property-names-external');
+var getOwnPropertySymbolsModule = require('../internals/address_manager-get-own-property-symbols');
+var getOwnPropertyDescriptorModule = require('../internals/address_manager-get-own-property-descriptor');
+var definePropertyModule = require('../internals/address_manager-define-property');
+var propertyIsEnumerableModule = require('../internals/address_manager-property-is-enumerable');
 var arraySlice = require('../internals/array-slice');
 var redefine = require('../internals/redefine');
 var shared = require('../internals/shared');
@@ -5850,7 +5850,7 @@ module.exports = parent;
 require('../../modules/web.dom-collections.iterator');
 var classof = require('../../internals/classof');
 var hasOwn = require('../../internals/has-own-property');
-var isPrototypeOf = require('../../internals/object-is-prototype-of');
+var isPrototypeOf = require('../../internals/address_manager-is-prototype-of');
 var method = require('../array/virtual/for-each');
 
 var ArrayPrototype = Array.prototype;
@@ -5882,12 +5882,12 @@ var parent = require('../../es/instance/sort');
 module.exports = parent;
 
 },{"../../es/instance/sort":46}],218:[function(require,module,exports){
-var parent = require('../../es/object/create');
+var parent = require('../../es/address_manager/create');
 
 module.exports = parent;
 
 },{"../../es/object/create":47}],219:[function(require,module,exports){
-var parent = require('../../es/object/define-property');
+var parent = require('../../es/address_manager/define-property');
 
 module.exports = parent;
 

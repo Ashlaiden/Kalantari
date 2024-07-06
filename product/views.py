@@ -5,7 +5,9 @@ from django.urls import reverse, reverse_lazy
 
 from cart.models import OrderItem
 from favorite.models import Favorite
-from .models import Product, ProductGallery
+from .models import Product, ProductGallery, ProductView
+
+from core.core.request_info import get_user_IP
 
 
 # Create your views here.
@@ -19,6 +21,11 @@ def product_pk(request, uid):
 
 def product_detail(request, uid, slug):
     product = Product.published.get_product(uid, slug=slug)
+    ProductView.view_manager.add_product_view(
+        ip_address=get_user_IP(request),
+        user_id=request.user.id if request.user.is_authenticated else None,
+        product_uid=product.uid
+    )
     in_cart = OrderItem.order_detail_manager.is_exist(
         user=request.user if request.user.is_authenticated else None,
         session_uid=request.session.get('u_id') if not request.user.is_authenticated else None,

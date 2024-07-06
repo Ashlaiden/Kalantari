@@ -53,7 +53,7 @@
             <span id="details-final-price">{{ final_price }} تومان</span>
         </div>
     </div>
-        <a id="continue-in-cart" href="{% url 'cart:cart' %}" class="continue-in-cart">ادامه در سبد خرید</a>
+        <a id="continue-in-cart" href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='cart' %}" class="continue-in-cart">ادامه در سبد خرید</a>
     {% endif %} 
     </div>
 </div>

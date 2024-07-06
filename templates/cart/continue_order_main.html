@@ -3,13 +3,39 @@
       <div id="progress-bar"></div>
       <div id="progress-bar-background"></div>
       <ul id="progress-num">
-        <li class="step pending">1</li>
-        <li class="step">2</li>
-        <li class="step">3</li>
-        <li class="step">4</li>
+        <li class="step-container">
+            <div class="step pending">1</div>
+            <div class="step-name">اطلاعات ارسال مرسوله</div>
+        </li>
+        <li class="step-container">
+            <div class="step">2</div>
+            <div class="step-name">تایید سبد خرید</div>
+        </li>
+        <li class="step-container">
+            <div class="step">3</div>
+            <div class="step-name">صدور فاکتور</div>
+        </li>
+        <li class="step-container">
+            <div class="step">4</div>
+            <div class="step-name">پرداخت</div>
+        </li>
       </ul>
     </div>
-    <button onclick="progress_perv()" id="progress-prev" class="btn">Prev</button>
-    <button onclick="progress_next()" id="progress-next" class="btn">Next</button>
+    <button onclick="prev_step()" id="prev-step" class="btn">بازگشت <i class="fa-solid fa-chevron-left"></i></button>
+    <div class="prev-step">
+{#    <button onclick="progress_next()" id="progress-next" class="btn">Next</button>#}
+    </div>
+    <div id="cart-section-loading-layer" class="layer-container hidden">
+        <div class="loading-layer">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+    </div>
+    <div id="continue-ordering-content">
+        
+    </div>
 </div>
 

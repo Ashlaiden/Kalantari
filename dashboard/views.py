@@ -6,11 +6,8 @@ def user_dashboard(request, sub_path=None):
     paths = [component for component in sub_path.split('/') if '.' not in component] if sub_path is not None else []
     print(f'sub_path: {sub_path}')
     print(paths)
-    for path in paths:
-        print(path)
-
     context = {
-
+        'paths': paths
     }
     return render(request, 'dashboard/user_dashboard.html', context)
 

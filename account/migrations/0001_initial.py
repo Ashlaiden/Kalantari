@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
     ]

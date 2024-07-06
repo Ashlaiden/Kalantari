@@ -48,7 +48,7 @@
 #                 gender = cd.get('gender')
 #                 birth_date = cd.get('birth_date')
 #                 try:
-#                     Account.object.create_user(
+#                     Account.address_manager.create_user(
 #                         email=email,
 #                         password=passwd,
 #                         first_name=first_name,

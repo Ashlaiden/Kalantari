@@ -16,7 +16,7 @@ function quickElement() {
     return obj;
 }
 
-// "a" is reference to an object
+// "a" is reference to an address_manager
 function removeChildren(a) {
     while (a.hasChildNodes()) {
         a.removeChild(a.lastChild);
@@ -54,7 +54,7 @@ function findPosY(obj) {
 }
 
 //-----------------------------------------------------------------------------
-// Date object extensions
+// Date address_manager extensions
 // ----------------------------------------------------------------------------
 {
     Date.prototype.getTwelveHours = function() {
@@ -145,7 +145,7 @@ function findPosY(obj) {
     };
 
     // ----------------------------------------------------------------------------
-    // String object extensions
+    // String address_manager extensions
     // ----------------------------------------------------------------------------
     String.prototype.strptime = function(format) {
         const split_format = format.split(/[.\-/]/);
@@ -176,7 +176,7 @@ function findPosY(obj) {
             }
             ++i;
         }
-        // Create Date object from UTC since the parsed value is supposed to be
+        // Create Date address_manager from UTC since the parsed value is supposed to be
         // in UTC, not local time. Also, the calendar uses UTC functions for
         // date extraction.
         return new Date(Date.UTC(year, month, day));

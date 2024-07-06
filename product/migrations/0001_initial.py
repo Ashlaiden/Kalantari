@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-publish'], name='product_pro_publish_206d0e_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='product_pro_id_d8eb42_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
     ]

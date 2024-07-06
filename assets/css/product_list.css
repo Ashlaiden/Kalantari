@@ -6,9 +6,10 @@
 
 
 .items {
+  direction: rtl;
     margin: 50px 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
     gap: 20px;
 }
 .item-link {
@@ -23,20 +24,22 @@
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    /* position: relative; */
-    /* height: 300px; */
 }
 /* --------------------------------------------- */
-.image-container {
+.item-code {
   width: 100%;
+  height: min-content;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: start;
+  color: gray;
+  font-size: 0.7rem;
   padding: 0px;
   margin: 0px;
-  height: auto;
-  /* or max-width: 100%; if you want to maintain the original image size */
-  /* grid-row: 1 / span 2; */
-  /* This will make the image take up the space of the auto row and the additional 50px row */
+  padding-right: 15px;
 }
 
 .item-des {
@@ -45,16 +48,61 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 15px;
+  padding: 0px;
+  padding-right: 20px;
   margin: 0px;
-  /* grid-row: 2; */
-  /* This places the additional content in the 50px row */
+}
+.item-price-con {
+  margin-top: 10px;
+  direction: rtl;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-price-con .price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* padding: 5px 15px; */
+  margin-right: 10px;
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 0px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 8px;
+}
+.item-price-con .price p {
+  margin-right: 5px;
+  font-size: 0.7rem;
+  color: gray;
+  transform: translateY(4px);
+}
+.item-price-con .share-item-btn {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+  margin-left: 20px;
+  font-size: 1.3rem;
+  transition: all 0.3s;
+}
+.item-price-con .share-item-btn:hover {
+  background-color: rgba(211, 211, 211, 0.7);
+  box-shadow: 0px 0px 15px 5px lightgray;
 }
 /* -----------Hover-&-Cover--IMage----------- */
 .image-container {
-  width: 100%; /* Adjust the width as necessary */
+  width: 100%;
+  height: auto;
   position: relative;
-
+  margin: 0px;
+  padding: 0px;
 }
 /* The pseudo-element that creates the aspect ratio */
 /* .image-container::before {
@@ -86,13 +134,13 @@
 }
 .item img {
   width: 100%;
-  height: auto;
+  height: calc(width);
 }
-.item span {
+/* .item span {
   padding: 15px;
   font-size: 1.3rem;
-}
-.item .price {
+} */
+/* .item .price {
   padding: 0px 20px;
   color: rgb(68, 68, 68);
   font-size: 0.9rem;
@@ -103,8 +151,8 @@
 }
 .product-price {
     font-size: 16px;
-    color: #e44d26; /* Adjust the color as needed */
-}
+    color: #e44d26;
+} */
 /* -----------------pagination--------------------- */
 .pagination {
     display: flex;

@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 'ordering': ['-created'],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.CreateModel(
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 'ordering': ['-created'],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
         migrations.AddIndex(

@@ -1,0 +1,65 @@
+{% load custom_filters %}
+{% load humanize %}
+<div class="checkout-container">
+    <ul class="ch-items">
+        {% for item in items %}
+        	<li class="item">
+                <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
+                <div class="ch-item-info">
+                    <span>{{ item.product.title | truncatechars:70 }}</span>
+                    <section>
+                        <div class="ch-item-count">تعداد: <div class="ch-item-count-num">{{ item.count }}</div></div>
+                        <div class="ch-item-price">{{ item.price|multiply:item.count | intcomma }}
+                            <p>تومان</p>
+                        </div>
+                    </section>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <ul class="ch-info">
+        <li>
+            <p>تعداد کالا ها:</p>
+            <section>
+                <span>{{ info.items_count }}</span>
+                <p>عدد</p>
+            </section>
+        </li>
+        <div class="hr"></div>
+        <li>
+            <p>قیمت:</p>
+            <section>
+                <span>{{ info.price | intcomma }}</span>
+                <p>تومان</p>
+            </section>
+        </li>
+        <div class="hr"></div>
+        <li>
+            <p>تخفیف:</p>
+            <section>
+                <span>{{ info.discount | intcomma }}</span>
+                <p>تومان</p>
+            </section>
+        </li>
+        <div class="hr"></div>
+        <li>
+            <p>مالیات:</p>
+            <section>
+                <span>{{ info.tax | intcomma }}</span>
+                <p>تومان</p>
+            </section>
+        </li>
+        <div class="hr"></div>
+        <li>
+            <p>قابل پرداخت:</p>
+            <section>
+                <span>{{ info.final_price | intcomma }}</span>
+                <p>تومان</p>
+            </section>
+        </li>
+    </ul>
+<form id="checkout-submit-form" class="hidden">
+    {% csrf_token %}
+</form>
+    <button id="submit-checkout-items" onclick="submit_checkout_items()" type="button" class="submit-ch">تایید</button>
+</div>

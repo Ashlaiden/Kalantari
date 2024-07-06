@@ -23,7 +23,7 @@ class CodeField(models.TextField):
         return super().formfield(**kwargs)
 
     def from_db_value(self, value, expression, connection):
-        # Convert the string value to a Python or JSON object
+        # Convert the string value to a Python or JSON address_manager
         if not value:
             return None
         try:
@@ -32,7 +32,7 @@ class CodeField(models.TextField):
             return ast.literal_eval(value)  # try Python next
 
     def get_prep_value(self, value):
-        # Convert the Python or JSON object to a string value
+        # Convert the Python or JSON address_manager to a string value
         if not value:
             return None
         return json.dumps(value) # use JSON for serialization

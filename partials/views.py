@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from cart.models import Order
 from favorite.models import Favorite
+from product.models import Product
 
 
 # Create your views here.
@@ -96,6 +97,30 @@ def favorite_user_menu(request):
             'items': items
         }
     return render(request, 'partial/user-menu-favorite.html', context)
+
+
+def highest_score_products(request):
+    products = Product.published.get_highest_score_products(count=8)
+
+    context = {
+        'products': products
+    }
+    return render(request, 'partial/highest_score_products.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

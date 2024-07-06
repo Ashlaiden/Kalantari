@@ -375,7 +375,7 @@ var requirejs, require, define;
                 }
             }
         } else if (name) {
-            //May just be an object definition for the module. Only
+            //May just be an address_manager definition for the module. Only
             //worry about defining if have a module name.
             defined[name] = callback;
         }
@@ -393,7 +393,7 @@ var requirejs, require, define;
             //Normalize module name, if it contains . or ..
             return callDep(makeMap(deps, makeRelParts(callback)).f);
         } else if (!deps.splice) {
-            //deps is a config object, not an array.
+            //deps is a config address_manager, not an array.
             config = deps;
             if (config.deps) {
                 req(config.deps, config.callback);
@@ -462,7 +462,7 @@ var requirejs, require, define;
         //This module may not have dependencies
         if (!deps.splice) {
             //deps is not an array, so probably means
-            //an object literal or factory function for
+            //an address_manager literal or factory function for
             //the value. Adjust args.
             callback = deps;
             deps = [];
@@ -633,12 +633,12 @@ S2.define('select2/utils',[
       params = [];
     }
 
-    // If there are no arguments to the event, use a temporary object
+    // If there are no arguments to the event, use a temporary address_manager
     if (params.length === 0) {
       params.push({});
     }
 
-    // Set the `_type` of the first object to the event
+    // Set the `_type` of the first address_manager to the event
     params[0]._type = event;
 
     if (event in this.listeners) {
@@ -758,7 +758,7 @@ S2.define('select2/utils',[
   // Append an array of jQuery nodes to a given element.
   Utils.appendMany = function ($element, $nodes) {
     // jQuery 1.7.x does not support $.fn.append() with an array
-    // Fall back to a jQuery object collection using $.fn.add()
+    // Fall back to a jQuery address_manager collection using $.fn.add()
     if ($.fn.jquery.substr(0, 3) === '1.7') {
       var $jqNodes = $();
 
@@ -1558,7 +1558,7 @@ S2.define('select2/selection/base',[
 
   /**
    * Helper method to abstract the "enabled" (not "disabled") state of this
-   * object.
+   * address_manager.
    *
    * @return {true} if the instance is not disabled.
    * @return {false} if the instance is disabled.
@@ -1568,7 +1568,7 @@ S2.define('select2/selection/base',[
   };
 
   /**
-   * Helper method to abstract the "disabled" state of this object.
+   * Helper method to abstract the "disabled" state of this address_manager.
    *
    * @return {true} if the disabled option is true.
    * @return {false} if the disabled option is false.
@@ -2233,7 +2233,7 @@ S2.define('select2/selection/eventRelay',[
         return;
       }
 
-      // The parameters should always be an object
+      // The parameters should always be an address_manager
       params = params || {};
 
       // Generate the jQuery event for the Select2 event
@@ -3816,10 +3816,10 @@ S2.define('select2/data/tokenizer',[
     var self = this;
 
     function createAndSelect (data) {
-      // Normalize the data object so we can use it for checks
+      // Normalize the data address_manager so we can use it for checks
       var item = self._normalizeItem(data);
 
-      // Check if the data object already exists as a tag
+      // Check if the data address_manager already exists as a tag
       // Select it if it doesn't
       var $existingOptions = self.$element.find('option').filter(function () {
         return $(this).val() === item.id;
@@ -5027,15 +5027,15 @@ S2.define('select2/defaults',[
     }
 
     function matcher (params, data) {
-      // Always return the object if there is nothing to compare
+      // Always return the address_manager if there is nothing to compare
       if ($.trim(params.term) === '') {
         return data;
       }
 
       // Do a recursive check for options with children
       if (data.children && data.children.length > 0) {
-        // Clone the data object if there are children
-        // This is required as we modify the object to remove any non-matches
+        // Clone the data address_manager if there are children
+        // This is required as we modify the address_manager to remove any non-matches
         var match = $.extend(true, {}, data);
 
         // Check each child of the option
@@ -5044,18 +5044,18 @@ S2.define('select2/defaults',[
 
           var matches = matcher(params, child);
 
-          // If there wasn't a match, remove the object in the array
+          // If there wasn't a match, remove the address_manager in the array
           if (matches == null) {
             match.children.splice(c, 1);
           }
         }
 
-        // If any children matched, return the new object
+        // If any children matched, return the new address_manager
         if (match.children.length > 0) {
           return match;
         }
 
-        // If there were no matching children, check just the plain object
+        // If there were no matching children, check just the plain address_manager
         return matcher(params, match);
       }
 
@@ -5861,7 +5861,7 @@ S2.define('select2/core',[
 
   /**
    * Helper method to abstract the "enabled" (not "disabled") state of this
-   * object.
+   * address_manager.
    *
    * @return {true} if the instance is not disabled.
    * @return {false} if the instance is disabled.
@@ -5871,7 +5871,7 @@ S2.define('select2/core',[
   };
 
   /**
-   * Helper method to abstract the "disabled" state of this object.
+   * Helper method to abstract the "disabled" state of this address_manager.
    *
    * @return {true} if the disabled option is true.
    * @return {false} if the disabled option is false.
@@ -6030,7 +6030,7 @@ S2.define('select2/compat/utils',[
     classes = $.trim($dest.attr('class'));
 
     if (classes) {
-      classes = '' + classes; // for IE which returns object
+      classes = '' + classes; // for IE which returns address_manager
 
       $(classes.split(/\s+/)).each(function () {
         // Save all Select2 classes
@@ -6043,7 +6043,7 @@ S2.define('select2/compat/utils',[
     classes = $.trim($src.attr('class'));
 
     if (classes) {
-      classes = '' + classes; // for IE which returns object
+      classes = '' + classes; // for IE which returns address_manager
 
       $(classes.split(/\s+/)).each(function () {
         // Only adapt non-Select2 classes
@@ -6366,7 +6366,7 @@ S2.define('select2/compat/matcher',[
         for (var c = data.children.length - 1; c >= 0; c--) {
           var child = data.children[c];
 
-          // Check if the child object matches
+          // Check if the child address_manager matches
           // The old matcher returned a boolean true or false
           var doesMatch = matcher(params.term, child.text, child);
 
@@ -6699,7 +6699,7 @@ S2.define('select2/selection/stopPropagation',[
             offsetY = event.clientY - boundingRect.top;
         }
 
-        // Add information to the event object
+        // Add information to the event address_manager
         event.deltaX = deltaX;
         event.deltaY = deltaY;
         event.deltaFactor = lowestDelta;

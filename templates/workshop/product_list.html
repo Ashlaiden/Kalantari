@@ -1,5 +1,6 @@
 {% extends 'parent/base.html' %}
 {% load static %}
+{% load humanize %}
 {% block title %}مردانه{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
@@ -18,9 +19,16 @@
                         <img style="opacity: 0;" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                         <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">
                     </div>
+                    <div class="item-code">کد کالا: {{ product.uid }}</div>
                     <div class="item-des">
                         <span>{{ product.title }}</span>
-                        <span class="price">{{ product.price }} تومان</span>
+                    </div>
+                    <div class="item-price-con">
+                        <section class="price">
+                            {{ product.price | intcomma }}
+                            <p>تومان</p>
+                        </section>
+                        <button class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>
                     </div>
                 </div>
             {% else %}
@@ -30,9 +38,16 @@
                         <img style="opacity: 0" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
     {#                    <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">#}
                     </div>
+                    <div class="item-code">کد کالا: {{ product.uid }}</div>
                     <div class="item-des">
                         <span>{{ product.title }}</span>
-                        <div class="price">{{ product.price }} تومان</div>
+                    </div>
+                    <div class="item-price-con">
+                        <section class="price">
+                            {{ product.price | intcomma }}
+                            <p>تومان</p>
+                        </section>
+                        <button class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>
                     </div>
                 </div>
             {% endif %}

@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from icecream import ic
 
-from account.models import Account
+from account.models import Account, Address
 from product.models import Product
 
 
@@ -201,6 +201,10 @@ class Order(models.Model):
     payment_date = models.DateTimeField(blank=True, null=True)
     session_uid = models.CharField(max_length=100, default=None, null=True, blank=True)
     offer_code = models.CharField(max_length=100, default=None, null=True, blank=True)
+    address = models.OneToOneField(Address, on_delete=models.SET_NULL, null=True, blank=True)
+    address_finalized = models.CharField(max_length=500, null=True, blank=True)
+    step_updated = models.DateTimeField(auto_created=True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     class STATUS(models.TextChoices):
         OPEN = "OP", "OPEN"
@@ -214,9 +218,10 @@ class Order(models.Model):
 
     class STEP(models.TextChoices):
         OPEN = "OP", "OPEN"
-        DELIVERY_INFO = "DI", "DELIVERY_INFO"
-        WAITING_FOR_PAYMENT = "WP", "WAITING_FOR_PAYMENT"
-        PAID = "PD", "PAID"
+        ADDRESSING = "AD", "ADDRESSING"
+        CHECKOUT = "CO", "CHECKOUT"
+        RECEIPT = "RC", "RECEIPT"
+        PAYMENT = 'PA', 'PAYMENT'
         CANCELLED = "CA", "CANCELLED"
         ERROR = "ER", "ERROR"
 

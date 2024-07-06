@@ -63,7 +63,7 @@ class AccountAdmin(UserAdmin):
     # custom_visit_count.short_description = 'visit_count'
     #
     # def gallery(self, obj):
-    #     gallery_count = ProductGallery.object.filter(product_id=obj.id).count()
+    #     gallery_count = ProductGallery.address_manager.filter(product_id=obj.id).count()
     #     return gallery_count
     #
     # def tags_count(self, obj):

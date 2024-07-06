@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 <link rel="stylesheet" href="{% static 'css/favorite.css' %}">
 <link rel="stylesheet" href="{% static 'css/continue_order.css' %}">
+
 <!-- <style>
     .header {
         background-color: black;
@@ -17,21 +18,21 @@
 {% block content %}
 	
     <main>
-        <div class="container">
-            <div class="section-bar">
-                <div onclick="chooseSectionBtn(this)" data_section="favorite" class="section">
+        <div class="dashboard-container">
+            <div id="section-bar-id" class="section-bar">
+                <div id="favorite_section_btn" onclick="chooseSectionBtn(this)" data_section="favorite" class="section">
                     <div class="section-btn">
                         <span>لیست علاقه مندی ها</span>
                     </div>
                     <div class="under-line"></div>
                 </div>
-                <div onclick="chooseSectionBtn(this)" data_section="cart" class="section">
+                <div id="cart_section_btn" onclick="chooseSectionBtn(this)" data_section="cart" class="section">
                     <div class="section-btn">
                         <span>سبد خرید</span>
                     </div>
                     <div class="under-line"></div>
                 </div>
-                <div onclick="chooseSectionBtn(this)" data_section="profile" class="section">
+                <div id="profile_section_btn" onclick="chooseSectionBtn(this)" data_section="profile" class="section">
                     <div class="section-btn">
                         <span>پروفایل کاربری</span>
                     </div>
@@ -63,10 +64,19 @@
 {% endblock %}
 {% block script %}
 <script src="{% static 'js/dashboard.js' %}"></script>
+    {{ paths|json_script:'_paths' }}
+<script>
+    dashboard.paths = JSON.parse(document.getElementById('_paths').textContent);
+    dashboard.start();
+</script>
 <script src="{% static 'js/library/axios.js' %}"></script>
 <script src="{% static 'js/cart.js' %}"></script>
 <script src="{% static 'js/favorite.js' %}"></script>
 <script src="{% static 'js/continue_order.js' %}"></script>
+<script src="{% static 'js/library/jspdf.min.js' %}"></script>
+<script src="{% static 'js/library/html2pdf.bundle.min.js' %}"></script>
+<script src="{% static 'js/library/jquery-3.6.0.min.js' %}"></script>
+
 <form id="csrf-token">
     {% csrf_token %}
 </form>

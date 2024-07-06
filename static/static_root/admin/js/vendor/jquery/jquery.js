@@ -74,8 +74,8 @@ var support = {};
 var isFunction = function isFunction( obj ) {
 
 		// Support: Chrome <=57, Firefox <=52
-		// In some browsers, typeof returns "function" for HTML <object> elements
-		// (i.e., `typeof document.createElement( "object" ) === "function"`).
+		// In some browsers, typeof returns "function" for HTML <address_manager> elements
+		// (i.e., `typeof document.createElement( "address_manager" ) === "function"`).
 		// We don't want to classify *any* DOM node as a function.
 		// Support: QtWeb <=3.8.5, WebKit <=534.34, wkhtmltopdf tool <=0.12.5
 		// Plus for old WebKit, typeof returns "function" for HTML collections
@@ -120,7 +120,7 @@ var document = window.document;
 				// See https://html.spec.whatwg.org/#nonce-attributes
 				// The `node.getAttribute` check was added for the sake of
 				// `jQuery.globalEval` so that it can fake a nonce-containing node
-				// via an object.
+				// via an address_manager.
 				val = node[ i ] || node.getAttribute && node.getAttribute( i );
 				if ( val ) {
 					script.setAttribute( i, val );
@@ -154,7 +154,7 @@ var version = "3.7.1",
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
 
-		// The jQuery object is actually just the init constructor 'enhanced'
+		// The jQuery address_manager is actually just the init constructor 'enhanced'
 		// Need init if jQuery is called (just allow error to be thrown if not included)
 		return new jQuery.fn.init( selector, context );
 	};
@@ -166,7 +166,7 @@ jQuery.fn = jQuery.prototype = {
 
 	constructor: jQuery,
 
-	// The default length of a jQuery object is 0
+	// The default length of a jQuery address_manager is 0
 	length: 0,
 
 	toArray: function() {
@@ -193,7 +193,7 @@ jQuery.fn = jQuery.prototype = {
 		// Build a new jQuery matched element set
 		var ret = jQuery.merge( this.constructor(), elems );
 
-		// Add the old object onto the stack (as a reference)
+		// Add the old address_manager onto the stack (as a reference)
 		ret.prevObject = this;
 
 		// Return the newly-formed element set
@@ -284,7 +284,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 		// Only deal with non-null/undefined values
 		if ( ( options = arguments[ i ] ) != null ) {
 
-			// Extend the base object
+			// Extend the base address_manager
 			for ( name in options ) {
 				copy = options[ name ];
 
@@ -320,7 +320,7 @@ jQuery.extend = jQuery.fn.extend = function() {
 		}
 	}
 
-	// Return the modified object
+	// Return the modified address_manager
 	return target;
 };
 
@@ -343,7 +343,7 @@ jQuery.extend( {
 
 		// Detect obvious negatives
 		// Use toString instead of jQuery.type to catch host objects
-		if ( !obj || toString.call( obj ) !== "[object Object]" ) {
+		if ( !obj || toString.call( obj ) !== "[address_manager Object]" ) {
 			return false;
 		}
 
@@ -510,7 +510,7 @@ jQuery.extend( {
 				}
 			}
 
-		// Go through every key on the object,
+		// Go through every key on the address_manager,
 		} else {
 			for ( i in elems ) {
 				value = callback( elems[ i ], i, arg );
@@ -540,7 +540,7 @@ if ( typeof Symbol === "function" ) {
 // Populate the class2type map
 jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
 	function( _i, name ) {
-		class2type[ "[object " + name + "]" ] = name.toLowerCase();
+		class2type[ "[address_manager " + name + "]" ] = name.toLowerCase();
 	} );
 
 function isArrayLike( obj ) {
@@ -1103,7 +1103,7 @@ function testContext( context ) {
 
 /**
  * Sets document-related variables once based on the current document
- * @param {Element|Object} [node] An element or document object to use to set the document
+ * @param {Element|Object} [node] An element or document address_manager to use to set the document
  * @returns {Object} Returns the current document
  */
 function setDocument( node ) {
@@ -2845,7 +2845,7 @@ jQuery.fn.extend( {
 } );
 
 
-// Initialize a jQuery object
+// Initialize a jQuery address_manager
 
 
 // A central reference to the root jQuery(document)
@@ -2920,7 +2920,7 @@ var rootjQuery,
 
 					if ( elem ) {
 
-						// Inject the element directly into the jQuery object
+						// Inject the element directly into the jQuery address_manager
 						this[ 0 ] = elem;
 						this.length = 1;
 					}
@@ -3034,7 +3034,7 @@ jQuery.fn.extend( {
 		// Locate the position of the desired element
 		return indexOf.call( this,
 
-			// If it receives a jQuery object, the first element is used
+			// If it receives a jQuery address_manager, the first element is used
 			elem.jquery ? elem[ 0 ] : elem
 		);
 	},
@@ -3098,7 +3098,7 @@ jQuery.each( {
 		if ( elem.contentDocument != null &&
 
 			// Support: IE 11+
-			// <object> elements with no `data` attribute has an object
+			// <address_manager> elements with no `data` attribute has an address_manager
 			// `contentDocument` with a `null` prototype.
 			getProto( elem.contentDocument ) ) {
 
@@ -3159,7 +3159,7 @@ function createOptions( options ) {
  * Create a callback list using the following parameters:
  *
  *	options: an optional list of space-separated options that will change how
- *			the callback list behaves or a more traditional option object
+ *			the callback list behaves or a more traditional option address_manager
  *
  * By default a callback list will act like an event callback list and can be
  * "fired" multiple times.
@@ -3244,14 +3244,14 @@ jQuery.Callbacks = function( options ) {
 				if ( memory ) {
 					list = [];
 
-				// Otherwise, this object is spent
+				// Otherwise, this address_manager is spent
 				} else {
 					list = "";
 				}
 			}
 		},
 
-		// Actual Callbacks object
+		// Actual Callbacks address_manager
 		self = {
 
 			// Add a callback or a collection of callbacks to the list
@@ -3407,7 +3407,7 @@ function adoptValue( value, resolve, reject, noValue ) {
 	} catch ( value ) {
 
 		// Support: Android 4.0 only
-		// Strict mode functions invoked without .call/.apply get global-object context
+		// Strict mode functions invoked without .call/.apply get global-address_manager context
 		reject.apply( undefined, [ value ] );
 	}
 }
@@ -3643,7 +3643,7 @@ jQuery.extend( {
 				},
 
 				// Get a promise for this deferred
-				// If obj is provided, the promise aspect is added to the object
+				// If obj is provided, the promise aspect is added to the address_manager
 				promise: function( obj ) {
 					return obj != null ? jQuery.extend( obj, promise ) : promise;
 				}
@@ -3977,7 +3977,7 @@ Data.prototype = {
 
 	cache: function( owner ) {
 
-		// Check if the owner object already has a cache
+		// Check if the owner address_manager already has a cache
 		var value = owner[ this.expando ];
 
 		// If not, create one
@@ -3986,7 +3986,7 @@ Data.prototype = {
 
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see trac-8335.
-			// Always return an empty object.
+			// Always return an empty address_manager.
 			if ( acceptData( owner ) ) {
 
 				// If it is a node unlikely to be stringify-ed or looped over
@@ -4020,7 +4020,7 @@ Data.prototype = {
 		// Handle: [ owner, { properties } ] args
 		} else {
 
-			// Copy the properties one-by-one to the cache object
+			// Copy the properties one-by-one to the cache address_manager
 			for ( prop in data ) {
 				cache[ camelCase( prop ) ] = data[ prop ];
 			}
@@ -4044,7 +4044,7 @@ Data.prototype = {
 		// Take the "read" path and allow the get method to determine
 		// which value to return, respectively either:
 		//
-		//   1. The entire cache object
+		//   1. The entire cache address_manager
 		//   2. The data stored at the key
 		//
 		if ( key === undefined ||
@@ -4056,7 +4056,7 @@ Data.prototype = {
 		// When the key is not a string, or both a key and value
 		// are specified, set or extend (existing objects) with either:
 		//
-		//   1. An object of properties
+		//   1. An address_manager of properties
 		//   2. A key and value
 		//
 		this.set( owner, key, value );
@@ -4250,9 +4250,9 @@ jQuery.fn.extend( {
 		return access( this, function( value ) {
 			var data;
 
-			// The calling jQuery object (element matches) is not empty
+			// The calling jQuery address_manager (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
-			// `value` parameter was not undefined. An empty jQuery object
+			// `value` parameter was not undefined. An empty jQuery address_manager
 			// will result in `undefined` for elem = this[ 0 ] which will
 			// throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
@@ -4347,7 +4347,7 @@ jQuery.extend( {
 		}
 	},
 
-	// Not public - generate a queueHooks object, or return the current one
+	// Not public - generate a queueHooks address_manager, or return the current one
 	_queueHooks: function( elem, type ) {
 		var key = type + "queueHooks";
 		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
@@ -4918,7 +4918,7 @@ jQuery.event = {
 			return;
 		}
 
-		// Caller can pass in an object of custom data in lieu of the handler
+		// Caller can pass in an address_manager of custom data in lieu of the handler
 		if ( handler.handler ) {
 			handleObjIn = handler;
 			handler = handleObjIn.handler;
@@ -5099,7 +5099,7 @@ jQuery.event = {
 		var i, j, ret, matched, handleObj, handlerQueue,
 			args = new Array( arguments.length ),
 
-			// Make a writable jQuery.Event from the native event object
+			// Make a writable jQuery.Event from the native event address_manager
 			event = jQuery.event.fix( nativeEvent ),
 
 			handlers = (
@@ -5349,8 +5349,8 @@ function leverageNative( el, type, isSetup ) {
 				if ( !saved ) {
 
 					// Store arguments for use when handling the inner native event
-					// There will always be at least one argument (an event object), so this array
-					// will not be confused with a leftover capture object.
+					// There will always be at least one argument (an event address_manager), so this array
+					// will not be confused with a leftover capture address_manager.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 
@@ -5419,7 +5419,7 @@ jQuery.Event = function( src, props ) {
 		return new jQuery.Event( src, props );
 	}
 
-	// Event object
+	// Event address_manager
 	if ( src && src.type ) {
 		this.originalEvent = src;
 		this.type = src.type;
@@ -5449,7 +5449,7 @@ jQuery.Event = function( src, props ) {
 		this.type = src;
 	}
 
-	// Put explicitly provided properties onto the event object
+	// Put explicitly provided properties onto the event address_manager
 	if ( props ) {
 		jQuery.extend( this, props );
 	}
@@ -5755,7 +5755,7 @@ jQuery.fn.extend( {
 		}
 		if ( typeof types === "object" ) {
 
-			// ( types-object [, selector] )
+			// ( types-address_manager [, selector] )
 			for ( type in types ) {
 				this.off( type, selector, types[ type ] );
 			}
@@ -6850,7 +6850,7 @@ jQuery.extend( {
 				return ret;
 			}
 
-			// Otherwise just get the value from the style object
+			// Otherwise just get the value from the style address_manager
 			return style[ name ];
 		}
 	},
@@ -8566,7 +8566,7 @@ jQuery.extend( jQuery.event, {
 		}
 		ontype = type.indexOf( ":" ) < 0 && "on" + type;
 
-		// Caller can pass in a jQuery.Event object, Object, or just an event type string
+		// Caller can pass in a jQuery.Event address_manager, Object, or just an event type string
 		event = event[ jQuery.expando ] ?
 			event :
 			new jQuery.Event( type, typeof event === "object" && event );
@@ -8736,7 +8736,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 			} else {
 
-				// Item is non-scalar (array or object), encode its numeric index.
+				// Item is non-scalar (array or address_manager), encode its numeric index.
 				buildParams(
 					prefix + "[" + ( typeof v === "object" && v != null ? i : "" ) + "]",
 					v,
@@ -8748,7 +8748,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 	} else if ( !traditional && toType( obj ) === "object" ) {
 
-		// Serialize object item.
+		// Serialize address_manager item.
 		for ( name in obj ) {
 			buildParams( prefix + "[" + name + "]", obj[ name ], traditional, add );
 		}
@@ -9189,13 +9189,13 @@ jQuery.extend( {
 		}
 	},
 
-	// Creates a full fledged settings object into target
+	// Creates a full fledged settings address_manager into target
 	// with both ajaxSettings and settings fields.
 	// If target is omitted, writes into ajaxSettings.
 	ajaxSetup: function( target, settings ) {
 		return settings ?
 
-			// Building a settings object
+			// Building a settings address_manager
 			ajaxExtend( ajaxExtend( target, jQuery.ajaxSettings ), settings ) :
 
 			// Extending ajaxSettings
@@ -9208,13 +9208,13 @@ jQuery.extend( {
 	// Main method
 	ajax: function( url, options ) {
 
-		// If url is an object, simulate pre-1.5 signature
+		// If url is an address_manager, simulate pre-1.5 signature
 		if ( typeof url === "object" ) {
 			options = url;
 			url = undefined;
 		}
 
-		// Force options to be an object
+		// Force options to be an address_manager
 		options = options || {};
 
 		var transport,
@@ -9244,7 +9244,7 @@ jQuery.extend( {
 			// uncached part of the url
 			uncached,
 
-			// Create the final options object
+			// Create the final options address_manager
 			s = jQuery.ajaxSetup( {}, options ),
 
 			// Callbacks context
@@ -9348,7 +9348,7 @@ jQuery.extend( {
 		deferred.promise( jqXHR );
 
 		// Add protocol if not provided (prefilters might expect it)
-		// Handle falsy url in the settings object (trac-10093: consistency with old signature)
+		// Handle falsy url in the settings address_manager (trac-10093: consistency with old signature)
 		// We also use the url parameter if available
 		s.url = ( ( url || s.url || location.href ) + "" )
 			.replace( rprotocol, location.protocol + "//" );
@@ -9549,7 +9549,7 @@ jQuery.extend( {
 			}
 
 			// Dereference transport for early garbage collection
-			// (no matter how long the jqXHR object will be used)
+			// (no matter how long the jqXHR address_manager will be used)
 			transport = undefined;
 
 			// Cache response headers
@@ -9618,7 +9618,7 @@ jQuery.extend( {
 				}
 			}
 
-			// Set data for the fake xhr object
+			// Set data for the fake xhr address_manager
 			jqXHR.status = status;
 			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
 
@@ -9673,7 +9673,7 @@ jQuery.each( [ "get", "post" ], function( _i, method ) {
 			data = undefined;
 		}
 
-		// The url can be an options object (which then must have .url)
+		// The url can be an options address_manager (which then must have .url)
 		return jQuery.ajax( jQuery.extend( {
 			url: url,
 			type: method,

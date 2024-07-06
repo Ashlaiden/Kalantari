@@ -16,7 +16,7 @@ def home_page(request):
 
 class ProductManListView(ListView):
     template_name = 'workshop/product_list.html'
-    paginate_by = 6
+    paginate_by = 12
 
     def get_queryset(self):
         products = Product.published.all()
@@ -28,7 +28,7 @@ class ProductManListView(ListView):
 
 class ProductWomanListView(ListView):
     template_name = 'workshop/product_list.html'
-    paginate_by = 6
+    paginate_by = 12
 
     def get_queryset(self):
         products = Product.published.all()

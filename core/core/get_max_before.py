@@ -20,7 +20,7 @@ def get_max_plus_one(instance, attr, model):
     if not instance.attr:
         model_name = instance._meta.model_name
         # Find the maximum existing custom_id and start from there
-        max_attr = model_name.object.aggregate(models.Max('attr'))[f'{attr}__max']
+        max_attr = model_name.address_manager.aggregate(models.Max('attr'))[f'{attr}__max']
         if max_attr is not None:
             instance.attr = max_attr + 1
         else:

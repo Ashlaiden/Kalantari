@@ -21,9 +21,9 @@
             </ul>
         </div>
     {% if empty %}
-        <a id="all-favorites" href="{% url 'cart:cart' %}" class="continue-in-cart disabled">رفتن به علاقه مندی ها</a>
+        <a id="all-favorites" href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='favorite' %}" class="continue-in-cart disabled">رفتن به علاقه مندی ها</a>
     {% else %}
-        <a id="all-favorites" href="{% url 'cart:cart' %}" class="continue-in-cart">رفتن به علاقه مندی ها</a>
+        <a id="all-favorites" href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='favorite' %}" class="continue-in-cart">رفتن به علاقه مندی ها</a>
     {% endif %} 
     </div>
 </div>

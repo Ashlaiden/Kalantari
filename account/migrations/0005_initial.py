@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 'indexes': [models.Index(fields=['-id'], name='account_acc_id_bc73bd_idx')],
             },
             managers=[
-                ('object', django.db.models.manager.Manager()),
+                ('address_manager', django.db.models.manager.Manager()),
             ],
         ),
     ]
