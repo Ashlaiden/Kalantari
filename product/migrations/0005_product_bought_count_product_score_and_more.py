@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='product',
-            name='bought_count',
+            name='sold',
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(

@@ -197,8 +197,6 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     views_count = models.IntegerField(default=0)
-    bought_count = models.IntegerField(default=0)
-
     score = models.DecimalField(max_digits=15, decimal_places=4, default=0)
 
     object = models.Manager()

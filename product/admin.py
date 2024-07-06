@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 # Register your models here.
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'publish', 'status', 'gallery', 'views_count', 'bought_count', 'score', 'uid']
+    list_display = ['id', 'title', 'publish', 'status', 'gallery', 'views_count', 'sold', 'score', 'uid']
     readonly_fields = []
     ordering = ['-id', '-publish', 'title']
     list_filter = ['status', 'publish']
