@@ -248,7 +248,7 @@ def continue_ordering(request):
         return JsonResponse(data)
     elif request.method == 'GET':
         order: Order = Order.order_manager.get_active_order(user=request.user)
-        time_difference = timezone.now() - order.updated
+        time_difference = timezone.now() - order.step_updated
         if time_difference > timedelta(minutes=5):
             order.step = order.STEP.ADDRESSING
             order.step_updated = timezone.now()

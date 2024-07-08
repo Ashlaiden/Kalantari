@@ -24,7 +24,7 @@
                         <button id="add-to-cart-{{ item.product.uid }}" onclick="add_to_cart({{ item.product.uid }})" class="add-to-cart" type="button" name="add-to-cart">افزودن به سبد خرید</button>
                     {% endif %}
                     <section>
-                        <button class="share-item" type="button" name="share-item"><i class="fa-solid fa-share-nodes"></i></button>
+                        <button class="share-item" onclick="copy_to_clipboard(`${window.location.origin}{{ item.product.get_absolute_url }}`)" type="button" name="share-item"><i class="fa-solid fa-share-nodes"></i></button>
                         <button onclick="remove_favorite({{ item.product.uid }})" class="remove-from-favorite" type="button" name="remove-item"><i class="fa-solid fa-trash-can"></i></button>
                     </section>
                 </div>

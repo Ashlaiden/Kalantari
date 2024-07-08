@@ -125,4 +125,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
   });
-  
+function active_items_listener() {
+  document.querySelectorAll('.item-link').forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      if (event.target.parentElement.tagName.toLowerCase() === 'button') {
+        copy_to_clipboard(this.href);
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        event.preventDefault();
+      }
+    });
+  });
+}
+active_items_listener();
