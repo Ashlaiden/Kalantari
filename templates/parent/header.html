@@ -25,7 +25,7 @@
             </div> -->
         </div>
         <div class="center">
-            <span id="brand-name" class="brand-name Cinzel-font">KALANTARI</span>
+            <span onclick="BrandNameLinkToHomePage()" id="brand-name" class="brand-name Cinzel-font">KALANTARI</span>
         </div>
         <div class="right">
             <div id="menu-btn" class="nav men-btn">
@@ -55,39 +55,7 @@
         <div class="sections-content">
             {% render_partial 'partials.views.cart_user_menu' %}
             {% render_partial 'partials.views.favorite_user_menu' %}
-            <div id="account" class="container hidden">
-                <div class="account-section">
-                    {% if request.user.is_authenticated %}
-                    	<div id="profile" class="profile">
-                            <ul>
-                                <li>نام: {{ request.user.first_name }} {{ request.user.last_name }}</li>
-                                <li>ایمیل: {{ request.user.email }}</li>
-                            </ul>
-                        </div>
-                        <div class="logout-btn">
-                                <button type="button" onclick="Logout()">خروج از حساب کاربری</button>
-                        </div>
-                    {% else %}
-                    <div class="authentication-methods">
-                        <div class="login">
-                            <h3>ورود</h3>
-                            <p>برای دسترسی به پروفایل خود ابتدا وارد حساب کاربری خود شوید</p>
-                            <form id="login-form" class="login-form" action="">
-                                {% csrf_token %}
-                                <input type="email" name="email" placeholder="ایمیل">
-                                <input type="password" name="passwd" placeholder="رمز عبور">
-                                <button type="button" name="submit" onclick="Login()">ورود</button>
-                            </form>
-                        </div>
-                        <div class="qiuck-connect"></div>
-                        <div class="register-btn">
-                            <button id="register-btn" type="button">ثبت نام</button>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-            </div>
-            
+            {% render_partial 'partials.views.account_user_menu' %}
         </div>
     </div>
     <div id="overlay" class="overlay">

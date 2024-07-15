@@ -1,10 +1,141 @@
 {% load static %}
+{% load humanize %}
 <link rel="stylesheet" href="{% static 'css/most_products.css' %}">
+<link rel="stylesheet" href="{% static 'css/library/owl.carousel.css' %}">
 
 
-<div class="most-products">
+<div id="most-products" class="most-products">
+    <div id="carousel-container" class="carousel-container owl-carousel">
+        {% for product in products %}
+            <a class="card item item-link" href="{{ product.get_absolute_url }}">
+                <div id="{{ product.uid }}" dual-image="{% if product.hover_image %}true{% else %}false{% endif %}" class="item">
+                    <div class="image-container">
+                        <img class="cover-image" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                        <img style="opacity: 0;" src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                        {% if product.hover_image %}
+                            <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">
+                        {% endif %} 
+                    </div>
+                    <div class="item-code">کد کالا: {{ product.uid }}</div>
+                    <div class="item-des">
+                        <span>{{ product.title }}</span>
+                    </div>
+                    <div class="item-price-con">
+                        <section class="price">
+                            {{ product.price | intcomma }}
+                            <p>تومان</p>
+                        </section>
+                        <button class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>
+                    </div>
+                </div>
+    {#           <button onclick="copy_to_clipboard({{ product.get_absolute_url }})" class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>#}
+            </a>
+        {% endfor %}
+        
+{#    {% for group in products %}#}
+{#    	<div class="carousel-group">#}
+{#            {% for product in group %}#}
+{#                <a class="card item item-link" href="{{ product.get_absolute_url }}">#}
+{#                    <div id="{{ product.uid }}" dual-image="{% if product.hover_image %}true{% else %}false{% endif %}" class="item">#}
+{#                        <div class="image-container">#}
+{#                            <img class="cover-image" src="{{ product.cover_image.url }}" alt="{{ product.title }}">#}
+{#                            <img style="opacity: 0;" src="{{ product.cover_image.url }}" alt="{{ product.title }}">#}
+{#                            {% if product.hover_image %}#}
+{#                                <img class="hover-image" src="{{ product.hover_image.url }}" alt="{{ product.title }}">#}
+{#                            {% endif %} #}
+{#                        </div>#}
+{#                        <div class="item-code">کد کالا: {{ product.uid }}</div>#}
+{#                        <div class="item-des">#}
+{#                            <span>{{ product.title }}</span>#}
+{#                        </div>#}
+{#                        <div class="item-price-con">#}
+{#                            <section class="price">#}
+{#                                {{ product.price | intcomma }}#}
+{#                                <p>تومان</p>#}
+{#                            </section>#}
+{#                            <button class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>#}
+{#                        </div>#}
+{#                    </div>#}
+    {#            <button onclick="copy_to_clipboard({{ product.get_absolute_url }})" class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>#}
+{#                </a>#}
+{#            {% endfor %}#}
+{#        #}
+{#        </div>#}
+{#    {% endfor %}#}
     
+    </div>
+{#<button type="button" class="next-group owl-prev"><i class="fa-solid fa-chevron-right"></i></button>#}
+{#<button type="button" class="prev-group owl-next"><i class="fa-solid fa-chevron-left"></i></button>#}
 </div>
 
 
 <script type="text/javascript" src="{% static 'js/most_products.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/library/jquery-3.6.0.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/library/owl.carousel.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#<div class="test-main bd-grid owl-carousel">  #}
+{#    <article class="card">#}
+{#         <div class="card__name">  #}
+{#           <p>AIR ZOOM PEGASUS</p>  #}
+{#         </div>#}
+{#    </article>#}
+{#    <article class="card">#}
+{#         <div class="card__name">  #}
+{#           <p>AIR ZOOM PEGASUS</p>  #}
+{#         </div>#}
+{#    </article>#}
+{#    <article class="card">#}
+{#         <div class="card__name">  #}
+{#           <p>AIR ZOOM PEGASUS</p>  #}
+{#         </div>#}
+{#    </article>#}
+{#</div>  #}
+
+
+
+{#<script>#}
+{#$('.owl-carousel').owlCarousel({#}
+{#    loop:true,#}
+{#    margin: 0,#}
+{#    nav:true,#}
+{#    items: 1,#}
+{#    autoplay:true,#}
+{#    autoplayTimeout:4000,#}
+{#    autoplayHoverPause:true,#}
+    {#responsive:{#}
+    {#    0:{ items:1 },#}
+    {#    574:{ items:2 },#}
+    {#    600:{ items:2 },#}
+    {#    800:{ items:3 },#}
+    {#    1000:{ items:4 },}}#}
+{#</script> #}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+{% if request.user.is_authenticated %}
+    <div class="profile">
+        <ul class="profile-cards">
+            <li class="profile-card">
+                <strong>اطلاعات کاربری</strong>
+                <div class="card-row name-and-logout">
+                    <div class="name-row">
+                        <p>نام: </p>
+                        <span>{{ full_name }}</span>
+                    </div>
+                    <button class="logout-btn" type="button" onclick="Logout()">خروج از حساب کاربری</button>
+                </div>
+                <div class="card-row email-info">
+                    <p>آدرس ایمیل شما: </p>
+                    <span>{{ email_address }}</span>
+                    {% if not email_confirmed %}
+                        <span style="color: orangered">(تایید نشده!)</span>
+                        <button class="disabled">verify</button>
+                    {% endif %}
+                </div>
+                <div class="card-row-con">
+                    <div class="card-row">
+                        <p>آخرین ورود شما: </p>
+                        <span style="direction: ltr">{{ last_login }}</span>
+                    </div>
+                    <div class="card-row">
+                        <p>آخرین آدرس IP شما: </p>
+                        <span>{{ last_ip }}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="profile-card">
+                <stronG></stronG>
+            </li>
+            <li class="profile-card">
+                <stronG></stronG>
+            </li>
+            <li class="profile-card">
+                <stronG></stronG>
+            </li>
+        </ul>
+    </div>
+{% else %}
+    <div id="first-login-to-your-account">
+        <span>ابتدا وارد حساب کاربری خود شوید</span>
+        <div class="btns">
+            <button onclick="FirstLoginTo()">ورود به حساب</button>
+            <div>
+                <p>حساب کاربری ندارید؟</p>
+                <a href="{% url 'account:register' %}">ایجاد حساب کربری</a>
+            </div>
+        </div>
+    </div>
+{% endif %}

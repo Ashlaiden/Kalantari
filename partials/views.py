@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from core.core.make_data_grouper import make_data_grouper
 from cart.models import Order
 from favorite.models import Favorite
 from product.models import Product
@@ -25,6 +26,18 @@ def global_cookies(request):
             request.session['u_id'] = str(uuid.uuid4())
             session_uid = request.session['u_id']
         return JsonResponse({'status': True, 'session_uid': session_uid})
+
+
+def account_user_menu(request):
+    if request.user.is_authenticated:
+
+        context = {
+            'full_name': f'{request.user.first_name} {request.user.last_name}',
+        }
+        return render(request, 'partial/user-menu-account.html', context)
+    else:
+        context = {}
+        return render(request, 'partial/user-menu-account-login.html', context)
 
 
 def cart_user_menu(request):
@@ -101,7 +114,7 @@ def favorite_user_menu(request):
 
 def highest_score_products(request):
     products = Product.published.get_highest_score_products(count=8)
-
+    # data = make_data_grouper(4, products)
     context = {
         'products': products
     }

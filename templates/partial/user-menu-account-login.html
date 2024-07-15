@@ -1,0 +1,25 @@
+
+{% if request.user.is_authenticated %}
+    {% include 'partial/user-menu-account.html' %}
+{% else %}
+    <div id="account" class="container hidden">
+        <div class="account-section">
+            <div class="authentication-methods">
+                <div class="login">
+                    <h3>ورود</h3>
+                    <p>برای دسترسی به پروفایل خود ابتدا وارد حساب کاربری خود شوید</p>
+                    <form id="login-form" class="login-form" action="">
+                        {% csrf_token %}
+                        <input type="email" name="email" placeholder="ایمیل">
+                        <input type="password" name="passwd" placeholder="رمز عبور">
+                        <button type="button" name="submit" onclick="Login()">ورود</button>
+                    </form>
+                </div>
+                <div class="qiuck-connect"></div>
+                <div class="register-btn">
+                    <button id="register-btn" type="button">ثبت نام</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

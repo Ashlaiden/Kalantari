@@ -1,0 +1,19 @@
+
+{% if request.user.is_authenticated %}
+    <div id="account" class="container hidden">
+        <div class="account-section">
+            <div id="profile" class="profile">
+                <ul>
+                    <li>خوش آمدید  <b>{{ full_name }}</b> .</li>
+                    <li class="account-btns">
+                        <button class="dash-btn" onclick="GoToDash()">داشبورد</button>
+                        <button class="logout-btn" onclick="Logout()">خروج</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% else %}
+    {% include 'partial/user-menu-account-login.html' %}
+{% endif %} 
+

@@ -1,0 +1,478 @@
+body {
+    /* background-color: #100e17; */
+    /* font-family: 'Open Sans', sans-serif; */
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+.most-products {
+    width: 98%;
+    /* background-color: red; */
+    /* min-height: fit-content; */
+    /* height: max-content; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 30px auto;
+    /* padding: 0px 10px; */
+    box-sizing: border-box;
+    /* scale: 0.95; */
+    border: 1px solid gray;
+    border-radius: 10px;
+    /* overflow: hidden; */
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    position: relative;
+}
+.carousel-group {
+  padding: 20px 20px;
+  box-sizing: border-box;
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* .carousel-group.deactiving-group {
+  width: 0px;
+  transition: all 0.3s ease;
+}
+.carousel-group.activing-group {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.carousel-group.active-group {
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+} */
+
+
+/* Owl Carousel Buttons Design */
+.owl-carousel .owl-nav button.owl-prev {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  padding: 0 !important;
+  font: inherit;
+  position: absolute;
+  top: calc(50% - 20px);
+  left: 5px;
+}
+
+.owl-carousel .owl-nav button.owl-prev span {
+  font-size: 3rem;
+  /* height: 40px;
+  width: 40px; */
+  align-items: center;
+  width: 200%;
+  padding: 0px 10px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  transition: all 0.3s;
+}
+
+.owl-carousel .owl-nav button.owl-prev span:hover {
+  background-color: white;
+  color: black;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  /* padding: 0 !important; */
+  font: inherit;
+  position: absolute;
+  top: calc(50% - 20px);
+  align-items: center;
+  right: 5px;
+}
+
+.owl-carousel .owl-nav button.owl-next span {
+  font-size: 3rem;
+  /* height: 40px;
+  width: 40px; */
+  align-items: center;
+  width: 200%;
+  padding: 0px 10px;
+  border-radius: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  transition: all 0.3s;
+}
+
+.owl-carousel .owl-nav button.owl-next span:hover {
+  background-color: white;
+  color: black;
+}
+
+/* .most-products .next-group, .most-products .prev-group {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid black;
+  background-color: black;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.most-products .next-group:hover, .most-products .prev-group:hover {
+  background-color: white;
+  color: black;
+}
+.most-products .next-group {
+  top: calc(50% - 25px);
+  right: 5px;
+}
+.most-products .prev-group {
+  top: calc(50% - 25px);
+  left: 5px;
+} */
+
+  .carousel-container {
+    /* position: absolute;
+    top: 60px;
+    left: calc(50% - 300px); */
+    height: max-content;
+    width: 100%;
+    /* padding: 15px 15px; */
+    /* scale: 0.9; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    display: flex;
+    /* height: 280px; */
+    /* width: 200px; */
+    /* background-color: #17141d; */
+    border-radius: 10px;
+    box-shadow: -1rem 0 2rem rgba(0, 0, 0, 0.5);
+  /*   margin-left: -50px; */
+  position: relative;
+  left: 0px;
+  transition: all 0.4s ease-in-out;
+  }
+  
+  .card:not(:first-child) {
+    margin-left: -50px;
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-20px);
+    transition: all 0.4s ease-in-out;
+  }
+  
+  .card:hover ~ .card {
+    position: relative;
+    left: 80px;
+    transition: all 0.4s ease-in-out;
+  }
+
+/* ------------------- */
+.item {
+    color: inherit;
+    direction: rtl;
+    text-decoration: none;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.item-code {
+    width: 100%;
+    height: min-content;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    color: gray;
+    font-size: 0.7rem;
+    padding: 0px;
+    margin: 0px;
+    padding-right: 15px;
+  }
+  
+  .item-des {
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+    padding-right: 20px;
+    margin: 0px;
+  }
+  .item-price-con {
+    margin-top: 10px;
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .item-price-con .price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* padding: 5px 15px; */
+    margin-right: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 0px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 8px;
+  }
+  .item-price-con .price p {
+    margin-right: 5px;
+    font-size: 0.7rem;
+    color: gray;
+    transform: translateY(4px);
+  }
+  .item-price-con .share-item-btn {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    transition: all 0.3s;
+    /* position: absolute; */
+    /* bottom: 15px;
+    left: 20px; */
+  }
+  .item-price-con .share-item-btn:hover {
+    background-color: rgba(211, 211, 211, 0.7);
+    box-shadow: 0px 0px 15px 5px lightgray;
+  }
+  .item-price-con .share-item-btn:active {
+    box-shadow: 0px 0px 0px 0px none;
+    background-color: rgba(128, 128, 128, 0.7);
+  }
+  /* -----------Hover-&-Cover--IMage----------- */
+  .image-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+  }
+  /* The pseudo-element that creates the aspect ratio */
+  /* .image-container::before {
+    content: '';
+    display: block;
+    padding-top: calc(auto / 100% * 100); */
+    /* Replace height and width with your image's aspect ratio */
+  /* } */
+  .cover-image, .hover-image {
+    transition: opacity 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .hover-image {
+    opacity: 0;
+    /* z-index: 10; */
+    backface-visibility: hidden;
+  }
+  /* .covered {
+    opacity: 1;
+  }
+  .hovered {
+    opacity: 0;
+  } */
+  /* ---------------------- */
+  .item:hover {
+    transform: scale(1.03);
+  }
+  .item img {
+    width: 100%;
+    height: calc(width);
+  }
+
+
+/* ********** */
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');   */
+ /*-- VARIABLES CSS--*/  
+ /*Colores*/  
+ /* :root{  
+   --first-color: #E3F8FF;  
+   --second-color: #DCFAFB;  
+   --third-color: #FFE8DF;  
+   --accent-color: #FF5151;  
+   --dark-color: #161616;  
+ }  
+ .test-main{  
+   margin-top: 10%;  
+ }   */
+ /*-- COMPONENT --*/  
+ /* .test-main .card{  
+   position: relative;  
+   display: flex;  
+   flex-direction: column;  
+   align-items: center;  
+   padding: 1.3rem 2rem;  
+   border-radius: 1rem;  
+   overflow: hidden;  
+ }   */
+ /* article:nth-child(1){  
+   background-color: var(--first-color);  
+ }  
+ article:nth-child(2){  
+   background-color: var(--second-color);  
+ }  
+ article:nth-child(3){  
+   background-color: var(--third-color);  
+ }  
+ article:nth-child(4){  
+   background-color: var(--second-color);  
+ } */
+/*Move left*/  
+/* .card:hover{  
+  box-shadow: 0 .5rem 1rem #D1D9E6;  
+} */
+/*-- MEDIA QUERIES --*/  
+/* @media screen and (min-width: 1200px){  
+  body{  
+    margin: 3rem 0 0 0;  
+  }  
+  .title-shop{  
+    margin: 0 5rem;  
+  }  
+  .bd-grid{  
+    margin-left: auto;  
+    margin-right: auto;  
+  }  
+} */  
+
+
+
+/* Owl Carousel Buttons Design */
+/* .owl-carousel .owl-nav button.owl-prev {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+  position: absolute;
+  top: 35%;
+}
+
+.owl-carousel .owl-nav button.owl-prev span {
+  font-size: 3rem !important;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font: inherit;
+  position: absolute;
+  right: 0px;
+  top: 35%;
+}
+
+.owl-carousel .owl-nav button.owl-next span {
+  font-size: 3rem !important;
+} */
+
+/* ********** */
+
+/* ------------------- */
+/*   
+  .title {
+    color: white;
+    font-weight: 300;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+  }
+  
+  .bar {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    height: 5px;
+    width: 150px;
+  }
+  
+  .emptybar {
+    background-color: #2e3033;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .filledbar {
+    position: absolute;
+    top: 0px;
+    z-index: 3;
+    width: 0px;
+    height: 100%;
+    background: rgb(0,154,217);
+    background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+    transition: 0.6s ease-out;
+  }
+  
+  .card:hover .filledbar {
+    width: 120px;
+    transition: 0.4s ease-out;
+  }
+  
+  .circle {
+    position: absolute;
+    top: 150px;
+    left: calc(50% - 60px);
+  }
+  
+  .stroke {
+    stroke: white;
+    stroke-dasharray: 360;
+    stroke-dashoffset: 360;
+    transition: 0.6s ease-out;
+  }
+  
+  svg {
+    fill: #17141d;
+    stroke-width: 2px;
+  }
+  
+  .card:hover .stroke {
+    stroke-dashoffset: 100;
+    transition: 0.6s ease-out;
+  } */
+

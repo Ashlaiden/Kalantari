@@ -1,13 +1,15 @@
-.container{
+.container {
     margin: 0px;
     padding: 0px;
 }
-.background-video{
+
+.background-video {
     position: relative;
     height: 90vh;
     overflow: hidden;
 }
-.background-video video{
+
+.background-video video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -18,24 +20,28 @@
     height: auto;
     z-index: -1;
 }
-.background-video .controls button{
+
+.background-video .controls button {
     cursor: pointer;
     background-color: transparent;
     border: none;
     color: white;
 }
-.background-video .controls #toggle-play{
+
+.background-video .controls #toggle-play {
     position: absolute;
     bottom: 50px;
     left: 50px;
     z-index: 2;
 }
-.background-video .controls #toggle-mute{
+
+.background-video .controls #toggle-mute {
     position: absolute;
     bottom: 50px;
     right: 50px;
     z-index: 2;
 }
+
 /* .content {
     position: absolute;
     top: 50%;
@@ -47,11 +53,12 @@
 } */
 
 
-header{
+header {
     padding: 0px;
     margin: 0px;
 }
-.header{
+
+.header {
     position: fixed;
     width: 100%;
     height: 80px;
@@ -68,48 +75,69 @@ header{
     transition: background-color 0.3s ease-in-out, color 0.1s ease-in;
     /* transition: color 0.1s ease-in; */
 }
+
 .header-fill {
     width: 100%;
     height: 80px;
     background-color: black;
 }
+
+#brand-name {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
 .header .brand-name {
     color: white;
 }
-.header:hover{
+
+.header:hover {
     color: black;
     background-color: white;
 }
-.header-hove .brand-name {
+
+.header-hover .brand-name {
     color: black;
 }
-.header-hover{
+
+.header-hover {
     color: black;
     background-color: white;
     border-bottom: 1px solid gray;
 }
-.header .right{
+
+.header .right {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     padding-right: 50px;
 }
-.header .left{
+
+.header .left {
     display: flex;
     flex-direction: row;
-    justify-content:left;
+    justify-content: left;
     align-items: center;
     padding: 20px 20px;
 }
-.header i{
+
+.header i {
     padding: 0 10px;
     font-size: 1.7rem;
 }
+
 /* ---------------------------Icons-CSS-------------------------- */
 .gg-shopping-bag {
-    transform: scale(var(--ggs,1))
+    transform: scale(var(--ggs, 1))
 }
+
 .gg-shopping-bag,
 .gg-shopping-bag::after {
     box-sizing: border-box;
@@ -120,6 +148,7 @@ header{
     border: 2px solid;
     border-radius: 3px
 }
+
 .gg-shopping-bag::after {
     content: "";
     position: absolute;
@@ -130,9 +159,10 @@ header{
     border-top: 0;
     top: 2px;
     left: 3px
-} 
+}
+
 /* ---------------------------------------- */
-.header .nav{
+.header .nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -140,20 +170,24 @@ header{
     cursor: pointer;
     margin-right: 10px;
 }
-.header p{
+
+.header p {
     font-size: 0.8rem;
     padding-right: 15px;
 }
-.header .nav:hover{
+
+.header .nav:hover {
     color: rgba(0, 0, 0, 0.471);
 }
-.header .nav.search-bar i{
+
+.header .nav.search-bar i {
     color: rgba(0, 0, 0, 0.471);
     size: 1rem;
     padding-right: 0px;
     cursor: text;
 }
-.header .nav input{
+
+.header .nav input {
     border: 0;
     width: 150px;
     border-radius: 20px;
@@ -161,12 +195,14 @@ header{
     background-color: transparent;
     position: relative;
 }
-.header .nav input:focus{
+
+.header .nav input:focus {
     outline: none;
     border-color: transparent;
     box-shadow: none;
 }
-.header .nav .search-bar::after{
+
+.header .nav .search-bar::after {
     content: '';
     width: 50px;
     height: 3px;
@@ -176,11 +212,12 @@ header{
     bottom: -6px;
     transition: 0.5s;
 }
-.header .nav.search-bar:focus:after{
+
+.header .nav.search-bar:focus:after {
     width: 150px;
 }
 
-.header .center{
+.header .center {
     letter-spacing: 5px;
     font-size: 2.2rem;
     font-weight: 500;
@@ -190,23 +227,27 @@ header{
     align-items: center;
     padding: 0;
 }
-.header .center span{
+
+.header .center span {
     cursor: default;
     transition: color 0.3s ease-in-out;
 }
+
 /* ---------------------Side-Bar------------------------- */
 .menu {
     width: 300px;
     height: 100%;
     background-color: #333;
     position: fixed;
-    right: -300px; /* Initially hidden */
+    right: -300px;
+    /* Initially hidden */
     top: 0;
     overflow-x: hidden;
     z-index: 12;
     padding-top: 20px;
     transition: 0.5s;
 }
+
 .menu a {
     padding: 15px 20px;
     text-decoration: none;
@@ -215,9 +256,11 @@ header{
     display: block;
     transition: 0.5s;
 }
+
 .menu a:hover {
     background-color: #555;
 }
+
 .overlay {
     position: fixed;
     z-index: 11;
@@ -225,10 +268,14 @@ header{
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.5); /* Initially transparent */
-    opacity: 0; /* Initially invisible */
-    visibility: hidden; /* Initially hidden */
-    transition: opacity 0.5s, visibility 0.5s; /* Delay visibility transition to match opacity */
+    background: rgba(0, 0, 0, 0.5);
+    /* Initially transparent */
+    opacity: 0;
+    /* Initially invisible */
+    visibility: hidden;
+    /* Initially hidden */
+    transition: opacity 0.5s, visibility 0.5s;
+    /* Delay visibility transition to match opacity */
     /* position: fixed;
     width: 100%;
     height: 100%;
@@ -246,33 +293,39 @@ header{
     text-align: center;
     display: flex;
     justify-content: end;
-    align-items: center; /* Center the content vertically */
+    align-items: center;
+    /* Center the content vertically */
     margin-left: 60%;
     margin-right: 20px;
     margin-bottom: 30px;
     margin-top: 0px;
     border-radius: 10px;
-  }
-  .close-menu-btn:hover {
+}
+
+.close-menu-btn:hover {
     background-color: #555;
-  }
-  .close-menu-btn i {
+}
+
+.close-menu-btn i {
     font-size: 1.2rem;
     margin-right: 10px;
-  }
-  
-  .close-menu-btn p {
+}
+
+.close-menu-btn p {
     font-size: 0.8rem;
     padding-right: 10px;
-    margin: 0; /* Remove default margin */
-  }
-/* -------------------User Menu------------------------- */
+    margin: 0;
+    /* Remove default margin */
+}
+
+/* -------------------User-Menu------------------------- */
 .user-menu {
     width: 500px;
     height: 100%;
     background-color: whitesmoke;
     position: fixed;
-    left: -500px; /* Initially hidden */
+    left: -500px;
+    /* Initially hidden */
     top: 0;
     overflow-x: hidden;
     z-index: 12;
@@ -281,7 +334,8 @@ header{
     display: flex;
     flex-direction: column;
 }
-.close-user-menu-btn{
+
+.close-user-menu-btn {
     text-align: center;
     display: flex;
     justify-content: end;
@@ -289,6 +343,7 @@ header{
     padding-right: 20px;
     margin-top: 5px;
 }
+
 .close-user-menu-btn i {
     cursor: pointer;
     color: black;
@@ -298,15 +353,18 @@ header{
     border-radius: 10px;
     font-size: 1.2rem;
 }
+
 .close-user-menu-btn i:hover {
     background-color: #d6d6d6;
 }
+
 /* ---------sections-container--------- */
-.sections-container{
+.sections-container {
     width: 100%;
     /* height: 10%; */
     box-sizing: border-box;
 }
+
 /* ---------user-menu-sections-------- */
 .sections {
     margin-top: 10px;
@@ -318,7 +376,8 @@ header{
     justify-content: space-around;
     align-items: center;
 }
-.sections .section-btn{
+
+.sections .section-btn {
     /* background-color: yellow; */
     padding: 10px 0px;
     text-align: center;
@@ -326,17 +385,21 @@ header{
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;
 }
-.sections .section-btn:hover{
+
+.sections .section-btn:hover {
     background-color: #d6d6d6;
 }
+
 .sections .section-btn:active {
     background-color: #363636;
     color: white;
 }
+
 .sections .section-btn.section-btn-active {
     background-color: #363636;
     color: white;
 }
+
 /* -----------sections------------ */
 .sections-content {
     /* background-color: red; */
@@ -347,19 +410,124 @@ header{
     grid-template-columns: 1fr;
     grid-template-rows: 1fr; */
 }
+
 .account-section {
     /* background-color: blue; */
     /* height: calc(90vh - 60px); */
     height: 100%;
     box-sizing: border-box;
     /* background-color: yellow; */
-    margin: 0px 15px;
-    padding: 30px 0px;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
+
+.account-section .profile {
+    width: 100%;
+    padding: 2.5% 10px;
+    /* margin-top: 0px; */
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.account-section .profile ul {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    direction: rtl;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 5px;
+    background-color: whitesmoke;
+    padding: 5px;
+    transition: all 0.6s;
+}
+.account-section .profile ul:hover {
+    transform: translate3d(-1px, -1px, 3px);
+    box-shadow: 0px 0px 15px 5px rgba(128, 128, 128, 0.3);
+}
+.account-section .profile li {
+    width: 100%;
+    text-align: start;
+}
+.account-section .profile ul li.account-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+.account-section .profile ul li.account-btns button {
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    transition: all 0.4s;
+    cursor: pointer;
+}
+.account-section .profile ul li.account-btns .logout-btn {
+    width: 30%;
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+}
+.account-section .profile ul li.account-btns .logout-btn:hover {
+    background-color: red;
+    color: white;
+    scale: 1.04;
+    /* transform: translate3d(-1px, -1px, 3px); */
+}
+.account-section .profile ul li.account-btns .dash-btn {
+    width: 60%;
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+.account-section .profile ul li.account-btns .dash-btn:hover {
+    background-color: white;
+    color: black;
+    scale: 1.02;
+    /* transform: translate3d(-1px, -1px, 3px); */
+}
+
+
+/* .logout-btn {
+    grid-row-end: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.logout-btn button {
+    width: 90%;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid red;
+    color: red;
+    padding: 10px 0px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-btn button:hover {
+    background-color: rgb(255, 36, 36);
+    border: 1px solid black;
+    color: white;
+
+} */
+
+
+
 .authentication-methods {
     height: 100%;
     display: flex;
@@ -367,21 +535,25 @@ header{
     align-items: center;
     justify-content: space-between;
 }
+
 .account-section .login {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .account-section .login h3 {
     margin: 0px;
     padding: 10px;
     font-size: 2rem;
 }
+
 .account-section .login p {
     margin: 0px;
     padding: 10px;
 }
+
 .account-section .login .login-form {
     display: flex;
     flex-direction: column;
@@ -389,6 +561,7 @@ header{
     padding-top: 10px;
     width: 100%;
 }
+
 .account-section .login-form input {
     width: 90%;
     height: 30px;
@@ -398,6 +571,7 @@ header{
     border-radius: 20px;
     direction: rtl;
 }
+
 .account-section .login-form button {
     width: 90%;
     background-color: black;
@@ -409,11 +583,13 @@ header{
     font-size: 1.5rem;
     transition: all 0.5s;
 }
+
 .account-section .login-form button:hover {
     background-color: white;
     border: 1px solid black;
     color: black;
 }
+
 .register-btn {
     grid-row-end: auto;
     display: flex;
@@ -421,7 +597,8 @@ header{
     align-items: center;
     width: 100%;
 }
-.register-btn button{
+
+.register-btn button {
     width: 100%;
     background-color: black;
     border-radius: 20px;
@@ -432,35 +609,12 @@ header{
     font-size: 1.5rem;
     transition: all 0.5s;
 }
+
 .account-section .register-btn button:hover {
     background-color: white;
     border: 1px solid black;
     color: black;
 }
-.logout-btn {
-    grid-row-end: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-.logout-btn button{
-    width: 90%;
-    background-color: transparent;
-    border-radius: 20px;
-    border: 1px solid red;
-    color: red;
-    padding: 10px 0px;
-    margin-top: 20px;
-    font-size: 1.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.logout-btn button:hover {
-    background-color: rgb(255, 36, 36);
-    border: 1px solid black;
-    color: white;
-}
-
 /* -------------------------.sections-content .container----------------------- */
 .sections-content .container {
     /* width: 100%; */
@@ -481,6 +635,7 @@ header{
     /* background-color: blue; */
     /* height: 100%; */
 }
+
 .favorite-section #all-favorites {
     text-decoration: none;
     width: 100%;
@@ -494,10 +649,12 @@ header{
     border: 1px solid black;
     transition: all 0.3s;
 }
+
 .favorite-section #all-favorites:hover {
     background-color: white;
     color: black;
 }
+
 .favorite-section .favorite-box {
     width: 100%;
     /* background-color: red; */
@@ -509,6 +666,7 @@ header{
     border: 1px solid gray;
 
 }
+
 .favorite-section .favorite-box .menu-favorite-items {
     list-style: none;
     width: 100%;
@@ -520,6 +678,7 @@ header{
     overflow: auto;
     box-sizing: border-box;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item {
     width: 100%;
     margin-bottom: 15px;
@@ -534,14 +693,17 @@ header{
     box-sizing: border-box;
     padding: 5px;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item:hover {
     scale: 1.01;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item img {
     width: 80px;
     height: 80px;
     border-radius: 5px;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item .item-menu-des {
     display: flex;
     flex-direction: column;
@@ -549,10 +711,12 @@ header{
     justify-content: space-between;
     margin-right: 10px;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item .item-menu-des .item-uid {
     font-size: 0.5rem;
     color: gray;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item button {
     color: #ff004f;
     border: 1px solid #ff004f;
@@ -562,11 +726,13 @@ header{
     transition: all 0.3s;
     cursor: pointer;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .menu-favorite-item button:hover {
     scale: 1.05;
     background-color: #ff004f;
     color: white;
 }
+
 .favorite-section .favorite-box .menu-favorite-items .nothing {
     font-size: 0.7rem;
     color: #555;
@@ -576,6 +742,7 @@ header{
     align-items: center;
     justify-content: center;
 }
+
 /* ------------------cart-section------------------------ */
 .cart-section {
     height: 100%;
@@ -585,6 +752,7 @@ header{
     justify-content: start;
     box-sizing: border-box;
 }
+
 .cart-section .cart-box {
     width: 100%;
     /* background-color: red; */
@@ -595,6 +763,7 @@ header{
     border-radius: 10px;
     border: 1px solid gray;
 }
+
 .cart-section .cart-box .nothing {
     font-size: 0.7rem;
     color: #555;
@@ -604,6 +773,7 @@ header{
     align-items: center;
     justify-content: center;
 }
+
 .cart-section .cart-box .menu-cart-items {
     list-style: none;
     width: 100%;
@@ -615,6 +785,7 @@ header{
     overflow: auto;
     box-sizing: border-box;
 }
+
 .cart-section .cart-box .menu-cart-items .menu-cart-item {
     width: 100%;
     margin-bottom: 15px;
@@ -629,14 +800,17 @@ header{
     box-sizing: border-box;
     padding: 5px;
 }
+
 .cart-section .cart-box .menu-cart-items .menu-cart-item:hover {
     scale: 1.01;
 }
+
 .cart-section .cart-box .menu-cart-items .menu-cart-item img {
     width: 80px;
     height: 80px;
     border-radius: 5px;
 }
+
 .cart-section .cart-box .menu-cart-items .menu-cart-item button {
     color: #ff004f;
     border: 1px solid #ff004f;
@@ -646,12 +820,14 @@ header{
     transition: all 0.3s;
     cursor: pointer;
 }
+
 .cart-section .cart-box .menu-cart-items .menu-cart-item button:hover {
     scale: 1.05;
     background-color: #ff004f;
     color: white;
 }
-.cart-section .continue-in-cart{
+
+.cart-section .continue-in-cart {
     text-decoration: none;
     width: 100%;
     height: 5%;
@@ -679,11 +855,13 @@ header{
     justify-content: center;
     text-decoration: none; */
 }
+
 .cart-section .continue-in-cart:hover {
     background-color: white;
     border: 1px solid black;
     color: black;
 }
+
 .cart-section .order-info {
     background-color: rgb(230, 230, 230);
     width: 100%;
@@ -697,6 +875,7 @@ header{
     align-items: center;
     justify-content: space-around;
 }
+
 .cart-section .order-info div {
     direction: rtl;
     width: 100%;

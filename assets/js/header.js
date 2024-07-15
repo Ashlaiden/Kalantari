@@ -312,3 +312,11 @@ function remove_book_mark(uid) {
       console.error('Error submitting form:', error);
     });
 }
+// ---------Go-To-Dash-BTN-----------
+function GoToDash() {
+    location.href = '/dashboard/profile/';
+}
+// ---------------Brand-Name-Link-To-Home-Page-------------------
+function BrandNameLinkToHomePage() {
+    location.href = '/';
+}

@@ -14,7 +14,7 @@ from favorite.models import Favorite
 from .forms import *
 from .models import Account
 from cart.models import Order, OrderItem
-
+import jdatetime
 
 def login_user(request):
     next_url = request.build_absolute_uri(request.GET.get('next', '/')) if request.GET.get('next', '/') is not None else None
@@ -158,6 +158,22 @@ def is_authenticated(request):
         return JsonResponse({'code': '200', 'success': 1, 'authenticated': 0})
 
 
+def profile_dashboard(request):
+    if request.method == 'POST':
+        pass
+    else:
+        if request.user.is_authenticated:
+            account: Account = request.account
+            context = {
+                'full_name': f'{request.user.first_name} {request.user.last_name}',
+                'email_address': f'{request.user.email}',
+                'email_confirmed': False,
+                'last_login': jdatetime.datetime.fromgregorian(datetime=account.last_login).strftime("%Y/%m/%d - %H:%M"),
+                'last_ip': account.last_IP,
+            }
+        else:
+            context = {}
+        return render(request, 'dashboard/profile-component.html', context)
 
 
 

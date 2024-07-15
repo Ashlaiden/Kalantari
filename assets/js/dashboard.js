@@ -210,6 +210,7 @@ function chooseSectionBtn(section) {
 
     switch (data_section) {
         case 'profile':
+            profileSection();
             break;
         case 'cart':
             cartSection();
@@ -289,7 +290,7 @@ function cartSection() {
         console.log(`Error: ${error}`);
     });
 }
-
+// ----------------favorite-------------------
 function favoriteSection() {
     favorite_url = '/favorite/_items_list/';
 
@@ -303,7 +304,23 @@ function favoriteSection() {
         console.log(`Error: ${error}`);
     });
 }
+// -----------------------profile----------------------
+function profileSection() {
+    favorite_url = '/account/_dashboard/_profile/';
 
+    const newPath = '/dashboard/profile/';
+    history.pushState(null, '', newPath);   
+
+    axios.get(favorite_url).then(response => {
+        LoadingLayerToggle(false);
+        document.getElementById('content').innerHTML = response.data;
+    }).catch(error => {
+        console.log(`Error: ${error}`);
+    });
+}
+function FirstLoginTo() {
+    location.href = '/account/login/?next=/dashboard/profile/';
+}
 
 
 

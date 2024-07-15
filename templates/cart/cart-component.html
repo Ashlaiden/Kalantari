@@ -97,7 +97,11 @@
                 <label for="offer-code">کد تخفیف: </label>
                 <input id="offer-code" name="offer-code" type="text" placeholder="code">
             </div>
-            <button id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
+            {% if items.count == 0 %}
+                <button class="disabled" id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
+            {% else %}
+                <button id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
+            {% endif %}
             <div class="code-offered">
                 <p>مقدار تخفیف:</p>
                 <section>
@@ -109,7 +113,11 @@
     </div>
 
     <div class="continue-order">
-        <button id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+        {% if items.count == 0 %}
+            <button class="disabled" id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+        {% else %}
+            <button id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+        {% endif %}
     </div>
 
 </div>

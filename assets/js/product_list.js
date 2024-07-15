@@ -132,8 +132,6 @@ function active_items_listener() {
         copy_to_clipboard(this.href);
         event.preventDefault();
         event.stopPropagation();
-      } else {
-        event.preventDefault();
       }
     });
   });
