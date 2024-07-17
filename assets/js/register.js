@@ -208,7 +208,6 @@ class Registeration {
             return false;
         }
         this.birthday = `${year}-${month}-${day}`;
-        console.log(this.birthday)
         return true;
     }
     cleaned_privacy(checked) {
@@ -224,31 +223,22 @@ class Registeration {
         let isValid = 0;
         if (!this.email) {
             isValid = 1;
-            // console.log(isValid)
         } else if (!this.passwd) {
             isValid = 2;
-            // console.log(isValid)
         } else if (!this.passwd_confirmed) {
             isValid = 3;
-            // console.log(isValid)
         } else if (!this.gender) {
             isValid = 4;
-            // console.log(isValid)
         } else if (!this.firstName) {
             isValid = 5;
-            // console.log(isValid)
         } else if (!this.lastName) {
             isValid = 6;
-            // console.log(isValid)
         } else if (!this.phoneNumber) {
             isValid = 7;
-            // console.log(isValid)
         // } else if (!this.birthday) {
         //     isValid = 8;
-        //     console.log(isValid)
         } else if (!this.privacy) {
             isValid = 9;
-            // console.log(isValid)
         }
         if (isValid === 0) {
             return true;
@@ -275,14 +265,13 @@ class Registeration {
             fd.append('privacy_accepted', this.privacy);
             axios.post('/account/register/', fd)
               .then(response => {
-                console.log(response.data)
                 if (response.data.status === 'ok' && response.data.code === '200' && response.data.success) {
                     window.location.href = location.protocol + '//' + location.hostname;
                 }
               })
               .catch(error => {
                 // Handle errors
-                console.error('Error submitting form:', error);
+                Loger.ConnectionError();
               });
         } else {
             return {'status': 'failed', 'code': '400', 'error': 'data is not valid!'}
@@ -292,121 +281,101 @@ class Registeration {
 }
 const register = new Registeration('create address_manager!');
 register.cleaned_gender('man');
-console.log(register);
-console.log(register.order);
-console.log(register.created);
 let register_btn = document.getElementById('register-btn');
 // Add an event listener for the 'email' event
 document.getElementById('email').addEventListener('input', function(event) {
     if (register.cleaned_email(this.value)) {
-        console.log('email verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('email is not valid!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'passwd' event
 document.getElementById('passwd').addEventListener('input', function(event) {
     if (register.cleaned_passwd(this.value)) {
-        console.log('passwd verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('passwd is not valid!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'confirm-passwd' event
 document.getElementById('confirm-passwd').addEventListener('input', function(event) {
     if (register.confirm_passwd(this.value)) {
-        console.log('passwd confirmed!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('passwd is not confirmed!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'gender' event
 document.getElementById('gender').addEventListener('input', function(event) {
     if (register.cleaned_gender(this.value)) {
-        console.log('gender verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('gender is not valid!');
         register_btn.classList.remove('disabled');
     }
 });
 // Add an event listener for the 'first-name' event
 document.getElementById('first-name').addEventListener('input', function(event) {
     if (register.cleaned_firstName(this.value)) {
-        console.log('first-name verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('first-name is not valid!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'last-name' event
 document.getElementById('last-name').addEventListener('input', function(event) {
     if (register.cleaned_lastName(this.value)) {
-        console.log('last-name verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('last-name is not valid!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'phone-number' event
 document.getElementById('phone-number').addEventListener('input', function(event) {
     if (register.cleaned_phoneNumber(this.value)) {
-        console.log('phone-number verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('phone-number is not valid!');
         register_btn.classList.add('disabled');
     }
 });
 // Add an event listener for the 'birthday' event
 document.getElementById('birthday').addEventListener('gdate', function(event) {
-    console.log(this.value);
     var date = new Date(this.dataset.gdate.replace(/\//g, '-'));
     if (register.cleaned_birthday(date)) {
-        console.log('birthday verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('birthday is not valid!');
         register_btn.classList.add('disabled');
     }
 });
@@ -414,22 +383,18 @@ document.getElementById('birthday').addEventListener('gdate', function(event) {
 document.getElementById('accept-rules').addEventListener('change', function() {
     var date = document.getElementById('birthday');
     if (register.cleaned_birthday(date.value)) {
-        console.log('birthday verified!');
     } else {
-        console.log('birthday is not valid!');
         register_btn.classList.add('disabled');
     }
 
 
     if (register.cleaned_privacy(this.checked)) {
-        console.log('accept-rules verified!');
         if (register.isValid()) {
             register_btn.classList.remove('disabled');
         } else {
             register_btn.classList.add('disabled');
         }
     } else {
-        console.log('accept-rules is not valid!');
         register_btn.classList.add('disabled');
     }
 });

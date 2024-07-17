@@ -272,7 +272,7 @@ function Ordering(sec) {
       user_authenticated = true;
     }
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.AddError('خطایی در سرور رخ داد. در حال بارگذاری مجدد صفحه...')
     window.location.reload();
   });
 
@@ -308,7 +308,7 @@ function Ordering(sec) {
           break;
           break;
         default:
-          console.log(sec_step)
+          Loger.Error();
           break;
       }
       break;
@@ -336,7 +336,6 @@ function ContinueCart() {
   axios.get(continue_cart_url).then(response => {
     LoadingLayerToggle(false);
     document.getElementById('content').innerHTML = response.data.content;
-    console.log(`STEP CART: ${response.data.step}`);
     sec_step = response.data.step;
     LodingLayerForCart(true);
     last_step = 1;
@@ -345,7 +344,7 @@ function ContinueCart() {
     Ordering('load');
   }).catch(error => {
     sec_step = 'none';
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });  
 }
 
@@ -371,7 +370,7 @@ function Addressing() {
     document.getElementById('continue-ordering-content').innerHTML = response.data;
     addressing_input_();
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });
 }
 let address_selected = false;
@@ -495,7 +494,7 @@ function delete_address(id) {
       add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
     }
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });
 
 
@@ -584,7 +583,6 @@ function add_address() {
     } else if (response.data.success == 0 && response.data.code == 3) {
       add_message_to_addressing('این عنوان را قبلا ثبت کردهاید.', 'message-error');
     } else {
-      console.log(response.data)
       add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
     }
   })
@@ -593,7 +591,7 @@ function add_address() {
     btn.style.borderRadius = '10px';
     btn.innerHTML = `ثبت آدرس`;
     btn.classList.remove('disabled');
-    console.log(`Error: ${error}`)
+    Loger.ConnectionError();
   });
 }
 function submit_address() {
@@ -615,7 +613,7 @@ function submit_address() {
       add_message_to_addressing('خطای داخلی رخ داد!', 'message-error');
     }
   }).catch(error => {
-    console.log(`Error: ${error}`)
+    Loger.ConnectionError();
   });
 }
 // ***************
@@ -632,7 +630,7 @@ function CheckoutCartItems() {
     LodingLayerForCart(false);
     document.getElementById('continue-ordering-content').innerHTML = response.data;
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });
 }
 function submit_checkout_items() {
@@ -649,10 +647,10 @@ function submit_checkout_items() {
       sec_step = response.data.step;
       Ordering('auto');
     } else {
-      console.log('Error!Internal SERVER Error.')
+      Loger.ServerError();
     }
   }).catch(error => {
-    console.log(`Error: ${error}`)
+    Loger.ConnectionError();
   });
 }
 // ***************
@@ -669,7 +667,7 @@ function Receipt() {
     document.getElementById('continue-ordering-content').innerHTML = response.data;
     // load_html2pdf();
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });
 }
 
@@ -678,13 +676,19 @@ function load_html2pdf() {
   .then((html2pdf) => {
       window.html2pdf = html2pdf.default;
   })
-  .catch(error => console.error('Error loading html2pdf:', error));
+  .catch(error => {
+    Loger.Failed();
+    Loger.AddError('Error loading html2pdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
+  });
 
   import('jspdf.min.js')
   .then((jspdf) => {
       window.jspdf = jspdf.default;
   })
-  .catch(error => console.error('Error loading jspdf:', error));
+  .catch(error => {
+    Loger.Failed();
+    Loger.AddError('Error loading jspdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
+  });
 }
 
 function LodingLayerDuringSavePdf(stat) {
@@ -726,7 +730,7 @@ function prev_step() {
     sec_step = response.data.step;
     Ordering('auto');
   }).catch(error => {
-    console.log(`Error: ${error}`);
+    Loger.ConnectionError();
   });
 }
 

@@ -40,7 +40,6 @@ function active_items_listener() {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const items = Array.from(document.getElementById('carousel-container').querySelectorAll('.card'));
-    console.log(`items: ${items}`)
     function groupItems() {
         // Destroy the existing Owl Carousel
         $('.owl-carousel').trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');

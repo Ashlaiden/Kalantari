@@ -1,48 +1,3 @@
-@font-face {
-    font-family: Cinzel;
-    src: url("../fonts/cinzel/Cinzel-VariableFont_wght.ttf");
-}
-@font-face {
-    font-family: Cinzel-Regular;
-    src: url("../fonts/cinzel/Cinzel-Regular.ttf");
-}
-@font-face {
-    font-family: Cinzel-Medium;
-    src: url("../fonts/cinzel/Cinzel-Medium.ttf");
-}
-@font-face {
-    font-family: Cinzel-SemiBold;
-    src: url("../fonts/cinzel/Cinzel-SemiBold.ttf");
-}
-@font-face {
-    font-family: Cinzel-Bold;
-    src: url("../fonts/cinzel/Cinzel-Bold.ttf");
-}
-@font-face {
-    font-family: Cinzel-ExtraBold;
-    src: url("../fonts/cinzel/Cinzel-ExtraBold.ttf");
-}
-@font-face {
-    font-family: Cinzel-Black;
-    src: url("../fonts/cinzel/Cinzel-Black.ttf");
-}
-
-body{
-    font-family: 'Cinzel', serif;
-    font-size: 18px;
-    margin: 0px;
-    padding: 0px;
-    direction: rtl;
-}
-.disabled {
-    opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
-    pointer-events: none; /* Disable pointer events to prevent interaction */
-    cursor: not-allowed; /* Change cursor to 'not-allowed' to indicate*/
-    background-color: #dddddd; /* Change background color for visual indication */
-    color: #999999; /* Change text color for visual indication */
-}
-
-/* --------------------------------------------------------------- */
 /* -----------header------------ */
 .header {
     background-color: rgba(0, 0, 0, 0.9);
@@ -66,17 +21,6 @@ body{
 #nav-favorite-btn {
     display: none;
 }
-/* header {
-    width: 100%;
-    height: 10vh;
-    background-color: black;
-    color: wheat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 4rem;
-    cursor: default;
-} */
 /* --------quick-connect-------- */
 
 /* ------login-information------ */

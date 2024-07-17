@@ -45,31 +45,29 @@ class Authenticate {
       axios.post(login_url, fd)
         .then(response => {
           if (response.data.status === 'ok' && response.data.code === '200') {
+            Loger.Success();
             location.reload();
           }
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.Failed();
+          Loger.ServerError();
         });
     }
   }
   LogOut() {
     const logout_url = this.LogoutURL
-    console.log(logout_url)
     // Send the GET request with the user information in the headers
     axios.get(logout_url, {
     }).then(response => {
-      console.log('JsonData Received')
-      console.log(response.data)
-      console.log(response.data.code)
       if (response.data.status === 'ok' && response.data.code === '200') {
+        Loger.Success();
         location.reload()
       } else {
-        console.log(response)
+        Loger.Failed();
       }
     }).catch(error => {
-      console.error('Error sending GET request:', error);
+      Loger.ConnectionError();
     });
   }
 }
@@ -103,14 +101,11 @@ if (document.getElementById('login-form')) {
   });
   // ------------------------------------------
   function Login() {
-    console.log('started....')
     if (authenticate.isValid()) {
       authenticate.Login();
-      console.log('success')
     } else {
-      console.log('failed')
+      Loger.AddError('اطلاعات وارد شده معتبر نیست')
     }
-    console.log('end')
   }
   // ------------------------register-btn---------------------------
   document.getElementById('register-btn').addEventListener('click', function() {
@@ -119,10 +114,7 @@ if (document.getElementById('login-form')) {
 }
 // -------------logout--------------------
 function Logout() {
-  console.log('started....')
   authenticate.LogOut();
-  console.log('success')
-  console.log('end')
 }
 
 

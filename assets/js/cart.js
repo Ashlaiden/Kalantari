@@ -14,7 +14,6 @@ class CartClass {
       fd.append('action', '+')
       axios.post(increase_url, fd)
       .then(response => {
-          console.log(response)
           if (response.data.status === 'ok') {
             if (response.data.count == 1) {
               document.getElementById(`decrease-${id}`).children.namedItem('submit').classList.add('disabled');
@@ -30,8 +29,7 @@ class CartClass {
           }
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ConnectionError();
         });
     }
     decrease(id) {
@@ -43,7 +41,6 @@ class CartClass {
       fd.append('action', '-')
       axios.post(decrease_url, fd)
       .then(response => {
-          console.log(response)
           if (response.data.status === 'ok') {
             if (response.data.count == 1) {
               document.getElementById(`decrease-${id}`).children.namedItem('submit').classList.add('disabled');
@@ -59,8 +56,7 @@ class CartClass {
           }
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ConnectionError();
         });
     }
     delete(id) {
@@ -71,7 +67,6 @@ class CartClass {
       fd.append('uid', id)
       axios.post(delete_item_url, fd)
       .then(response => {
-          console.log(response)
           if (response.data.status === 'ok') {
             if (document.getElementById(`cart-${id}`)) {
               document.getElementById(`cart-${id}`).remove();
@@ -93,8 +88,7 @@ class CartClass {
           }
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ConnectionError();
         });
     }
 }
@@ -110,6 +104,6 @@ function update_order_info() {
       document.getElementById('cart-tax').innerText = `${response.data.tax}`;
       document.getElementById('cart-final-price').innerText = `${response.data.final_price}`;
   }).catch(error => {
-    console.error('Error sending GET request:', error);
+    Loger.ConnectionError();
   });
 }

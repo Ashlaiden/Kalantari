@@ -40,6 +40,9 @@
             <i class="fa-solid fa-xmark"></i>
         </div>
         <a href="{% url 'workshop:home_page' %}">خانه</a>
+        <a href="{% url 'dashboard:user_dashboard' %}">داشبورد</a>
+        <a href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='/cart/' %}">سبد خرید</a>
+        <a href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='/favorite/' %}">لیست علاقه مندی ها</a>
     </div>
     <div id="user-menu" class="user-menu">
         <div class="sections-container">

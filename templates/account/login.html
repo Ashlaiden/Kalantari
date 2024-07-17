@@ -1,14 +1,15 @@
+{% extends 'parent/raw.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="fa">
-<head>
+{% block raw_head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalantari | Login</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-</head>
-<body>
+{% endblock %}
+{% block raw_title %}
+	Kalantari | ورود
+{% endblock %}
+{% block raw_content %}
     <main class="main">
         <div class="login-box">
             <div class="container">
@@ -35,9 +36,10 @@
             </div>
         </div>
     </main>
+{% endblock %}
+{% block raw_script %}
     <script src="{% static 'js/login.js' %}"></script>
     <!-- axios -->
     <script src="{% static 'js/library/axios.js' %}"></script>
-    <script src="https://kit.fontawesome.com/c0cb4ebaf9.js" crossorigin="anonymous"></script>
-</body>
-</html>
+    <script src="{% static 'js/library/fontawesome.js' %}"></script>
+{% endblock %}

@@ -14,7 +14,6 @@ class CartClass {
         fd.append('uid', this.uid);
         axios.post(add_url, fd)
         .then(response => {
-            console.log(response)
             if (response.data.status === 'ok') {
               document.getElementById('add-to-cart').classList.add('hidden');
               if (response.data.full === 'true') {
@@ -67,8 +66,7 @@ class CartClass {
             update_order_info()
           })
           .catch(error => {
-            // Handle errors
-            console.error('Error submitting form:', error);
+            Loger.ServerError();
           });
       }
     increase() {
@@ -80,7 +78,7 @@ class CartClass {
       fd.append('action', '+');
       axios.post(increase_url, fd)
       .then(response => {
-          console.log(response)
+
           if (response.data.status === 'ok') {
             document.getElementById(`decrease-or-delete`).classList.remove('in-cart-delete');
             document.getElementById(`decrease-or-delete`).innerHTML = '-';
@@ -95,8 +93,7 @@ class CartClass {
           update_order_info()
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ServerError();
         });
     }
     decrease() {
@@ -108,7 +105,6 @@ class CartClass {
       fd.append('action', '-');
       axios.post(decrease_url, fd)
       .then(response => {
-          console.log(response)
           if (response.data.status === 'ok') {
             if (response.data.count == 1) {
               document.getElementById(`decrease-or-delete`).classList.add('in-cart-delete');
@@ -129,8 +125,7 @@ class CartClass {
           update_order_info()
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ServerError();
         });
     }
     delete() {
@@ -141,7 +136,6 @@ class CartClass {
       fd.append('uid', this.uid);
       axios.post(delete_item_url, fd)
       .then(response => {
-          console.log(response)
           if (response.data.status === 'ok') {
             document.getElementById('in-cart-container').remove();
             document.getElementById('prop').insertAdjacentHTML('afterend', 
@@ -161,8 +155,7 @@ class CartClass {
           update_order_info()
         })
         .catch(error => {
-          // Handle errors
-          console.error('Error submitting form:', error);
+          Loger.ServerError();
         });
     }
 }
@@ -177,7 +170,6 @@ function book_mark() {
   fd.append('uid', cart.uid);
   axios.post(url, fd)
   .then(response => {
-    console.log(response)
     if (response.data.status === 'ok') {
       var bookmark = document.getElementById('bookmark');
       if (response.data.message === 'added') {
@@ -212,8 +204,7 @@ function book_mark() {
     }
   })
   .catch(error => {
-    // Handle errors
-    console.error('Error submitting form:', error);
+    Loger.ServerError();
   });
 }
 

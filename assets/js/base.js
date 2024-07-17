@@ -12,3 +12,4 @@ function copy_to_clipboard(message) {
   
     });
 }
+

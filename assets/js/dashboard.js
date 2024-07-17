@@ -35,8 +35,7 @@ class DashboardClass {
         if (this.paths.length > 1) {
             for (var i = 0; i <= this.paths.length; i++) {
                 var path = this.paths[i];
-
-                if (!base_loaded) {
+                if (!base_loaded && path !== '') {
                     base_loaded = this.is_main_path(path)
                     if (base_loaded) {
                         base_sec = path;
@@ -87,7 +86,8 @@ class DashboardClass {
     default_section() {
         const newPath = '/dashboard/profile/';
         history.pushState(null, '', newPath); 
-        chooseSectionBtn('profile');   
+        chooseSectionBtn(document.getElementById('profile_section_btn')); 
+        this.load_base_section('profile');
     }
 
     keyExists(dict, key) {
@@ -230,7 +230,7 @@ function removeActiveSection() {
             }
         }
     } catch (error) {
-        // console.log(`Error ${error.message}`);
+        Loger.AddError('خطای داخلی مرورگر');
     }
 }
 
@@ -287,7 +287,7 @@ function cartSection() {
         LoadingLayerToggle(false);
         document.getElementById('content').innerHTML = response.data;
     }).catch(error => {
-        console.log(`Error: ${error}`);
+        Loger.ConnectionError();
     });
 }
 // ----------------favorite-------------------
@@ -301,7 +301,7 @@ function favoriteSection() {
         LoadingLayerToggle(false);
         document.getElementById('content').innerHTML = response.data;
     }).catch(error => {
-        console.log(`Error: ${error}`);
+        Loger.ConnectionError();
     });
 }
 // -----------------------profile----------------------
@@ -315,7 +315,7 @@ function profileSection() {
         LoadingLayerToggle(false);
         document.getElementById('content').innerHTML = response.data;
     }).catch(error => {
-        console.log(`Error: ${error}`);
+        Loger.ConnectionError();
     });
 }
 function FirstLoginTo() {

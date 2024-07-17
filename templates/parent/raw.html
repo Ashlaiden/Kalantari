@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <title>{% block raw_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/raw.css' %}">
+    {% block raw_head %}{% endblock %}
+</head>
+<body>
+<div id="log-container">
+
+</div>
+{% block raw_content %}{% endblock %}
+</body>
+<script type="text/javascript" src="{% static 'js/raw.js' %}"></script>
+{% block raw_script %}{% endblock %}
+</html>

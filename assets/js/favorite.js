@@ -4,12 +4,9 @@ function remove_favorite(uid) {
     const url = '/favorite/bookmark/';
     const fd = new FormData();
     fd.append('csrfmiddlewaretoken', header_csrftoken);
-    console.log(header_csrftoken)
     fd.append('uid', uid);
-    console.log(uid)
     axios.post(url, fd)
     .then(response => {
-      console.log(response)
       if (response.data.status === 'ok') {
         if (response.data.message === 'removed') {
           var favorite_item = document.getElementById(`favorite-item-${uid}`);
@@ -25,7 +22,7 @@ function remove_favorite(uid) {
     })
     .catch(error => {
       // Handle errors
-      console.error('Error submitting form:', error);
+      Loger.ConnectionError();
     });
 }
 
@@ -36,7 +33,6 @@ function add_to_cart(id) {
     fd.append('uid', id)
     axios.post(delete_item_url, fd)
     .then(response => {
-        console.log(response)
         if (response.data.status === 'ok') {
             var cart_control = document.getElementById(`favorite-item-control-${id}`)
             document.getElementById(`add-to-cart-${id}`).remove();
@@ -45,7 +41,7 @@ function add_to_cart(id) {
     })
     .catch(error => {
         // Handle errors
-        console.error('Error submitting form:', error);
+        Loger.ConnectionError();
     });
 }
 
@@ -53,12 +49,9 @@ function remove_from_cart(id) {
     const delete_item_url = '/cart/item/delete/';
     const fd = new FormData();
     fd.append('csrfmiddlewaretoken', header_csrftoken)
-    console.log(header_csrftoken)
-    console.log(id)
     fd.append('uid', id)
     axios.post(delete_item_url, fd)
     .then(response => {
-        console.log(response)
         if (response.data.status === 'ok') {
             var cart_control = document.getElementById(`favorite-item-control-${id}`)
             document.getElementById(`remove-from-cart-${id}`).remove();
@@ -67,7 +60,7 @@ function remove_from_cart(id) {
     })
     .catch(error => {
         // Handle errors
-        console.error('Error submitting form:', error);
+        Loger.ConnectionError();
     });
 }
 

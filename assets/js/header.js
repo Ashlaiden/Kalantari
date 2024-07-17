@@ -243,7 +243,7 @@ function update_order_info() {
         document.getElementById('details-discount').innerText = `${response.data.discount} تومان`;
         document.getElementById('details-final-price').innerText = `${response.data.final_price} تومان`;
     }).catch(error => {
-      console.error('Error sending GET request:', error);
+      Loger.ConnectionError();
     });
 }
 // ----------------------------------CART------------------------------------
@@ -255,7 +255,6 @@ function removeitemfromcart(id) {
     fd.append('uid', id)
     axios.post(delete_item_url, fd)
     .then(response => {
-        console.log(response)
         update_order_info()
         if (response.data.status === 'ok') {
             document.getElementById(`menu-${id}`).remove();
@@ -278,7 +277,7 @@ function removeitemfromcart(id) {
     })
     .catch(error => {
         // Handle errors
-        console.error('Error submitting form:', error);
+        Loger.ConnectionError();
     });
 }
 // ------------------------------Remobe-From-BookMark------------------------------------
@@ -286,12 +285,9 @@ function remove_book_mark(uid) {
     const url = '/favorite/bookmark/';
     const fd = new FormData();
     fd.append('csrfmiddlewaretoken', header_csrftoken);
-    console.log(header_csrftoken)
     fd.append('uid', uid);
-    console.log(uid)
     axios.post(url, fd)
     .then(response => {
-      console.log(response)
       if (response.data.status === 'ok') {
         if (response.data.message === 'removed') {
           var bookmark = document.getElementById('bookmark');
@@ -309,7 +305,7 @@ function remove_book_mark(uid) {
     })
     .catch(error => {
       // Handle errors
-      console.error('Error submitting form:', error);
+      Loger.ConnectionError();
     });
 }
 // ---------Go-To-Dash-BTN-----------
