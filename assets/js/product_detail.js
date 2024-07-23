@@ -209,6 +209,97 @@ function book_mark() {
 }
 
 
+
+window.addEventListener("scroll", function () {
+  var top_off = document.getElementById('product-top-off');
+  var container = document.getElementById('page-container');
+  if (window.scrollY > (top_off.nextElementSibling.getBoundingClientRect().bottom + top_off.nextElementSibling.offsetHeight)) {
+    if (window.getComputedStyle(top_off).height == '0px' && window.getComputedStyle(container).position !== 'sticky') {
+      top_off.style.height = '50px';
+      top_off.style.position = 'fixed';
+      // top_off.style.borderBottom = '1px solid black';
+      top_off.style.top = '80px';
+      top_off.style.left = '0px';
+      top_off.style.zIndex = '5';
+    }
+  } else {
+    if (window.getComputedStyle(top_off).height == '50px' && window.getComputedStyle    
+      (container).position == 'static') {
+        top_off.style.position = 'static';
+      top_off.style.height = '0px';
+    }
+  }
+});
+
+function GoToTopProduct() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+}
+
+
+
+// var top_off = document.getElementById('product-top-off');
+
+// function product_top_off() {
+//   console.log('111111111111111111');
+//   console.log(window.getComputedStyle(top_off).height);
+//   console.log(window.getComputedStyle(top_off).display);
+//   if (window.getComputedStyle(top_off).height == '0px' && window.getComputedStyle(top_off).display !== 'none') {
+//     console.log('@@@@@@@@@@@@@@@@@@@@@@@');
+//     top_off.style.display = 'flex';
+//     top_off.style.height = '50px';
+//   }
+// }
+
+// var observer = new IntersectionObserver(function(entries) {
+//     entries.forEach(function(entry) {
+//         if (!entry.isIntersecting) {
+//               product_top_off();
+//               }
+//     });
+// });
+
+// observer.observe(top_off);
+
+
+
+
+// window.addEventListener('scroll', function() {
+//   var top_off = document.getElementById('product-top-off');
+//   var rect = top_off.getBoundingClientRect();
+//   if (rect.top <= 0) {
+//     top_off.classList.add('top-off');
+//   } else {
+//     top_off.classList.remove('top-off');
+//   }
+// });
+
+
+
+// // Get the element
+// var element = document.getElementById('product-top-off');
+
+// // Create a new intersection observer
+// var observer = new IntersectionObserver(function(entries) {
+//     // Loop through the entries
+//     entries.forEach(function(entry) {
+//         // If the element is in the viewport
+//         if (entry.isIntersecting) {
+//             // Remove the 'sticky' class
+//             element.classList.remove('top-off');
+//         } else {
+//             // Add the 'sticky' class
+//             element.classList.add('top-off');
+//         }
+//     });
+// });
+
+// // Start observing the element
+// observer.observe(element);
+
+
 // window.onscroll = function() {
 //     var detail = document.getElementById('detail');
 //     var footer = document.getElementById('footer');

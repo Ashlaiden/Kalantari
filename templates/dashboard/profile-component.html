@@ -14,7 +14,7 @@
                     <p>آدرس ایمیل شما: </p>
                     <span>{{ email_address }}</span>
                     {% if not email_confirmed %}
-                        <span style="color: orangered">(تایید نشده!)</span>
+                        <span id="email-unverified-warning" style="color: orangered">(تایید نشده!)</span>
                         <button class="disabled">verify</button>
                     {% endif %}
                 </div>

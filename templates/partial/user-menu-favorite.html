@@ -8,7 +8,7 @@
                     <a href="{{ item.product.get_absolute_url }}" style="text-decoration: none; color: inherit;display: flex;flex-direction: row;">
                         <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
                         <section class="item-menu-des">
-                            <span>{{ item.product.title }}</span>
+                            <span>{{ item.product.title | truncatechars:65 | truncatewords:7 }}</span>
                             <div class="item-uid">کد کالا: {{ item.product.uid }}</div>
                         </section>
                     </a>

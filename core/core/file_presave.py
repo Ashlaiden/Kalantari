@@ -21,6 +21,8 @@ def get_sender(instance):
         return 'socialmedia'
     elif name == 'sitesetting':
         return 'sitesetting'
+    elif name == 'branch':
+        return 'branch'
 
 
 def get_sender_field_name():
@@ -55,5 +57,7 @@ def upload_image_path(instance, filename):
         return f'settings/social_media/socialmedia-{final_name}'
     elif sender == 'sitesetting':
         return f'settings/site_setting/{instance.id}/setting-{final_name}'
+    elif sender == 'branch':
+        return f'settings/tags/branch/{instance.name}-{final_name}'
 
 

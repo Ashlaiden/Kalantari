@@ -25,14 +25,14 @@ SECRET_KEY = 'django-insecure-xp8)l5o9(7ow7frlzc5ogpgeqygo46^c*=*y0scf#bf84k!kp#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['c576-45-144-214-59.ngrok-free.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['8835-86-57-43-128.ngrok-free.app', 'localhost', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
-    'https://c576-45-144-214-59.ngrok-free.app',
+    'https://8835-86-57-43-128.ngrok-free.app',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://c576-45-144-214-59.ngrok-free.app",
+    "https://8835-86-57-43-128.ngrok-free.app",
 ]
 
 
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'favorite',
     'dashboard',
     'django.contrib.humanize',
+    "tags.apps.TagsConfig"
     # "dashboard.apps.DashboardConfig"
 ]
 

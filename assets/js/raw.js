@@ -18,7 +18,7 @@ class LogClass {
         });
     }
 
-    remove_log(log) {
+    remove_log(id) {
         var data = document.getElementById(id);
         data.style.transition = 'opacity 0.7s ease';
         data.style.opacity = '0';
@@ -47,7 +47,7 @@ class LogClass {
     add_log(el) {
         el.id = this.generateUUID();
         if (this.container.children.length >= 5) {
-            this.remove_log(this.container.lastChild);
+            this.remove_log(this.container.lastElementChild.getAttribute('id'));
         }
         this.container.insertBefore(el, this.container.firstChild);
         this.active_log(el.id)

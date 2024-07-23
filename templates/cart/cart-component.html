@@ -4,17 +4,18 @@
 
 <div class="cart">
     <ul id="cart-items-ul" class="items">
-    {% if items.count == 0 %}
-    	<div id="empty-cart">
-            <p>هیچ کالایی در سبد خرید شما وجود ندارد.</p>
-            <a href="{% url 'workshop:product_man_list' %}">صفحه محصولات</a>
-        </div>
-    {% endif %} 
+        {% if items.count == 0 %}
+            <div id="empty-cart">
+                <p>هیچ کالایی در سبد خرید شما وجود ندارد.</p>
+                <a href="{% url 'workshop:product_list' branch=pattern %}">صفحه محصولات</a>
+            </div>
+        {% endif %}
         {% for item in items %}
             <li class="item" id="cart-{{ item.uid }}">
                 <div class="item-info">
                     <a class="kala-link" href="{{ item.product.get_absolute_url }}">
-                        <img class="cart-item-image" src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
+                        <img class="cart-item-image" src="{{ item.product.cover_image.url }}"
+                             alt="{{ item.product.title }}">
                         <div class="cart-item-title-and-code">
                             <h3 class="cart-item-title">{{ item.product.title }}</h3>
                             <code class="cart-item-code">کد کالا: {{ item.product.uid }}</code>
@@ -23,33 +24,38 @@
                 </div>
                 <div class="item-control">
                     <div class="change-count">
-                                <form id="decrease-{{ item.uid }}" action="" class="decrease">
-                                    {% if item.count == 1 %}
-                                        <button name="submit" class="disabled" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
-                                    {% else %}
-                                        <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
-                                    {% endif %}
-                                </form>
-                                <section class="count-section" id="count-section-{{ item.uid }}">
-                                    <span id="count-{{ item.uid }}">{{ item.count }}</span>
-                                    {% if item.count == item.product.stock %}
-                                        <p id="max-{{ item.uid }}">حداکثر</p>
-                                    {% endif %}
-                                </section>
-                                <form id="increase-{{ item.uid }}" action="" class="increase">
-                                    <button class="{% if item.count == item.product.stock %}disabled{% endif %}" name="submit" type="button" onclick="cart.increase({{ item.uid }})">+</button>
-                                </form>
-                            </div>
-                            <section class="detail-price">
+                        <form id="decrease-{{ item.uid }}" action="" class="decrease">
+                            {% if item.count == 1 %}
+                                <button name="submit" class="disabled" type="button"
+                                        onclick="cart.decrease({{ item.uid }})">-
+                                </button>
+                            {% else %}
+                                <button name="submit" type="button" onclick="cart.decrease({{ item.uid }})">-</button>
+                            {% endif %}
+                        </form>
+                        <section class="count-section" id="count-section-{{ item.uid }}">
+                            <span id="count-{{ item.uid }}">{{ item.count }}</span>
+                            {% if item.count == item.product.stock %}
+                                <p id="max-{{ item.uid }}">حداکثر</p>
+                            {% endif %}
+                        </section>
+                        <form id="increase-{{ item.uid }}" action="" class="increase">
+                            <button class="{% if item.count == item.product.stock %}disabled{% endif %}" name="submit"
+                                    type="button" onclick="cart.increase({{ item.uid }})">+
+                            </button>
+                        </form>
+                    </div>
+                    <section class="detail-price">
                                 <span>
                                     {{ item.price | intcomma }}
                                 </span>
-                                <p>تومان</p>
-                            </section>
-                            <form id="delete-{{ item.uid }}" action="" class="delete">
-                                <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->
-                                <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button>
-                            </form>
+                        <p>تومان</p>
+                    </section>
+                    <form id="delete-{{ item.uid }}" action="" class="delete">
+                        <!-- <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i class="fa-solid fa-trash-can"></i></button> -->
+                        <button name="submit" type="button" class="delete" onclick="cart.delete({{ item.uid }})"><i
+                                class="fa-solid fa-trash-can"></i></button>
+                    </form>
                 </div>
             </li>
         {% endfor %}
@@ -93,15 +99,18 @@
         <form class="order-offer-code">
             <div class="order-offer-code-title">کد تخفیف</div>
             {% csrf_token %}
-            <div class="offer-code-input">
-                <label for="offer-code">کد تخفیف: </label>
-                <input id="offer-code" name="offer-code" type="text" placeholder="code">
+            <div class="code-cont">
+                <div class="offer-code-input">
+                    <label for="offer-code">کد تخفیف: </label>
+                    <input id="offer-code" name="offer-code" type="text" placeholder="code">
+                </div>
+                {% if items.count == 0 %}
+                    <button class="disabled" id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد
+                    </button>
+                {% else %}
+                    <button id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
+                {% endif %}
             </div>
-            {% if items.count == 0 %}
-                <button class="disabled" id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
-            {% else %}
-                <button id="apply-offer-code" type="button" name="apply-offer-code">اعمال کد</button>
-            {% endif %}
             <div class="code-offered">
                 <p>مقدار تخفیف:</p>
                 <section>
@@ -114,14 +123,17 @@
 
     <div class="continue-order">
         {% if items.count == 0 %}
-            <button class="disabled" id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+            <button class="disabled" id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">
+                ثبت سفارش و نهایی کردن
+            </button>
         {% else %}
-            <button id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی کردن</button>
+            <button id="continue-order" onclick="Ordering('auto')" name="continue-order" type="button">ثبت سفارش و نهایی
+                کردن
+            </button>
         {% endif %}
     </div>
 
 </div>
-
 
 
 {#<div class="cart">#}
@@ -221,11 +233,6 @@
 {#    </div>#}
 {#    #}
 {#</div>#}
-
-
-
-
-
 
 
 {#<div class="container order">#}

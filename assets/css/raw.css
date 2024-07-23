@@ -7,18 +7,22 @@
     top: 80px;
     left: 0px;
     width: 25%;
+    min-height: 0px;
+    pointer-events: none;
     /* min-width: 20%; */
     /* max-width: 25%; */
-    height: 50vh;
+    /* height: 50vh; */
     /* background-color: red; */
     padding: 15px 10px;
     display: flex;
+    z-index: 10000;
     flex-direction: column;
     align-items: center;
     justify-content: start;
     box-sizing: border-box;
 }
 #log-container .log {
+    pointer-events: visible;
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 1);
     color: white;
@@ -32,7 +36,7 @@
     padding: 5px 10px;
     box-sizing: border-box;
     direction: rtl;
-    font-size: 0.8;
+    font-size: 0.8rem;
     transition: transform 2s ease-in-out;
     box-shadow: 0px 0px 9px 3px rgba(128, 128, 128, 0.5);
     transform: translate3d(1px, 1px, 3px);
@@ -59,4 +63,76 @@
 #log-container .log.log-message {
     max-width: 100%;
     overflow: hidden;
+}
+
+
+
+
+
+
+/* -------------------Responsive-Page------------------------- */
+@media (min-width: 769px) and (max-width: 1200px) {
+    #log-container {
+        width: 40%;
+        padding: 15px 10px;
+    }
+    #log-container .log {
+        min-height: 30px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        margin-bottom: 15px;
+    }
+    /* #log-container .log.log-error i {
+        margin-right: 8px;
+    }
+    #log-container .log.log-warning i {
+        margin-right: 8px;
+    }
+    #log-container .log.log-success i {
+        margin-right: 8px;
+    } */
+}
+
+@media (min-width: 427px) and (max-width: 768px) {
+    #log-container {
+        width: 50%;
+        padding: 15px 10px;
+    }
+    #log-container .log {
+        min-height: 25px;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+    /* #log-container .log.log-error i {
+        margin-right: 7px;
+    }
+    #log-container .log.log-warning i {
+        margin-right: 7px;
+    }
+    #log-container .log.log-success i {
+        margin-right: 7px;
+    } */
+}
+
+@media (max-width: 427px) {
+    #log-container {
+        width: 100%;
+        padding: 15px 10px;
+    }
+    #log-container .log {
+        min-height: 20px;
+        padding: 2px 5px;
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+    }
+    /* #log-container .log.log-error i {
+        margin-right: 5px;
+    }
+    #log-container .log.log-warning i {
+        margin-right: 5px;
+    }
+    #log-container .log.log-success i {
+        margin-right: 5px;
+    } */
 }

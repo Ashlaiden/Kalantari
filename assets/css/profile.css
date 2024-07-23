@@ -147,11 +147,157 @@
     background-color: red;
     color: white;
     font-family: 'Cairo', serif;
-    font: 0.8rem;
+    font-size: 0.9rem;
     word-spacing: 5px;
     transition: all 0.3s;
 }
 .profile .profile-cards .profile-card .card-row.name-and-logout button:hover {
     background-color: white;
     color: red;
+}
+
+
+
+
+
+
+
+
+/* -------------------Responsive-Page------------------------- */
+/* @media (min-width: 769px) and (max-width: 1200px) {
+
+} */
+
+@media (max-width: 768px) {
+    #first-login-to-your-account {
+        margin: 8px auto;
+        border-radius: 5px;
+    }
+    #first-login-to-your-account span {
+        font-size: 1.2rem;
+        word-spacing: 5px;
+    }
+    #first-login-to-your-account .btns {
+        margin-top: 25px;
+        width: 250px;
+    }
+    #first-login-to-your-account .btns button {
+        height: 30px;
+        border-radius: 5px;
+    }
+    #first-login-to-your-account .btns div {
+        font-size: 0.8rem;
+    }
+
+
+
+
+
+    .profile .profile-cards {
+        margin: 5px auto;
+    }
+    .profile .profile-cards .profile-card {
+        width: 100%;
+        min-height: 10vh;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        padding: 5px 5px;
+    }
+    .profile .profile-cards .profile-card .card-row {
+        border-radius: 5px;
+        padding: 0px 5px;
+        margin: 5px;
+    }
+    .profile .profile-cards .profile-card .card-row span {
+        margin-right: 10px;
+        font-size: 0.7rem;
+    }
+    .profile .profile-cards .profile-card .card-row p {
+        margin-right: 10px;
+        font-size: 0.6rem;
+    }
+    .profile .profile-cards .profile-card .card-row.email-info button {
+        margin-right: 5px;
+        min-width: 40px;
+        height: 20px;
+        font-size: 0.7rem;
+        border-radius: 10px;
+    }
+    .profile .profile-cards .profile-card .card-row.email-info #email-unverified-warning {
+        font-size: 0.7rem;
+    }
+    .profile .profile-cards .profile-card .card-row.name-and-logout button {
+        width: 150px;
+        height: 30px;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        word-spacing: 7px;
+    }
+}
+
+@media (max-width: 427px) {
+    #first-login-to-your-account {
+        margin: 5px auto;
+        border-radius: 5px;
+    }
+    #first-login-to-your-account span {
+        font-size: 1rem;
+        word-spacing: 3px;
+    }
+    #first-login-to-your-account .btns {
+        margin-top: 20px;
+        width: 200px;
+    }
+    #first-login-to-your-account .btns button {
+        height: 30px;
+        border-radius: 5px;
+    }
+    #first-login-to-your-account .btns div {
+        font-size: 0.6rem;
+    }
+
+
+
+
+
+    .profile .profile-cards {
+        margin: 5px auto;
+    }
+    .profile .profile-cards .profile-card {
+        width: 100%;
+        min-height: 10vh;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        padding: 5px 5px;
+    }
+    .profile .profile-cards .profile-card .card-row {
+        border-radius: 5px;
+        padding: 0px 5px;
+        margin: 5px;
+    }
+    .profile .profile-cards .profile-card .card-row span {
+        margin-right: 10px;
+        font-size: 0.7rem;
+    }
+    .profile .profile-cards .profile-card .card-row p {
+        margin-right: 10px;
+        font-size: 0.5rem;
+    }
+    .profile .profile-cards .profile-card .card-row.email-info button {
+        margin-right: 5px;
+        min-width: 40px;
+        height: 20px;
+        font-size: 0.7rem;
+        border-radius: 10px;
+    }
+    .profile .profile-cards .profile-card .card-row.email-info #email-unverified-warning {
+        font-size: 0.4rem;
+    }
+    .profile .profile-cards .profile-card .card-row.name-and-logout button {
+        width: 100px;
+        height: 25px;
+        border-radius: 5px;
+        font-size: 0.5rem;
+        word-spacing: 3px;
+    }
 }

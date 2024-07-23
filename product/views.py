@@ -25,6 +25,9 @@ def product_detail(request, uid, slug):
         ip_address=get_user_IP(request),
         user_id=request.user.id if request.user.is_authenticated else None,
         product_uid=product.uid
+
+
+
     )
     in_cart = OrderItem.order_detail_manager.is_exist(
         user=request.user if request.user.is_authenticated else None,

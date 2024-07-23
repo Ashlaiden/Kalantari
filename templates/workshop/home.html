@@ -3,10 +3,10 @@
 {% load static %}
 {% block title %}خانه{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 {% block content %}
-	<main class="main">
+    <main class="main">
         <div class="background-video">
             <video id="background-video" autoplay loop muted>
                 <source src="{% static 'videos/main/bg-video.mp4' %}" type="video/mp4">
@@ -17,39 +17,49 @@
             </div>
         </div>
         <div class="categories">
-            <div class="category woman">
-                <a class="catinter"  href="{% url 'workshop:product_man_list' %}">
-                    <img src="{% static 'images/main/Womens.webp' %}" alt="womens-category">
-                    <span>
-                        <div>
-                            <strong class="cat-inside-section">بانو</strong>
-                            <p class="cat-for-section">برای </p>
-                            <!-- <button>دسته بندی بانوان</button> -->
-                        </div>
-                    </span>
+            {% for branch in branchs %}
+                <a class="category" href="{{ branch.get_absolute_url }}">
+                    <img class="cat-img" src="{{ branch.image.url }}" alt="{{ branch.name }}-category">
+                    <div>
+                        <strong class="cat-inside-section">{{ branch.title }}</strong>
+                        <p class="cat-for-section">برای </p>
+                        <!-- <button>دسته بندی بانوان</button> -->
+                    </div>
                 </a>
-            </div>
-            <div class="category man">
-                <a class="catinter" href="{% url 'workshop:product_woman_list' %}">
-                    <span>
-                        <div>
-                            <strong class="cat-inside-section">آقا</strong>
-                            <p class="cat-for-section">برای </p>
-                            <!-- <button>دسته بندی آقایان</button> -->
-                        </div>
-                    </span>
-                    <img src="{% static 'images/main/Mens.webp' %}" alt="mens-category">
-                </a>
-            </div>
+            {% endfor %}
+            {#            <div class="category woman">#}
+            {#                <a class="catinter" href="{% url 'workshop:product_man_list' %}">#}
+            {#                    <img src="{% static 'images/main/Womens.webp' %}" alt="womens-category">#}
+            {#                    <span>#}
+            {#                        <div>#}
+            {#                            <strong class="cat-inside-section">بانو</strong>#}
+            {#                            <p class="cat-for-section">برای </p>#}
+            {#                            <!-- <button>دسته بندی بانوان</button> -->#}
+            {#                        </div>#}
+            {#                    </span>#}
+            {#                </a>#}
+            {#            </div>#}
+            {#            <div class="category man">#}
+            {#                <a class="catinter" href="{% url 'workshop:product_woman_list' %}">#}
+            {#                    <span>#}
+            {#                        <div>#}
+            {#                            <strong class="cat-inside-section">آقا</strong>#}
+            {#                            <p class="cat-for-section">برای </p>#}
+            {#                            <!-- <button>دسته بندی آقایان</button> -->#}
+            {#                        </div>#}
+            {#                    </span>#}
+            {#                    <img src="{% static 'images/main/Mens.webp' %}" alt="mens-category">#}
+            {#                </a>#}
+            {#            </div>#}
         </div>
 
         <!-- <div class="second">
             <p>hello</p>
         </div> -->
-    
-    {% render_partial 'partials.views.highest_score_products' %}
-    
-    
+
+        {% render_partial 'partials.views.highest_score_products' %}
+
+
     </main>
 {% endblock %}
 {% block script %}

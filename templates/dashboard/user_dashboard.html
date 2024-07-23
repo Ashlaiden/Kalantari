@@ -68,7 +68,7 @@
     {{ paths|json_script:'_paths' }}
 <script>
     dashboard.paths = JSON.parse(document.getElementById('_paths').textContent);
-    dashboard.start();
+    dashboard.start(dashboard.paths);
 </script>
 <script src="{% static 'js/base.js' %}"></script>
 <script src="{% static 'js/library/axios.js' %}"></script>

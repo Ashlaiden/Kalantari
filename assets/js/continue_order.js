@@ -36,7 +36,7 @@ function updateProgres() {
   steps.forEach((step, i) => {
     step.classList.remove('pending');
   });
-  
+
   if (active > last_step) {
     steps.forEach((step, i) => {
       if (i < (active - 1)) {
@@ -73,28 +73,28 @@ function updateProgres() {
   //   steps[end].classList.add('pending');
 
 
-    // steps.forEach((step, i) => {
-    //   st = i + 1;
-      // if (st < active) {
-      //   step.classList.remove('pending')
-      //   step.classList.add('active');
-      //   step.innerHTML = `<i class="fa-solid fa-check"></i>`;
-      // } else {
-      //   step.classList.remove('pending');
-      //   step.classList.remove('active');
-      //   step.innerHTML = st;
-      // }
-      // if (st == active) {
-      //   steps[i - 1].classList.remove('pending');
-      //   sleep(200);
-      //   steps[i - 1].classList.add('active');
-      //   sleep(200)
-      //   progressBar.style.width = ((active - 1) / (steps.length - 1)) * 100 + "%";
-      //   sleep(700);
-      //   step.classList.add('pending');
-      // }
+  // steps.forEach((step, i) => {
+  //   st = i + 1;
+  // if (st < active) {
+  //   step.classList.remove('pending')
+  //   step.classList.add('active');
+  //   step.innerHTML = `<i class="fa-solid fa-check"></i>`;
+  // } else {
+  //   step.classList.remove('pending');
+  //   step.classList.remove('active');
+  //   step.innerHTML = st;
+  // }
+  // if (st == active) {
+  //   steps[i - 1].classList.remove('pending');
+  //   sleep(200);
+  //   steps[i - 1].classList.add('active');
+  //   sleep(200)
+  //   progressBar.style.width = ((active - 1) / (steps.length - 1)) * 100 + "%";
+  //   sleep(700);
+  //   step.classList.add('pending');
+  // }
 
-    // });
+  // });
   // } else {
   //   strat = active;
   //   end = active - 1;
@@ -106,27 +106,27 @@ function updateProgres() {
   //   steps[end].innerHTML = active;
   //   sleep(200);
   //   steps[end].classList.add('pending');
-    // stl = steps.length
-    // for (i = 1; i <= stl; i++) {
-    //   st = stl - i;
-    //   if (st > active) {
-    //     steps[st].classList.remove('pending');
-    //   }
-    //   if (st == active) {
-    //     steps[st].classList.remove('pending');
-    //     sleep(200)
-    //     progressBar.style.width = ((active - 1) / (steps.length - 1)) * 100 + "%";
-    //     sleep(700);
-    //     steps[st].classList.remove('active');
-    //     steps[st].innerHTML = st;
-    //     sleep(200);
-    //     steps[st].classList.add('pending');
-    //   }
-    // }
-    // steps.reverse().forEach((step, i) => {
-    //   st = stl - i;
+  // stl = steps.length
+  // for (i = 1; i <= stl; i++) {
+  //   st = stl - i;
+  //   if (st > active) {
+  //     steps[st].classList.remove('pending');
+  //   }
+  //   if (st == active) {
+  //     steps[st].classList.remove('pending');
+  //     sleep(200)
+  //     progressBar.style.width = ((active - 1) / (steps.length - 1)) * 100 + "%";
+  //     sleep(700);
+  //     steps[st].classList.remove('active');
+  //     steps[st].innerHTML = st;
+  //     sleep(200);
+  //     steps[st].classList.add('pending');
+  //   }
+  // }
+  // steps.reverse().forEach((step, i) => {
+  //   st = stl - i;
 
-    // });
+  // });
   // }
 
   // if (last_step < active) {
@@ -222,12 +222,12 @@ function LodingLayerForCart(stat) {
     }
     return true
   } else if (stat == false) {
-      if (!loadingLayer.classList.contains('hidden')) {
-          loadingLayer.classList.add('hidden');
-      }
-      return true
+    if (!loadingLayer.classList.contains('hidden')) {
+      loadingLayer.classList.add('hidden');
+    }
+    return true
   } else {
-      return false
+    return false
   }
 }
 // ----------------------
@@ -277,7 +277,7 @@ function Ordering(sec) {
   });
 
   const newPath = '/dashboard/cart/order/';
-  history.pushState(null, '', newPath);  
+  history.pushState(null, '', newPath);
 
   switch (sec) {
     case 'auto':
@@ -326,7 +326,7 @@ function scroll_to_top_of_section() {
     behavior: 'smooth'
   });
 }
-window.onload = function() {
+window.onload = function () {
   scroll_to_top_of_section();
 };
 function ContinueCart() {
@@ -345,7 +345,7 @@ function ContinueCart() {
   }).catch(error => {
     sec_step = 'none';
     Loger.ConnectionError();
-  });  
+  });
 }
 
 
@@ -362,7 +362,7 @@ function Addressing() {
   var addressing_url = '/cart/_addressing_package/';
 
   const newPath = '/dashboard/cart/order/addressing/';
-  history.pushState(null, '', newPath);  
+  history.pushState(null, '', newPath);
 
 
   axios.get(addressing_url).then(response => {
@@ -406,30 +406,30 @@ function addressing_input_() {
   let address_title = false;
   let address_addr = false;
   document.getElementById('add-address-title').addEventListener('input', function () {
-      const value = this.value;
-      if (value.length >= 4) {
-          address_title = true;
-      } else {
-          address_title = false;
-      }
-      if (address_title && address_addr) {
-          document.getElementById('submit-add-address').classList.remove('disabled');
-      } else {
-          document.getElementById('submit-add-address').classList.add('disabled');
-      }
+    const value = this.value;
+    if (value.length >= 4) {
+      address_title = true;
+    } else {
+      address_title = false;
+    }
+    if (address_title && address_addr) {
+      document.getElementById('submit-add-address').classList.remove('disabled');
+    } else {
+      document.getElementById('submit-add-address').classList.add('disabled');
+    }
   });
   document.getElementById('add-address-addr').addEventListener('input', function () {
-      const value = this.value;
-      if (value.length >= 15) {
-          address_addr = true;
-      } else {
-          address_addr = false;
-      }
-      if (address_title && address_addr) {
-          document.getElementById('submit-add-address').classList.remove('disabled');
-      } else {
-          document.getElementById('submit-add-address').classList.add('disabled');
-      }
+    const value = this.value;
+    if (value.length >= 15) {
+      address_addr = true;
+    } else {
+      address_addr = false;
+    }
+    if (address_title && address_addr) {
+      document.getElementById('submit-add-address').classList.remove('disabled');
+    } else {
+      document.getElementById('submit-add-address').classList.add('disabled');
+    }
   });
 
 }
@@ -445,10 +445,10 @@ function add_message_to_addressing(message, cls) {
     <section></section>
     <span id="add-address-form-message-content">${message}</span>
 </div>`);
-setTimeout(() => {
-  document.getElementById('add-address-form-message').remove();
-  messaged = false;
-}, 10000);
+  setTimeout(() => {
+    document.getElementById('add-address-form-message').remove();
+    messaged = false;
+  }, 10000);
 }
 // let edit_flag = false;
 // let editing_id = 0;
@@ -475,27 +475,27 @@ function delete_address(id) {
   fd.append('id', id);
 
   axios.post(delete_url, fd)
-  .then(response => {
-    if (response.data.success == 1) {
-      add_message_to_addressing('عملیات با موفقیت انجام شد.', 'message-success');
-      var wbd = document.getElementById(`select-address-${id}`);
-      if (wbd.querySelector('.radio-btn').checked) {
-        address_selected = false;
-        if (!document.getElementById('confirm-address-and-continue').classList.contains('disabled')) {
-          document.getElementById('confirm-address-and-continue').classList.add('disabled');
+    .then(response => {
+      if (response.data.success == 1) {
+        add_message_to_addressing('عملیات با موفقیت انجام شد.', 'message-success');
+        var wbd = document.getElementById(`select-address-${id}`);
+        if (wbd.querySelector('.radio-btn').checked) {
+          address_selected = false;
+          if (!document.getElementById('confirm-address-and-continue').classList.contains('disabled')) {
+            document.getElementById('confirm-address-and-continue').classList.add('disabled');
+          }
         }
+        wbd.remove();
+        fm = document.getElementById('choose-address-form');
+        if (fm.children.length == 1) {
+          document.getElementById('addresses').insertAdjacentHTML('afterbegin', `<section id="emtpy-address">هیچ ادرسی برای شما ثبت نشده است.</section>`);
+        }
+      } else {
+        add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
       }
-      wbd.remove();
-      fm = document.getElementById('choose-address-form');
-      if (fm.children.length == 1) {
-        document.getElementById('addresses').insertAdjacentHTML('afterbegin', `<section id="emtpy-address">هیچ ادرسی برای شما ثبت نشده است.</section>`);
-      }
-    } else {
-      add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
-    }
-  }).catch(error => {
-    Loger.ConnectionError();
-  });
+    }).catch(error => {
+      Loger.ConnectionError();
+    });
 
 
 
@@ -552,19 +552,19 @@ function add_address() {
 
   // }
   axios.post(addressing_url, fd)
-  .then(response => {
-    btn.style.width = '100%';
-    btn.style.borderRadius = '10px';
-    btn.innerHTML = `ثبت آدرس`;
-    btn.classList.remove('disabled');
-    if (response.data.success == 1) {
-      add_message_to_addressing('عملیات با موفقیت انجام شد.', 'message-success');
-      var item = response.data.content;
-      fm = document.getElementById('choose-address-form');
-      if (fm.children.length == 1) {
-        document.getElementById('emtpy-address').remove();
-      }
-      fm.insertAdjacentHTML('afterbegin', `<div id="select-address-${item.id}" class="select-address" onclick="selectRadio('${item.id}')">
+    .then(response => {
+      btn.style.width = '100%';
+      btn.style.borderRadius = '10px';
+      btn.innerHTML = `ثبت آدرس`;
+      btn.classList.remove('disabled');
+      if (response.data.success == 1) {
+        add_message_to_addressing('عملیات با موفقیت انجام شد.', 'message-success');
+        var item = response.data.content;
+        fm = document.getElementById('choose-address-form');
+        if (fm.children.length == 1) {
+          document.getElementById('emtpy-address').remove();
+        }
+        fm.insertAdjacentHTML('afterbegin', `<div id="select-address-${item.id}" class="select-address" onclick="selectRadio('${item.id}')">
                     <input class="radio-btn" type="radio" id="radio-btn-${item.id}" name="address" value="${item.id}">
                     <div class="name-and-date">
                         <p>${truncateString(item.title, 15)}</p>
@@ -575,24 +575,24 @@ function add_address() {
                     </section>
                     <button onclick="delete_address(${item.id})" type="button" class="delete-address"><i class="fa-solid fa-trash"></i></button>
                 </div>`);
-      selectRadio(item.id);
-      document.getElementById('add-address-title').value = '';
-      document.getElementById('add-address-addr').value = '';
-    } else if (response.data.success == 0 && response.data.code == 5) {
-      add_message_to_addressing('تعداد ادرس های ثبت شده شما به حداکثز رسیده است', 'message-error');
-    } else if (response.data.success == 0 && response.data.code == 3) {
-      add_message_to_addressing('این عنوان را قبلا ثبت کردهاید.', 'message-error');
-    } else {
-      add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
-    }
-  })
-  .catch(error => {
-    btn.style.width = '100%';
-    btn.style.borderRadius = '10px';
-    btn.innerHTML = `ثبت آدرس`;
-    btn.classList.remove('disabled');
-    Loger.ConnectionError();
-  });
+        selectRadio(item.id);
+        document.getElementById('add-address-title').value = '';
+        document.getElementById('add-address-addr').value = '';
+      } else if (response.data.success == 0 && response.data.code == 5) {
+        add_message_to_addressing('تعداد ادرس های ثبت شده شما به حداکثز رسیده است', 'message-error');
+      } else if (response.data.success == 0 && response.data.code == 3) {
+        add_message_to_addressing('این عنوان را قبلا ثبت کردهاید.', 'message-error');
+      } else {
+        add_message_to_addressing('عملیات با خطا مواجه شد.', 'message-error');
+      }
+    })
+    .catch(error => {
+      btn.style.width = '100%';
+      btn.style.borderRadius = '10px';
+      btn.innerHTML = `ثبت آدرس`;
+      btn.classList.remove('disabled');
+      Loger.ConnectionError();
+    });
 }
 function submit_address() {
   let addr_selected = document.querySelector('.selected').querySelector('.radio-btn').value;
@@ -604,17 +604,17 @@ function submit_address() {
   fd.append('id', addr_selected);
 
   axios.post(submit_address_url, fd)
-  .then(response => {
-    if (response.data.success == 1) {
-      LodingLayerForCart(true);
-      sec_step = response.data.step;
-      Ordering('auto');
-    } else {
-      add_message_to_addressing('خطای داخلی رخ داد!', 'message-error');
-    }
-  }).catch(error => {
-    Loger.ConnectionError();
-  });
+    .then(response => {
+      if (response.data.success == 1) {
+        LodingLayerForCart(true);
+        sec_step = response.data.step;
+        Ordering('auto');
+      } else {
+        add_message_to_addressing('خطای داخلی رخ داد!', 'message-error');
+      }
+    }).catch(error => {
+      Loger.ConnectionError();
+    });
 }
 // ***************
 function CheckoutCartItems() {
@@ -623,7 +623,7 @@ function CheckoutCartItems() {
   var checkout_url = '/cart/_check_cart_items/';
 
   const newPath = '/dashboard/cart/order/checkout/';
-  history.pushState(null, '', newPath);  
+  history.pushState(null, '', newPath);
 
 
   axios.get(checkout_url).then(response => {
@@ -641,17 +641,17 @@ function submit_checkout_items() {
   fd.append('accept', true);
 
   axios.post(submit_checkout_url, fd)
-  .then(response => {
-    if (response.data.success == 1) {
-      LodingLayerForCart(true);
-      sec_step = response.data.step;
-      Ordering('auto');
-    } else {
-      Loger.ServerError();
-    }
-  }).catch(error => {
-    Loger.ConnectionError();
-  });
+    .then(response => {
+      if (response.data.success == 1) {
+        LodingLayerForCart(true);
+        sec_step = response.data.step;
+        Ordering('auto');
+      } else {
+        Loger.ServerError();
+      }
+    }).catch(error => {
+      Loger.ConnectionError();
+    });
 }
 // ***************
 function Receipt() {
@@ -660,7 +660,7 @@ function Receipt() {
   var receipt_url = '/cart/_receipt/';
 
   const newPath = '/dashboard/cart/order/receipt/';
-  history.pushState(null, '', newPath);  
+  history.pushState(null, '', newPath);
 
   axios.get(receipt_url).then(response => {
     LodingLayerForCart(false);
@@ -673,22 +673,22 @@ function Receipt() {
 
 function load_html2pdf() {
   import('html2pdf.bundle.min.js')
-  .then((html2pdf) => {
+    .then((html2pdf) => {
       window.html2pdf = html2pdf.default;
-  })
-  .catch(error => {
-    Loger.Failed();
-    Loger.AddError('Error loading html2pdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
-  });
+    })
+    .catch(error => {
+      Loger.Failed();
+      Loger.AddError('Error loading html2pdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
+    });
 
   import('jspdf.min.js')
-  .then((jspdf) => {
+    .then((jspdf) => {
       window.jspdf = jspdf.default;
-  })
-  .catch(error => {
-    Loger.Failed();
-    Loger.AddError('Error loading jspdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
-  });
+    })
+    .catch(error => {
+      Loger.Failed();
+      Loger.AddError('Error loading jspdf', `<i class="fa-solid fa-triangle-exclamation"></i>`);
+    });
 }
 
 function LodingLayerDuringSavePdf(stat) {
@@ -701,13 +701,13 @@ function LodingLayerDuringSavePdf(stat) {
     }
     return true
   } else if (stat == false) {
-      if (!loadingLayer.classList.contains('hidden')) {
-        loadingLayer.classList.add('hidden');
-        document.getElementById('continue-ordering-content').classList.remove('hidden');
-      }
-      return true
+    if (!loadingLayer.classList.contains('hidden')) {
+      loadingLayer.classList.add('hidden');
+      document.getElementById('continue-ordering-content').classList.remove('hidden');
+    }
+    return true
   } else {
-      return false
+    return false
   }
 }
 
@@ -722,28 +722,29 @@ function prev_step() {
   // fd.append('csrfmiddlewaretoken', document.getElementById('continue-ordering-csrf').children.namedItem('csrfmiddlewaretoken').value);
 
   axios.post(prev_step_url, fd)
-  .then(response => {
-    if (active != 1) {
-      active = active - 1;
-    }
-    updateProgres();
-    sec_step = response.data.step;
-    Ordering('auto');
-  }).catch(error => {
-    Loger.ConnectionError();
-  });
+    .then(response => {
+      if (active != 1) {
+        active = active - 1;
+      }
+      updateProgres();
+      sec_step = response.data.step;
+      Ordering('auto');
+    }).catch(error => {
+      Loger.ConnectionError();
+    });
 }
 
 function save_factor(uid) {
   LodingLayerDuringSavePdf(true);
-  const element = document.getElementById('receipt-factor'); // The ID of the element you want to save as PDF
+  // The ID of the element you want to save as PDF
+  const element = document.getElementById('receipt-factor').cloneNode(true);
   const opt = {
-      margin: 0.1,
-      width: 190,
-      filename: `KALANTARI-Receipt--order-${uid}.pdf`,
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 5 },
-      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    margin: 0.1,
+    width: 190,
+    filename: `KALANTARI-Receipt--order-${uid}.pdf`,
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { scale: 5 },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
   };
 
 

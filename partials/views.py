@@ -1,9 +1,11 @@
+import json
 import uuid
 
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
 
+from cart.views import get_order_info
 from core.core.make_data_grouper import make_data_grouper
 from cart.models import Order
 from favorite.models import Favorite
@@ -53,32 +55,27 @@ def cart_user_menu(request):
     #         request.session['u_id'] = str(uuid.uuid4())
     #         session_uid = request.session['u_id']
     #         items = Order.order_manager.get_order_items(request.user)
-    print(request.session.get('u_id'))
     items = Order.order_manager.get_order_items(
         user=request.user if request.user.is_authenticated else None,
         session_uid=request.session.get('u_id') if not request.user.is_authenticated else None
     )
-    price = 0
-    for item in items if items is not None else []:
-        price += (item.price * item.count)
-    discount = 0
-    final_price = price - discount
+    order_info = json.loads(get_order_info(request).content.decode())
     context = {}
     if items:
         context = {
             'empty': False,
             'items': items,
-            'price': price,
-            'discount': discount,
-            'final_price': final_price
+            'price': order_info['price'],
+            'discount': order_info['discount'],
+            'final_price': order_info['net_price']
         }
     else:
         context = {
             'empty': True,
             'items': items,
-            'price': price,
-            'discount': discount,
-            'final_price': final_price
+            'price': order_info['price'],
+            'discount': order_info['discount'],
+            'final_price': order_info['net_price']
         }
     return render(request, 'partial/user-menu-cart.html', context)
 
@@ -113,7 +110,7 @@ def favorite_user_menu(request):
 
 
 def highest_score_products(request):
-    products = Product.published.get_highest_score_products(count=8)
+    products = Product.published.get_highest_score_products(count=12)
     # data = make_data_grouper(4, products)
     context = {
         'products': products

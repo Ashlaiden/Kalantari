@@ -11,14 +11,17 @@ def pre_save_uid(uid, sender):
     return uid
 
 
-def calculate_score(bought_count, views_count, stock, created):
+def calculate_score(bought_count=0, views_count=0, stock=0, created=None):
     # Define weights
     weight_for_purchase = 2
     weight_for_views = 0.1
     weight_for_inventory = 0.5
 
     # Calculate age factor for products older than 1 month
-    age_factor = max(0, (timezone.now() - created).days - 30) * 0.05
+    if created:
+        age_factor = max(0, (timezone.now() - created).days - 30) * 0.05
+    else:
+        age_factor = 0
 
     # Calculate score
     score = (
@@ -30,6 +33,7 @@ def calculate_score(bought_count, views_count, stock, created):
     # Normalize score (example normalization, adjust as needed)
     normalizing_factor = 10
     final_score = (score / normalizing_factor)
-    print(f'Score: {final_score}')
     return final_score
+
+
 

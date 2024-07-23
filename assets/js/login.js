@@ -3,7 +3,7 @@ class Authenticate {
   constructor(order) {
     this.order = order;
     this.created = new Date().getTime();
-    this.LoginURL = location.protocol + '//' + location.hostname + '/account/login/';
+    this.LoginURL = '/_account/login/';
   }
   cleaned_email(email) {
     // Regular expression for basic email validation
@@ -35,6 +35,7 @@ class Authenticate {
   Login() {
     if (this.isValid()) {
       const login_url = this.LoginURL + `?next=${this.get_next()}`;
+      console.log(login_url)
       this.csrfmiddlewaretoken = document.getElementById('login-form').children.namedItem('csrfmiddlewaretoken').value;
       const fd = new FormData();
       fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)
@@ -97,34 +98,74 @@ class Authenticate {
 // --------------------------------------------------
 var authenticate = new Authenticate('create');
 var login_button = document.getElementById('login');
-document.getElementById('email').addEventListener('input', function () {
-  var vlue = this.value;
-  if (authenticate.cleaned_email(vlue)) {
-    if (authenticate.isValid()) {
-      login_button.classList.remove('disabled');
+document.addEventListener('DOMContentLoaded', (event) => {
+  const email_input = document.getElementById('email');
+  const passwd_input = document.getElementById('passwd');
+  function validate_email() {
+    var vlue = email_input.value;
+    if (authenticate.cleaned_email(vlue)) {
+      if (authenticate.isValid()) {
+        login_button.classList.remove('disabled');
+      } else {
+        login_button.classList.add('disabled');
+      }
     } else {
       login_button.classList.add('disabled');
     }
-  } else {
-    login_button.classList.add('disabled');
   }
-});
-document.getElementById('passwd').addEventListener('input', function () {
-  var vlue = this.value;
-  if (authenticate.cleaned_passwd(vlue)) {
-    if (authenticate.isValid()) {
-      login_button.classList.remove('disabled');
+  function validate_passwd() {
+    var vlue = passwd_input.value;
+    if (authenticate.cleaned_passwd(vlue)) {
+      if (authenticate.isValid()) {
+        login_button.classList.remove('disabled');
+      } else {
+        login_button.classList.add('disabled');
+      }
     } else {
       login_button.classList.add('disabled');
     }
-  } else {
-    login_button.classList.add('disabled');
   }
+  function validate_inputs() {
+    console.log('validating....')
+    validate_email();
+    validate_passwd();
+  }
+  validate_inputs();
+  const _ = login_button.offsetHeight;
+  email_input.addEventListener('input', validate_email);
+  passwd_input.addEventListener('input', validate_passwd);
+
+
+
+  const password = document.getElementById('passwd');
+  const togglePassword = document.getElementById('togglePasswd');
+  
+  togglePassword.addEventListener('click', function () {
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    
+    if (this.classList.contains('fa-regular')) {
+      this.classList.remove('fa-regular');
+      this.classList.remove('fa-eye');
+      this.classList.add('fa-solid');
+      this.classList.add('fa-eye-low-vision');
+    } else {
+      this.classList.remove('fa-solid');
+      this.classList.remove('fa-eye-low-vision');
+      this.classList.add('fa-regular');
+      this.classList.add('fa-eye');
+    }
+    // <i class="fa-solid fa-eye-low-vision"></i>
+  });
 });
 // ------------------------------------------
 function Login() {
   login_button.classList.add('submiting')
-  login_button.innerHTML = '<i class="fa-solid fa-spinner"></i>'
+  login_button.innerHTML = '<i class="fa-solid fa-spinner"></i>';
+  // login_button.innerHTML = '<i class="fa-solid fa-circle-notch"></i>';
+  // login_button.innerHTML = '<i class="fa-solid fa-slash"></i>';
+  // login_button.innerHTML = '<i class="fa-solid fa-asterisk"></i>';
+  // login_button.innerHTML = '. . .';
   if (authenticate.isValid()) {
     authenticate.Login();
   } else {
@@ -133,7 +174,6 @@ function Login() {
     login_button.innerHTML = 'ورود'
   }
 }
-
 
 
 

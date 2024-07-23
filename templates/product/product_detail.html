@@ -3,17 +3,17 @@
 {% load static %}
 {% block title %}{{ product.title }}{% endblock %}
 {% block head %}
-	<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
 {% endblock %}
 {% block content %}
-<div class="header-black"></div>
-<div class="header-blank"></div>
-	<div class="page-container">
+    <div class="header-black"></div>
+    <div class="header-blank"></div>
+    <div id="page-container" class="page-container">
         <div class="images">
             {% if product.hover_image %}
                 <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
-            	<img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
+                <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.hover_image.url }}" alt="{{ product.title }}">
@@ -27,21 +27,28 @@
                 <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
                 <img src="{{ product.cover_image.url }}" alt="{{ product.title }}">
-            {% endif %} 
+            {% endif %}
+        </div>
+        <div id="product-top-off">
+            <strong>{{ product.title | truncatewords:5 }}</strong>
+            <button id="product-top-off-btn" type="button" onclick="GoToTopProduct()">
+                <span>مشاهده</span>
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
         </div>
         <div id="detail-container" class="detail-container">
             <div class="inner">
                 <div id="detail" class="sticky">
                     <div class="detail">
                         <div class="code">
-                            <h6>کد کالا: {{ product.uid }}</h6>
+                            <strong>کد کالا: {{ product.uid }}</strong>
                             {% if in_favorite %}
                                 <i id="bookmark" onclick="book_mark()" class="favorite fa-solid fa-heart"></i>
                             {% else %}
                                 <i id="bookmark" onclick="book_mark()" class="favorite fa-regular fa-heart"></i>
-                            {% endif %} 
+                            {% endif %}
                         </div>
-                        <h1>{{ product.title }}</h1>
+                        <span>{{ product.title }}</span>
                         <p>{{ product.description }}</p>
                         <div id="prop" class="prop">
                             <div class="size">
@@ -54,65 +61,73 @@
                                 جنس چرم: چرم گاو
                             </div>
                         </div>
-                    {% if in_cart %}
-                        {% if first %}
-                            {% if max %}
-                            	<div id="in-cart-container" class="in-cart-container">
-                            <div id="in-cart" class="in-cart">
-                                <button type="button" id="decrease-or-delete" onclick="cart.delete()" class="in-cart-delete"><i class="fa-solid fa-trash-can"></i></button>
-                                <div class="count">
-                                    <section id="count">{{ count }}</section>
-                                    <span id="max">حداکثر</span>
-                                </div>
-                                <button type="button" class="disabled" id="increase" onclick="cart.increase()">+</button>
-                            </div>
-                        </div>
+                        {% if in_cart %}
+                            {% if first %}
+                                {% if max %}
+                                    <div id="in-cart-container" class="in-cart-container">
+                                        <div id="in-cart" class="in-cart">
+                                            <button type="button" id="decrease-or-delete" onclick="cart.delete()"
+                                                    class="in-cart-delete"><i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                            <div class="count">
+                                                <section id="count">{{ count }}</section>
+                                                <span id="max">حداکثر</span>
+                                            </div>
+                                            <button type="button" class="disabled" id="increase"
+                                                    onclick="cart.increase()">+
+                                            </button>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div id="in-cart-container" class="in-cart-container">
+                                        <div id="in-cart" class="in-cart">
+                                            <button type="button" id="decrease-or-delete" onclick="cart.delete()"
+                                                    class="in-cart-delete"><i class="fa-solid fa-trash-can"></i>
+                                            </button>
+                                            <div class="count">
+                                                <section id="count">{{ count }}</section>
+                                            </div>
+                                            <button type="button" id="increase" onclick="cart.increase()">+</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             {% else %}
-                                <div id="in-cart-container" class="in-cart-container">
-                            <div id="in-cart" class="in-cart">
-                                <button type="button" id="decrease-or-delete" onclick="cart.delete()" class="in-cart-delete"><i class="fa-solid fa-trash-can"></i></button>
-                                <div class="count">
-                                    <section id="count">{{ count }}</section>
-                                </div>
-                                <button type="button" id="increase" onclick="cart.increase()">+</button>
-                            </div>
-                        </div>
+                                {% if max %}
+                                    <div id="in-cart-container" class="in-cart-container">
+                                        <div id="in-cart" class="in-cart">
+                                            <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-
+                                            </button>
+                                            <div class="count">
+                                                <section id="count">{{ count }}</section>
+                                                <span id="max">حداکثر</span>
+                                            </div>
+                                            <button type="button" class="disabled" id="increase"
+                                                    onclick="cart.increase()">+
+                                            </button>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div id="in-cart-container" class="in-cart-container">
+                                        <div id="in-cart" class="in-cart">
+                                            <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-
+                                            </button>
+                                            <div class="count">
+                                                <section id="count">{{ count }}</section>
+                                            </div>
+                                            <button type="button" id="increase" onclick="cart.increase()">+</button>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         {% else %}
-                            {% if max %}
-                            	<div id="in-cart-container" class="in-cart-container">
-                            <div id="in-cart" class="in-cart">
-                                <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-</button>
-                                <div class="count">
-                                    <section id="count">{{ count }}</section>
-                                    <span id="max">حداکثر</span>
-                                </div>
-                                <button type="button" class="disabled" id="increase" onclick="cart.increase()">+</button>
-                            </div>
-                        </div>
-                            {% else %}
-                                <div id="in-cart-container" class="in-cart-container">
-                            <div id="in-cart" class="in-cart">
-                                <button type="button" id="decrease-or-delete" onclick="cart.decrease()">-</button>
-                                <div class="count">
-                                    <section id="count">{{ count }}</section>
-                                </div>
-                                <button type="button" id="increase" onclick="cart.increase()">+</button>
-                            </div>
-                        </div>
-                            {% endif %}
-                        {% endif %}
-                    {% else %}
-                        <div id="product-cart-stat" class="button">
-{#                            {% if request.user.is_authenticated %}#}
+                            <div id="product-cart-stat" class="button">
                                 <form id="add-to-cart">
-                                    <button class="add-to-order-btn" type="button"  onclick="cart.add()">افزودن به سبد خرید</button>
+                                    <button class="add-to-order-btn" type="button" onclick="cart.add()">افزودن به سبد
+                                        خرید
+                                    </button>
                                 </form>
-{#                            {% else %}#}
-{#                                <button type="button" class="add-to-order-btn disabled" onclick="cart.add()">افزودن به سبد خرید</button>#}
-{#                            {% endif %} #}
-                        </div>
-                    {% endif %}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -123,7 +138,7 @@
 
 {% endblock %}
 {% block script %}
-	<script src="{% static 'js/product_detail.js' %}"></script>
+    <script src="{% static 'js/product_detail.js' %}"></script>
     <form id="csrf-token">
         {% csrf_token %}
     </form>

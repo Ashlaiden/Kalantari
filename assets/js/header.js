@@ -241,7 +241,7 @@ function update_order_info() {
     }).then(response => {
         document.getElementById('details-price').innerText = `${response.data.price} تومان`;
         document.getElementById('details-discount').innerText = `${response.data.discount} تومان`;
-        document.getElementById('details-final-price').innerText = `${response.data.final_price} تومان`;
+        document.getElementById('details-final-price').innerText = `${response.data.net_price} تومان`;
     }).catch(error => {
       Loger.ConnectionError();
     });

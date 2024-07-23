@@ -1,37 +1,37 @@
 function active_items_listener() {
-    document.querySelectorAll('.item-link').forEach(function(link) {
-      link.addEventListener('click', function(event) {
-        if (event.target.parentElement.tagName.toLowerCase() === 'button') {
-          copy_to_clipboard(this.href);
-          event.preventDefault();
-          event.stopPropagation();
-        }
-      });
+    document.querySelectorAll('.item-link').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            if (event.target.parentElement.tagName.toLowerCase() === 'button') {
+                copy_to_clipboard(this.href);
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        });
     });
 
     // Get all the elements with the class 'product-item'
     const productItems = document.querySelectorAll('.item');
-  
+
     // Add mouseover and mouseout event listeners to each product item
     productItems.forEach(item => {
         var dualimage = item.getAttribute('dual-image');
 
-        if(dualimage && dualimage === 'true') {
+        if (dualimage && dualimage === 'true') {
             item.querySelector('.image-container').addEventListener('mouseenter', () => {
 
-              // When the mouse is over the item, hide the cover image and show the hover image
-              item.querySelector('.cover-image').style.opacity = '0';
-              // item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
-              // item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
-              item.querySelector('.hover-image').style.opacity = '1';
+                // When the mouse is over the item, hide the cover image and show the hover image
+                item.querySelector('.cover-image').style.opacity = '0';
+                // item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
+                // item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
+                item.querySelector('.hover-image').style.opacity = '1';
             });
-        
+
             item.querySelector('.image-container').addEventListener('mouseleave', () => {
-              // When the mouse is no longer over the item, show the cover image and hide the hover image
-              item.querySelector('.cover-image').style.opacity = '1';
-              // item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
-              // item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
-              item.querySelector('.hover-image').style.opacity = '0';
+                // When the mouse is no longer over the item, show the cover image and hide the hover image
+                item.querySelector('.cover-image').style.opacity = '1';
+                // item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
+                // item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
+                item.querySelector('.hover-image').style.opacity = '0';
             });
         }
     });
@@ -40,6 +40,40 @@ function active_items_listener() {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const items = Array.from(document.getElementById('carousel-container').querySelectorAll('.card'));
+    items.forEach(function (item) {
+        item.addEventListener('touchstart', function (event) {
+            if (!event.target.parentElement.classList.contains('image-container')) {
+                if (!item.classList.contains('most-product-touch-active')) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    if (document.querySelector('.most-product-touch-active')) {
+                        document.querySelector('.most-product-touch-active').classList.remove('most-product-touch-active')
+                    }
+                    item.classList.add('most-product-touch-active');
+                    // setTimeout(() => {
+                    // }, 200);
+                }
+            }
+        });
+        item.addEventListener('touchend', function (event) {
+            if (item.classList.contains('most-product-touch-active')) {
+                var owl = $('.owl-carousel');
+                owl.trigger('stop.owl.autoplay');
+                setTimeout(() => {
+                    item.classList.remove('most-product-touch-active');
+                    owl.trigger('play.owl.autoplay');
+                }, 3000);
+            }
+        });
+    });
+    const carousel_container = document.getElementById('carousel-container');
+    document.addEventListener('click', function(e) {
+        if (!carousel_container.contains(e.target) && document.querySelector('.most-product-touch-active')) {
+            var owl = $('.owl-carousel');
+            document.querySelector('.most-product-touch-active').classList.remove('most-product-touch-active');
+            owl.trigger('play.owl.autoplay');
+        }
+    });
     function groupItems() {
         // Destroy the existing Owl Carousel
         $('.owl-carousel').trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
@@ -54,16 +88,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let itemsPerGroup;
         const screenWidth = window.innerWidth;
 
-        if (screenWidth >= 1200) {
-            itemsPerGroup = 4; // Example: 4 items per group for large screens
-        } else if (screenWidth >= 768) {
-            itemsPerGroup = 3; // Example: 3 items per group for medium screens
-        } else if (screenWidth >= 574) {
-            itemsPerGroup = 2; // Example: 2 items per group for small screens
-        } else {
-            itemsPerGroup = 1;
-        }
+        // if (screenWidth >= 1200) {
+        //     itemsPerGroup = 6;
+        // } else if (screenWidth >= 768) {
+        //     itemsPerGroup = 4;
+        // } else if (screenWidth >= 574) {
+        //     itemsPerGroup = 2;
+        // } else {
+        //     itemsPerGroup = 1;
+        // }
 
+        if (screenWidth >= 1200) {
+            itemsPerGroup = 6;
+        } else if (screenWidth >= 768) {
+            itemsPerGroup = 4;
+        } else {
+            itemsPerGroup = 2;
+        }
 
         // Create groups
         // let group = document.createElement('div');
@@ -97,13 +138,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
         container.classList.add('owl-carousel')
 
         $('.owl-carousel').owlCarousel({
-            loop:true,
+            loop: true,
             margin: 0,
-            nav:true,
+            nav: true,
             items: 1,
-            autoplay:true,
-            autoplayTimeout:4000,
-            autoplayHoverPause:true,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            autoplayHoverPause: true,
         })
         active_items_listener();
     }
@@ -114,7 +155,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Debounce function
     function debounce(func, wait) {
         let timeout;
-        return function() {
+        return function () {
             clearTimeout(timeout);
             timeout = setTimeout(func, wait);
         }

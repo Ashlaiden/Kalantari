@@ -1,6 +1,7 @@
 from django.db.models.signals import pre_delete, pre_save
 from django.dispatch import receiver
 from sitesetting.models import SiteSetting
+# from product.models import Product
 
 
 # Use a signal to handle the deletion of authors
@@ -14,3 +15,7 @@ def pre_save_settings_handler(sender, instance, **kwargs):
                 setting.active = False
                 setting.save()
 
+
+# @receiver(pre_save, sender=Product)
+# def pre_save_settings_handler(sender, instance, **kwargs):
+#     instance.published.update_score(product_uid=instance.uid)

@@ -13,6 +13,7 @@ from core.core.file_presave import upload_image_path
 from core.core.slug_auto_generate import slug_generator
 # from core.core.id_generator import generate_id
 from core.core.model_methods import calculate_score
+from tags.models import Branch, Tags
 
 
 # Managers
@@ -20,6 +21,12 @@ from core.core.model_methods import calculate_score
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Product.Status.PUBLISHED)
+
+    def get_by_branch(self, branch):
+        try:
+            return self.get_queryset().filter(branch=branch)
+        except Product.DoesNotExist:
+            return None
 
     def get_by_uid(self, uid: int):
         try:
@@ -185,6 +192,9 @@ class Product(models.Model):
     stock = models.IntegerField(default=0)
     sold = models.IntegerField(default=0)
 
+    branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True, blank=True)
+    tags = models.ManyToManyField(Tags, related_name='tags', related_query_name='tags', blank=True)
+
     class Status(models.TextChoices):
         DRAFT = "DF", 'draft'
         PUBLISHED = "PB", 'published'
@@ -234,7 +244,12 @@ class Product(models.Model):
             self.id = generate_id('product')
         from core.core.model_methods import pre_save_uid
         self.uid = pre_save_uid(self.uid, 'product')
-        self.published.update_product_score(self.uid)
+        self.score = calculate_score(
+            bought_count=self.sold if self.sold is not None else 0,
+            views_count=self.views_count if self.views_count is not None else 0,
+            stock=self.stock if self.stock is not None else 0,
+            created=self.created
+        )
         super(Product, self).save(*args, **kwargs)
 
 

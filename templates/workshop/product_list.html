@@ -21,7 +21,7 @@
                     </div>
                     <div class="item-code">کد کالا: {{ product.uid }}</div>
                     <div class="item-des">
-                        <span>{{ product.title }}</span>
+                        <span>{{ product.title | truncatechars:65 | truncatewords:7 }}</span>
                     </div>
                     <div class="item-price-con">
                         <section class="price">

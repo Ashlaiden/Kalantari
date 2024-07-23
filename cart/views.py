@@ -41,9 +41,25 @@ def cart(request):
             'tax': order_info['tax'],
             'final_price': order_info['final_price']
         }
+        pattern = None
+        if request.user.is_authenticated:
+            gender = request.account.gender
+            if gender is not None:
+                if gender == 'M':
+                    pattern = 'man'
+                elif gender == 'F':
+                    pattern = 'woman'
+                else:
+                    pattern = 'man'
+            else:
+                pattern = 'man'
+        else:
+            pattern = 'man'
+
         context = {
             'items': items,
-            'info': info
+            'info': info,
+            'pattern': pattern
         }
         return render(request, 'cart/cart-component.html', context)
 
@@ -198,15 +214,16 @@ def get_order_info(request):
         singles_price += item.price
         singles_tax += ((item.price / 100) * 9)
     discount = 0
-    final_price = price - discount
-    tax = int((final_price / 100) * 9)
-    final_price += tax
+    net_price = price - discount
+    tax = int((net_price / 100) * 9)
+    final_price = net_price + tax
     return JsonResponse(
         {
             'status': 'od',
             'price': f"{price:,}",
             'discount': f"{discount:,}",
             'tax': f"{tax:,}",
+            'net_price': f"{net_price}",
             'final_price': f"{final_price:,}",
             'single_price_sum': f"{singles_price:,}",
             'single_tax_sum': f"{singles_tax:,}",

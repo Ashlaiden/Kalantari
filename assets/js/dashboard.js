@@ -6,6 +6,8 @@ class DashboardClass {
         this.checking = {};
         this.checking_parent = '';
         this.checked = [];
+        this.pathHistory = [];
+        this.pathHistory.push(this.getPreviousPagePathname());
     }
 
     path_reference = {
@@ -21,6 +23,12 @@ class DashboardClass {
         'favorite': {},
     }
 
+    changePath(newPath) {
+        this.pathHistory.push(newPath);
+         
+        history.pushState(null, '', newPath);
+    }
+
     // path_reference_functions = {
     //     'profile': this.default_section(),
     //     'cart': {
@@ -29,12 +37,40 @@ class DashboardClass {
     //     'favorite': this.load_base_section('favorite'),
     // }
 
-    start() {
+    getBaseURLWithRegex(url) {
+        // Match the base URL using regex
+        const matches = url.match(/^(https?:\/\/[^\/]+)(\/[^?#]*)?/);
+
+        if (matches) {
+            // Return the base URL without query parameters and hash
+            return matches[1] + (matches[2] || '');
+        }
+
+        return '';
+    }
+
+    getPathSegments() {
+        try {
+            const page_url = window.location.href;
+            const url = this.getBaseURLWithRegex(page_url);
+            const urlObject = new URL(url);
+            const pathname = urlObject.pathname;
+            const pathSegments = pathname.split('/').filter(segment => segment !== '');
+            const NetList = pathSegments.slice(1);
+            // console.log(`NetList:    ${NetList}`);
+            return NetList;
+        } catch (error) {
+            Loger.AddError('خطای داخلی مرورگر');
+            return [];
+        }
+    }
+
+    start(paths) {
         var base_sec = '';
         var base_loaded = false;
-        if (this.paths.length > 1) {
-            for (var i = 0; i <= this.paths.length; i++) {
-                var path = this.paths[i];
+        if (paths.length > 1) {
+            for (var i = 0; i <= paths.length; i++) {
+                var path = paths[i];
                 if (!base_loaded && path !== '') {
                     base_loaded = this.is_main_path(path)
                     if (base_loaded) {
@@ -48,12 +84,12 @@ class DashboardClass {
                     }
                 } else {
                     this.check_sub_path(path);
-                    if (i == this.paths.length) {
+                    if (i == paths.length) {
                         this.load_path();
                     }
                 }
             }
-            this.paths.forEach(path => {
+            paths.forEach(path => {
                 if (!base_loaded) {
                     base_loaded = this.is_main_path(path)
                     if (base_loaded) {
@@ -69,12 +105,12 @@ class DashboardClass {
                     this.check_sub_path(path)
                 }
             });
-        } else if (this.paths.length == 1) {
-            base_loaded = this.is_main_path(this.paths[0]);
+        } else if (paths.length == 1) {
+            base_loaded = this.is_main_path(paths[0]);
             if (base_loaded) {
-                base_sec = this.paths[0];
-                this.main_section = this.paths[0];
-                this.load_base_section(this.paths[0]);
+                base_sec = paths[0];
+                this.main_section = paths[0];
+                this.load_base_section(paths[0]);
             } else {
                 this.default_section();
             }
@@ -85,8 +121,8 @@ class DashboardClass {
 
     default_section() {
         const newPath = '/dashboard/profile/';
-        history.pushState(null, '', newPath); 
-        chooseSectionBtn(document.getElementById('profile_section_btn')); 
+        history.pushState(null, '', newPath);
+        chooseSectionBtn(document.getElementById('profile_section_btn'));
         this.load_base_section('profile');
     }
 
@@ -122,7 +158,7 @@ class DashboardClass {
         //                 if (subpath == path) {
 
         //                 } else {
-                            
+
         //                 }
         //             }
         //         });
@@ -141,7 +177,7 @@ class DashboardClass {
         //             if (subpath == path) {
 
         //             } else {
-                        
+
         //             }
         //         });
         //         break;
@@ -151,7 +187,7 @@ class DashboardClass {
     load_base_section(bs) {
         chooseSectionBtn(document.getElementById(`${bs}_section_btn`));
     }
-    
+
     load_path() {
         const fstate = this.checked;
         switch (fstate[0]) {
@@ -192,10 +228,47 @@ class DashboardClass {
                 break;
         }
     }
+
+    getPreviousPagePathname() {
+        // Get the referrer URL
+        const referrer = document.referrer;
+    
+        // Check if referrer URL is available
+        if (referrer) {
+            // Create a new URL object using the referrer URL
+            const referrerURL = new URL(referrer);
+    
+            // Return the pathname of the referrer URL
+            return referrerURL.pathname;
+        } else {
+            return '';
+        }
+    }
+
+    go_back() {
+        if (this.pathHistory.length > 2) {
+            const url = this.getPathSegments();
+            this.pathHistory.pop()
+            this.start(url);
+        } else {
+            window.location.href = this.pathHistory[0];
+        }
+    }
 }
 
 // ***************
 const dashboard = new DashboardClass()
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Backspace' || event.keyCode === 8) {
+            dashboard.go_back();
+        }
+    });
+    window.addEventListener('popstate', function (event) {
+        dashboard.go_back();
+    });
+});
 // ***************
 
 function chooseSectionBtn(section) {
@@ -221,14 +294,14 @@ function chooseSectionBtn(section) {
     }
 }
 function removeActiveSection() {
-    try {        
-        var sections_btn = document.getElementsByClassName('section');
-        for (i = 0; i <= sections_btn.length; i++) {
-            var under_line = sections_btn[i].querySelector('.under-line');
+    try {
+        var sections_btn = Array.from(document.getElementsByClassName('section'));
+        sections_btn.forEach(function (btn) {
+            var under_line = btn.querySelector('.under-line');
             if (under_line.classList.contains('under-line-active')) {
                 under_line.classList.remove('under-line-active');
             }
-        }
+        });
     } catch (error) {
         Loger.AddError('خطای داخلی مرورگر');
     }
@@ -259,7 +332,7 @@ function LoadingLayerToggle(stat) {
     //     loadingLayer.classList.add('hidden');
     // }
     // var contentContainer = document.getElementById('content-container');
-    
+
     // // Show the loading layer
     // loadingLayer.classList.remove('hidden');
 
@@ -267,7 +340,7 @@ function LoadingLayerToggle(stat) {
     // setTimeout(function() {
     //     // Hide the loading layer
     //     loadingLayer.classList.add('hidden');
-        
+
     //     // Update the content (for demonstration purposes)
     //     contentContainer.innerHTML = '<p>New content loaded!</p>';
     // }, 2000); // Simulate a 2-second loading time
@@ -278,10 +351,11 @@ function LoadingLayerToggle(stat) {
 
 // --------------cart-------------------
 function cartSection() {
-    cart_url = '/cart/'
-    
-    const newPath = '/dashboard/cart/';
-    history.pushState(null, '', newPath);    
+    cart_url = '/cart/_cart/_component/'
+
+    if (window.location.pathname !== '/dashboard/cart/') {
+        dashboard.changePath('/dashboard/cart/')
+    }
 
     axios.get(cart_url).then(response => {
         LoadingLayerToggle(false);
@@ -294,8 +368,9 @@ function cartSection() {
 function favoriteSection() {
     favorite_url = '/favorite/_items_list/';
 
-    const newPath = '/dashboard/favorite/';
-    history.pushState(null, '', newPath);   
+    if (window.location.pathname !== '/dashboard/favorite/') {
+        dashboard.changePath('/dashboard/favorite/')
+    }
 
     axios.get(favorite_url).then(response => {
         LoadingLayerToggle(false);
@@ -308,8 +383,9 @@ function favoriteSection() {
 function profileSection() {
     favorite_url = '/account/_dashboard/_profile/';
 
-    const newPath = '/dashboard/profile/';
-    history.pushState(null, '', newPath);   
+    if (window.location.pathname !== '/dashboard/profile/') {
+        dashboard.changePath('/dashboard/profile/')
+    }
 
     axios.get(favorite_url).then(response => {
         LoadingLayerToggle(false);

@@ -99,35 +99,35 @@
 // }
 // -------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', (event) => {
-    // Get all the elements with the class 'product-item'
-    const productItems = document.querySelectorAll('.item');
-  
-    // Add mouseover and mouseout event listeners to each product item
-    productItems.forEach(item => {
-        var dualimage = item.getAttribute('dual-image');
+  // Get all the elements with the class 'product-item'
+  const productItems = document.querySelectorAll('.item');
 
-        if(dualimage && dualimage === 'true') {
-            item.addEventListener('mouseenter', () => {
-              // When the mouse is over the item, hide the cover image and show the hover image
-              item.querySelector('.cover-image').style.opacity = '0';
-              // item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
-              // item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
-              item.querySelector('.hover-image').style.opacity = '1';
-            });
-        
-            item.addEventListener('mouseleave', () => {
-              // When the mouse is no longer over the item, show the cover image and hide the hover image
-              item.querySelector('.cover-image').style.opacity = '1';
-              // item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
-              // item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
-              item.querySelector('.hover-image').style.opacity = '0';
-            });
-        }
-    });
+  // Add mouseover and mouseout event listeners to each product item
+  productItems.forEach(item => {
+    var dualimage = item.getAttribute('dual-image');
+
+    if (dualimage && dualimage === 'true') {
+      item.querySelector('.image-container').addEventListener('mouseenter', () => {
+        // When the mouse is over the item, hide the cover image and show the hover image
+        item.querySelector('.cover-image').style.opacity = '0';
+        // item.querySelector('.cover-image').style.transform = 'rotateY(-180deg)';
+        // item.querySelector('.hover-image').style.transform = 'rotateY(0deg)';
+        item.querySelector('.hover-image').style.opacity = '1';
+      });
+
+      item.querySelector('.image-container').addEventListener('mouseleave', () => {
+        // When the mouse is no longer over the item, show the cover image and hide the hover image
+        item.querySelector('.cover-image').style.opacity = '1';
+        // item.querySelector('.hover-image').style.transform = 'rotateY(-180deg)';
+        // item.querySelector('.cover-image').style.transform = 'rotateY(0deg)';
+        item.querySelector('.hover-image').style.opacity = '0';
+      });
+    }
   });
+});
 function active_items_listener() {
-  document.querySelectorAll('.item-link').forEach(function(link) {
-    link.addEventListener('click', function(event) {
+  document.querySelectorAll('.item-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
       if (event.target.parentElement.tagName.toLowerCase() === 'button') {
         copy_to_clipboard(this.href);
         event.preventDefault();

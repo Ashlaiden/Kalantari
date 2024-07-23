@@ -1,3 +1,4 @@
+{% load humanize %}
 <div id="cart" class="container hidden">
     <div class="cart-section">
         <div class="cart-box">
@@ -8,9 +9,9 @@
                     <a href="{{ item.product.get_absolute_url }}" style="text-decoration: none; color: inherit">
                         <img src="{{ item.product.cover_image.url }}" alt="{{ item.product.title }}">
                     </a>
-                    <span>{{ item.product.title }}</span>
-                    <span id="cart-menu-count-{{ item.uid }}">{{ item.count }}</span>
-                    <span>{{ item.price }}</span>
+                    <span>{{ item.product.title | truncatewords:5 | truncatechars:50 }}</span>
+                    <section id="cart-menu-count-{{ item.uid }}">{{ item.count }}</section>
+                    <p>{{ item.price | intcomma }}</p>
                     <form id="form-menu-{{ item.uid }}" action="">
                         {% csrf_token %}
                         <button type="button" name="delete-item" onclick="removeitemfromcart({{ item.uid }})"><i class="fa-solid fa-xmark"></i></button>
@@ -42,15 +43,15 @@
             <div class="order-info">
         <div>
             <span>مجموع:</span>
-            <span id="details-price">{{ price }} تومان</span>
+            <span id="details-price">{{ price | intcomma }} تومان</span>
         </div>
         <div>
             <span>تخفیف:</span>
-            <span id="details-discount">{{ discount }} تومان</span>
+            <span id="details-discount">{{ discount | intcomma }} تومان</span>
         </div>
         <div>
             <span>قیمت نهایی:</span>
-            <span id="details-final-price">{{ final_price }} تومان</span>
+            <span id="details-final-price">{{ final_price | intcomma }} تومان</span>
         </div>
     </div>
         <a id="continue-in-cart" href="{% url 'dashboard:user_dashboard_with_sub_path' sub_path='cart' %}" class="continue-in-cart">ادامه در سبد خرید</a>

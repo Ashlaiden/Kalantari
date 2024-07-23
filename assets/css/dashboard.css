@@ -28,6 +28,8 @@
 #nav-favorite-btn {
     display: none;
 }
+
+
 /* ------------------------------------------------- */
 main .dashboard-container {
     margin-top: 80px;
@@ -171,3 +173,75 @@ main .content-container {
 
 
 
+
+
+
+
+/* -------------------Responsive-Page------------------------- */
+@media (min-width: 769px) and (max-width: 1200px) {
+    main .dashboard-container {
+        margin-top: 30px;
+    }
+    main .section-bar {
+        margin-top: 80px;
+    }
+}
+
+@media (min-width: 427px) and (max-width: 768px) {
+    main .dashboard-container {
+        margin-top: 30px;
+    }
+    main .section-bar {
+        margin-top: 100px;
+    }
+    main .section-bar .section {
+        height: 50px;
+        min-width: fit-content;
+        /* max-width: 25%; */
+        width: 25%;
+        margin: 3px 1px;
+        padding: 0px 3px;
+        font-size: 0.7rem;
+    }
+    .wave {
+        width: 4px;
+        height: 80px;
+        margin: 8px;
+    }
+    main .content-container {
+        width: 96%;
+        margin: 10px auto;
+        padding: 3px;
+        border-radius: 10px;
+    }
+    
+}
+
+@media (max-width: 427px) {
+    main .dashboard-container {
+        margin-top: 30px;
+    }
+    main .section-bar {
+        margin-top: 50px;
+        justify-content: space-around;
+    }
+    main .section-bar .section {
+        height: 50px;
+        width: 30%;
+        margin: 3px 1px;
+        padding: 0px 3px;
+        font-size: 0.6rem;
+    }
+    .wave {
+        width: 3px;
+        height: 60px;
+        margin: 5px;
+    }
+
+    main .content-container {
+        width: 98%;
+        margin: 5px auto;
+        padding: 2px;
+        border-radius: 5px;
+    }
+}

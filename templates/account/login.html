@@ -7,31 +7,43 @@
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 {% block raw_title %}
-	Kalantari | ورود
+    Kalantari | ورود
 {% endblock %}
 {% block raw_content %}
     <main class="main">
         <div class="login-box">
-            <div class="container">
-                <div class="header">
-                    <h1>ورود</h1>
-                </div>
-                <form id="login-form" class="login-form" action="">
-                    {% csrf_token %}
-                    <div class="inputs">
-                        <div class="input email">
-                            <span>ایمیل :</span>
-                            <input type="text" name="email" id="email" placeholder="email">
-                        </div>
-                        <div class="input passwd">
-                            <span>رمز عبور :</span>
-                            <input type="password" name="passwd" id="passwd" placeholder="password">
+            <div class="header">
+                <a href="{% url 'workshop:home_page' %}">KALANTARI</a>
+                <p>|</p>
+                <span>ورود</span>
+            </div>
+            <form id="login-form" class="login-form" action="">
+                {% csrf_token %}
+                <div class="inputs">
+                    <div class="input email">
+                        <span>ایمیل :</span>
+                        <input type="text" name="email" id="email" placeholder="ایمیل">
+                    </div>
+                    <div class="input passwd">
+                        <span>رمز عبور :</span>
+                        <div class="password-container">
+                            <input type="password" name="passwd" id="passwd" placeholder="رمز عبور">
+                            <i class="fa-regular fa-eye show-password" id="togglePasswd"></i>
                         </div>
                     </div>
-                    <button class="disabled" type="button" id="login" onclick="Login()">ورود</button>
-                </form>
-                <div class="footer">
-                    <p>logiin to Kalantari official</p>
+                </div>
+                <button class="" type="button" id="login" onclick="Login()">ورود</button>
+                <div class="register-link">
+                    <span>حساب کاربری ندارید؟</span>
+                    <a href="{% url 'account:register' %}">ثبت نام</a>
+                </div>
+            </form>
+            <div class="footer">
+                <p>Login to Kalantari Official</p>
+                <div class="footer-links">
+                    <a href="{% url 'workshop:home_page' %}">خانه</a>
+                    <span>|</span>
+                    <a href="{% url 'dashboard:user_dashboard' %}">داشبورد</a>
                 </div>
             </div>
         </div>
