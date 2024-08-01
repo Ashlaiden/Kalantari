@@ -3,6 +3,7 @@ from datetime import datetime
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 from django_jalali.db import models as jmodels
@@ -90,7 +91,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, null=False)
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
-    phone = models.CharField(max_length=11, null=False)
+    phone = models.CharField(validators=[RegexValidator(regex=r'^\+\d{1,3}9\d{9}$')], max_length=15, null=False, blank=False)
     birth_date = jmodels.jDateField(null=True, blank=True)
 
     class Gender(models.TextChoices):

@@ -25,8 +25,12 @@
                     </div>
                     <div class="item-price-con">
                         <section class="price">
-                            {{ product.price | intcomma }}
-                            <p>تومان</p>
+                            {% if product.stock >= 1 %}
+                                {{ product.price | intcomma }}
+                                <p>تومان</p>
+                            {% else %}
+                                <span>ناموجود</span>
+                            {% endif %} 
                         </section>
                         <button class="share-item-btn" type="button"><i class="fa-solid fa-share-nodes"></i></button>
                     </div>

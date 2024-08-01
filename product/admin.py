@@ -9,7 +9,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'publish', 'status', 'branch', 'gallery', 'views_count', 'sold', 'score', 'uid']
     readonly_fields = []
     ordering = ['-id', '-publish', 'title']
-    list_filter = ['status', 'publish']
+    list_filter = ['status', 'publish', 'branch', 'tags']
     search_fields = ['id', 'title', 'description']
     # raw_id_fields = ['store']
     date_hierarchy = 'publish'

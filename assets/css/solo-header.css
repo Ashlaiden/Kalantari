@@ -1,0 +1,23 @@
+/* -----------header------------ */
+.header {
+    background-color: rgba(0, 0, 0, 0.9);
+    direction: ltr;
+    border-bottom: 1px solid gray;
+}
+.header:hover {
+    background-color: black;
+    color: white;
+}
+.header-hover {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+#nav-account-btn {
+    display: none;
+}
+#nav-cart-btn {
+    display: none;
+}
+#nav-favorite-btn {
+    display: none;
+}
