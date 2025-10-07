@@ -3,7 +3,7 @@ class Authenticate {
   constructor(order) {
     this.order = order;
     this.created = new Date().getTime();
-    this.LoginURL = '/_account/login/';
+    this.LoginURL = '/account/login/';
   }
   cleaned_email(email) {
     // Regular expression for basic email validation
@@ -35,7 +35,11 @@ class Authenticate {
   Login() {
     if (this.isValid()) {
       const login_url = this.LoginURL + `?next=${this.get_next()}`;
+      console.log('---------')
+      console.log(this.LoginURL)
+      console.log('---------')
       console.log(login_url)
+      console.log('---------')
       this.csrfmiddlewaretoken = document.getElementById('login-form').children.namedItem('csrfmiddlewaretoken').value;
       const fd = new FormData();
       fd.append('csrfmiddlewaretoken', this.csrfmiddlewaretoken)

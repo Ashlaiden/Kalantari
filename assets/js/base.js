@@ -1,4 +1,11 @@
+// document.addEventListener('keydown', function(e) {
+//     const target = e.target;
+//     const isInput = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
 
+//     if (e.key === 'Backspace' && !isInput) {
+//         e.preventDefault();  // جلوگیری از برگشت صفحه
+//     }
+// });
 
 function sleep(ms) {
     const end = Date.now() + ms;

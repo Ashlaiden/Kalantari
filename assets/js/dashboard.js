@@ -259,16 +259,16 @@ class DashboardClass {
 // ***************
 const dashboard = new DashboardClass()
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Backspace' || event.keyCode === 8) {
-            dashboard.go_back();
-        }
-    });
-    window.addEventListener('popstate', function (event) {
-        dashboard.go_back();
-    });
-});
+// document.addEventListener('DOMContentLoaded', (event) => {
+//     document.addEventListener('keydown', function (event) {
+//         if (event.key === 'Backspace' || event.keyCode === 8) {
+//             dashboard.go_back();
+//         }
+//     });
+//     window.addEventListener('popstate', function (event) {
+//         dashboard.go_back();
+//     });
+// });
 // ***************
 
 function chooseSectionBtn(section) {

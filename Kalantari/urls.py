@@ -43,6 +43,9 @@ urlpatterns = [
 
     # include Dashboard urls
     path('dashboard/', include('dashboard.urls', namespace='dashboard'), name='dashboard'),
+
+    # include Payments urls
+    path('payment/', include('payment.urls', namespace='payment'), name='payment'),
 ]
 
 

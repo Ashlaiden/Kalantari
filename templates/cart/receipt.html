@@ -140,8 +140,13 @@
             </div>
         </div>
     </div>
-    <div onclick="save_factor({{ order.uid }})" id="download-factor">ذخیره فاکتور <i
-            class="fa-solid fa-file-arrow-down"></i></div>
-    <button id="submit-factor" type="button">تایید و پرداخت</button>
+    <div onclick="save_factor({{ order.uid }})" id="download-factor">
+        ذخیره فاکتور 
+        <i class="fa-solid fa-file-arrow-down"></i>
+    </div>
+    <form action="/payment/request/" method="POST">
+        {% csrf_token %}
+        <button id="submit-factor" type="submit">تایید و پرداخت</button>
+    </form>
 </div>
 
