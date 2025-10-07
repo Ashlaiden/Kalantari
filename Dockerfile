@@ -1,7 +1,7 @@
 FROM python:3.11-slim
 
 RUN pip install --upgrade pip
-# نصب ابزارهای build و کتابخانه‌های مورد نیاز mysqlclient
+
 RUN apt-get update && apt-get install -y \
     gcc \
     libmariadb-dev \
@@ -12,10 +12,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
